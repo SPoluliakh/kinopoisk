@@ -1,0 +1,1 @@
+import spinner from './partials/spinner';
