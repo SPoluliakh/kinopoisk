@@ -3,6 +3,9 @@ export const renderCard = results => {
 };
 
 //  Рендерит всю страничку с фильмами
+const makeGenre = (genres = []) => {
+  return genres.map(genre => `<li class="movie-card_genre-item">${genre}</li>`);
+};
 
 const makeMovieCard = (results = []) => {
   return results.map(
@@ -20,10 +23,6 @@ const makeMovieCard = (results = []) => {
 </li>
 `
   );
-};
-
-const makeGenre = (genres = []) => {
-  return genres.map(genre => `<li class="movie-card_genre-item">${genre}</li>`);
 };
 
 // Рендерит 1 карточку, нужно передавать callBack для рендера жанров.
