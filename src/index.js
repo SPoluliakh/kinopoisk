@@ -1,1 +1,1 @@
-import getApi from './js/components/api/getAPI';
+import getApi from './js/api/getAPI';
