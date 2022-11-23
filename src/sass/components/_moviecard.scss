@@ -41,7 +41,8 @@ main {
         flex-direction: row;
         flex-wrap: nowrap;
     }
-    .movie-card_genre-item {
+    .movie-card_genre-item,
+    .movie-card_release_date {
         font-family: Roboto;
         font-size: 12px;
         font-weight: 500;
@@ -51,6 +52,22 @@ main {
         color: var(--genre-color);
     }
 
+    .movie-card_vote_average {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 36px;
+        height: 16px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 1.67;
+        color: var(--main-white);
+        background: var(--genre-color);
+        text-align: center;
+        border-radius: 5px;
+    }
 @media screen and (max-width: $tablet) {
     .movie-card__container{
         max-width: 280px;
