@@ -3,7 +3,7 @@
 const makeGenre = (genres = []) => {
   let result = '';
   genres.map((genre,index) => {
-          if ( index !== genres.length-1) {result += `<li class="movie-card_genre-item">${localStorage.getItem(genre)},</li>`} else {result += `<li class="movie-card_genre-item">${localStorage.getItem(genre)}</li>`}
+          if ( index !== genres.length-1) {result += `<li class="movie-card_genre-item">${localStorage.getItem(genre)},</li>`} else {result += `<li class="movie-card_genre-item">${localStorage.getItem(genre.genre)}</li>`}
   })
 return result
   };
@@ -43,7 +43,7 @@ fetch(url)
       .then(res => res.json())
       .then(data => {
         console.log(data.genres);
-        data.genres.map(genre =>
-      localStorage.setItem(genre.id,genre.name))}
-  )}  
+       
+      localStorage.setItem( 'genre',JSON.stringify(data.genres))})
+  }  
   listGenre()
