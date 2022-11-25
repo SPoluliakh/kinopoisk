@@ -7,7 +7,7 @@ const makeGenre = (genre = [], allGenres = []) => {
     return acc;
   }, []);
   return genreList
-    .map(genreItem => `<li class="movie-card_genre-item">${genreItem}</li>`)
+    .map(genreItem => `<li class="movie-card__genre-item">${genreItem}</li>`)
     .join('');
 };
 
@@ -22,10 +22,10 @@ export const makeMovieList = (results = [], allGenres = []) => {
         release_date,
         id,
       }) => `<li class="movie-card" data-id="${id}">
-  <img class="movie-card_img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" />
-  <h2 class="movie-card_title">${title}</h2>
-  <ul class="movie-card_genre-list">${makeGenre(genre_ids, allGenres)}</ul>
-  <p class="movie-card_relize-info">${release_date.slice(0, 4)}</p>
+  <img class="movie-card__img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" />
+  <h2 class="movie-card__title">${title}</h2>
+  <ul class="movie-card__genre-list">${makeGenre(genre_ids, allGenres)}</ul>
+  <p class="movie-card__relize-info">${release_date.slice(0, 4)}</p>
 </li>
 `
     )

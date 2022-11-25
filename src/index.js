@@ -1,3 +1,3 @@
-import { moviesMarkup } from './js/functions/render-home-page';
+import { moviesListMarkup } from './js/functions/render-home-page';
 
-moviesMarkup();
+moviesListMarkup();

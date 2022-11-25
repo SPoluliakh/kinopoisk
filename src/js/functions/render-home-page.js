@@ -3,7 +3,7 @@ import { makeMovieList } from '../components/movie-cards';
 import { list } from '../refs/refs';
 import { LOCAL_STORAGE_KEY } from '../refs/refs';
 
-export const moviesMarkup = async () => {
+export const moviesListMarkup = async () => {
   try {
     const movies = await getPopular();
     const genre = await getGenreMovieList();
