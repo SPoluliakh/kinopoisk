@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-API_URL = 'https://api.themoviedb.org/3/';
-API_KEY = 'c8f6fe1d28bbf3bb36eaa9cda22eaa79';
+const API_URL = 'https://api.themoviedb.org/3/';
+const API_KEY = 'c8f6fe1d28bbf3bb36eaa9cda22eaa79';
 
 // Возвращает список популярных фильмов с аргументом "page" для пагинации
 export async function getPopular(page = 1) {
