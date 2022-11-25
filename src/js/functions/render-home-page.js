@@ -1,15 +1,13 @@
-import { getPopular, getGenreMovieList } from '../api/get-api';
+import { getPopular } from '../api/get-api';
 import { makeMovieList } from '../components/movie-cards';
+import { getGenreOptions } from './local-storage';
 import { list } from '../refs/refs';
-import { LOCAL_STORAGE_KEY } from '../refs/refs';
 
-export const moviesListMarkup = async () => {
+export const moviesListMarkupFirstRender = async () => {
   try {
     const movies = await getPopular();
-    const genre = await getGenreMovieList();
-    const { genres } = genre.data;
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(genres));
     const { results } = movies.data;
+    const genres = getGenreOptions();
     const movieList = makeMovieList(results, genres);
     list.innerHTML = movieList;
   } catch (err) {

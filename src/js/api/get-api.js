@@ -11,9 +11,8 @@ export async function getPopular(page = 1) {
     page: page,
     language: 'en-US',
   });
-  const response = await axios.get(`${API_URL}${params}?${options}`);
-  const data = await response;
-  return data;
+
+  return axios.get(`${API_URL}${params}?${options}`);
 }
 
 // Возвращает список фильмов с аргументами:
