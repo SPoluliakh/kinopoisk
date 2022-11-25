@@ -1,8 +1,10 @@
-<div class="container">
-  <header class="pagehome-header">
+<header class="pagehome-header">
+  <div class="container">
     <div class="navigation-wrapper">
       <a href="./index.html" class="logo">
-        <img class="logo-img" src="#" alt="logo" width="24" height="24" />
+        <svg class="logo-img">
+          <use href="./images/sprite.svg#icon-film" width="24px" height="24px"></use>
+        </svg> 
         <span class="logo-text">Filmoteka</span>
       </a>
 
@@ -27,17 +29,14 @@
         class="search__input"
         name="searchQuery"
         autocomplete="off"
-        placeholder="Пошук фільмів"
+        placeholder="Movie search"
       />
       <button type="submit" class="search__button">
-        <img
-          class="search__button-icon"
-          src="#"
-          alt="search"
-          width="20"
-          height="20"
-        />
+        <svg class="search__button-icon">
+          <use href="./images/sprite.svg#icon-search" width="12px" height="12px"></use>
+        </svg> 
       </button>
     </form>
+    </div>
   </header>
-</div>
+
