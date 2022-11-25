@@ -1,8 +1,9 @@
 //  Возвращает необходимый список жанров
 const makeGenre = (genre = [], allGenres = []) => {
   const genreList = allGenres.reduce((acc, genreItem) => {
-    if (!genre.includes(genreItem.id)) return;
-    acc.push(genreItem.name);
+    if (genre.includes(genreItem.id)) {
+      acc.push(genreItem.name);
+    }
     return acc;
   }, []);
   return genreList
@@ -11,7 +12,7 @@ const makeGenre = (genre = [], allGenres = []) => {
 };
 
 //  Рендерит весь список с фильмами
-export const makeMovieCard = (results = [], allGenres = []) => {
+export const makeMovieList = (results = [], allGenres = []) => {
   return results
     .map(
       ({

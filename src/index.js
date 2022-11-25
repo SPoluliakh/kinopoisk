@@ -1,1 +1,3 @@
-import getApi from './js/api/getAPI';
+import { moviesMarkup } from './js/functions/render-home-page';
+
+moviesMarkup();
