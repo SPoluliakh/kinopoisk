@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* Стили для обнуления верхних отступов у элементов */
@@ -62,7 +62,7 @@ address {
   }
 
   @media screen and (min-width: 1200px) {
-    padding: 0 16px;
+    padding: 0 32px;
     width: 1200px;
   }
 }

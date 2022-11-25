@@ -1,15 +1,17 @@
-export const renderCard = results => {
-  makeMovieCard(results);
-};
-
-//  Рендерит всю страничку с фильмами
-const makeGenre = (genres = []) => {
-  return genres
-    .map(genre => `<li class="movie-card_genre-item">${genre}</li>`)
+//  Возвращает необходимый список жанров
+const makeGenre = (genre = [], allGenres = []) => {
+  const genreList = allGenres.reduce((acc, genreItem) => {
+    if (!genre.includes(genreItem.id)) return;
+    acc.push(genreItem.name);
+    return acc;
+  }, []);
+  return genreList
+    .map(genreItem => `<li class="movie-card_genre-item">${genreItem}</li>`)
     .join('');
 };
 
-const makeMovieCard = (results = []) => {
+//  Рендерит весь список с фильмами
+export const makeMovieCard = (results = [], allGenres = []) => {
   return results
     .map(
       ({
@@ -21,7 +23,7 @@ const makeMovieCard = (results = []) => {
       }) => `<li class="movie-card" data-id="${id}">
   <img class="movie-card_img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" />
   <h2 class="movie-card_title">${title}</h2>
-  <ul class="movie-card_genre-list">${makeGenre(genre_ids)}</ul>
+  <ul class="movie-card_genre-list">${makeGenre(genre_ids, allGenres)}</ul>
   <p class="movie-card_relize-info">${release_date.slice(0, 4)}</p>
 </li>
 `
@@ -30,19 +32,18 @@ const makeMovieCard = (results = []) => {
 };
 
 // Рендерит 1 карточку, нужно передавать callBack для рендера жанров.
-
-const makeCard = (
+export const makeOneCard = (
   poster_path,
   title,
   genre_ids,
   release_date,
   id,
-  callBack
+  allGenres = []
 ) => {
   return `<li class="movie-card" data-id="${id}">
   <img class="movie-card_img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" />
   <h2 class="movie-card_title">${title}</h2>
-  <ul class="movie-card_genre-list">${callBack(genre_ids)}</ul>
+  <ul class="movie-card_genre-list">${makeGenre(genre_ids, allGenres)}</ul>
   <p class="movie-card_relize-info">${release_date.slice(0, 4)}</p>
 </li>
 `;
