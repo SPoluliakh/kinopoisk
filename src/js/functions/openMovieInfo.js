@@ -12,7 +12,7 @@ import {
 
 export async function openMovieInfo(evt) {
   const film = evt.target;
-  if (!film.classList.contains('movie-card')) return;
+  if (film.classList.contains('movie-list')) return;
 
   const filmData = await getMovieById(film.dataset.id);
   const { poster_path, title, genres, vote_count, vote_average, popularity } =
