@@ -6,9 +6,12 @@ const makeGenre = (genre = [], allGenres = []) => {
     }
     return acc;
   }, []);
-  return genreList
-    .map(genreItem => `<li class="movie-card__genre-item">${genreItem}</li>`)
-    .join('');
+  let result = '';
+  genreList
+    .map((genreItem,index) => {
+    if(index !== genreList.length-1){result +=`<li class="movie-card__genre-item">${genreItem},</li>`}
+    else{result +=`<li class="movie-card__genre-item">${genreItem}</li>`}})
+    return result
 };
 
 //  Рендерит весь список с фильмами
@@ -21,11 +24,15 @@ export const makeMovieList = (results = [], allGenres = []) => {
         genre_ids,
         release_date,
         id,
-      }) => `<li class="movie-card" data-id="${id}">
-  <img class="movie-card__img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" />
-  <h2 class="movie-card__title">${title}</h2>
-  <ul class="movie-card__genre-list">${makeGenre(genre_ids, allGenres)}</ul>
-  <p class="movie-card__relize-info">${release_date.slice(0, 4)}</p>
+        vote_average
+      }) => `<li class="movie-card" data-id="${id}"><div>
+    <img class="movie-card__img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" />
+    <h2 class="movie-card__title">${title}</h2>
+    <ul class="movie-card__genre-list">${makeGenre(genre_ids, allGenres)}
+    <li class="movie-card_genre-item">|</li>
+    <li class="movie-card__relize-info">${release_date.slice(0, 4)}</li>
+    </ul>
+  </div>
 </li>
 `
     )
@@ -42,10 +49,14 @@ export const makeOneCard = (
   allGenres = []
 ) => {
   return `<li class="movie-card" data-id="${id}">
-  <img class="movie-card_img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" />
-  <h2 class="movie-card_title">${title}</h2>
-  <ul class="movie-card_genre-list">${makeGenre(genre_ids, allGenres)}</ul>
-  <p class="movie-card_relize-info">${release_date.slice(0, 4)}</p>
+  <div>
+    <img class="movie-card_img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" />
+    <h2 class="movie-card_title">${title}</h2>
+    <ul class="movie-card_genre-list">${makeGenre(genre_ids, allGenres)}
+    <li class="movie-card_genre-item">|</li>
+    <li class="movie-card_relize-info">${release_date.slice(0, 4)}</li>
+    </ul>
+  </div>
 </li>
 `;
 };
