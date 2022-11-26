@@ -6,7 +6,6 @@ const makeGenre = (genre = [], allGenres = []) => {
     }
     return acc;
   }, []);
-
   let result = '';
   genreList.map((genreItem, index) => {
     if (index !== genreList.length - 1) {
@@ -28,7 +27,7 @@ export const makeMovieList = (results = [], allGenres = []) => {
         genre_ids,
         release_date,
         id,
-      }) => `<li class="movie-card" data-id="${id}">
+    }) => `<li class="movie-card" data-id="${id}">
   <img class="movie-card__img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" data-id="${id}"/>
  <div class="movie-card"data-id="${id}">
  <h2 class="movie-card__title"data-id="${id}">${title}</h2>
@@ -47,6 +46,7 @@ export const makeMovieList = (results = [], allGenres = []) => {
     .join('');
 };
 
+
 // Рендерит 1 карточку (модальное окно).
 export const makeModalCard = (title, vote_count, vote_average, popularity) => {
   const card = `
@@ -62,4 +62,5 @@ export const makeModalCard = (title, vote_count, vote_average, popularity) => {
 export const makeModalGenre = (genre = []) => {
   const genreList = genre.map(genreItem => genreItem.name);
   return genreList.join(', ');
+
 };
