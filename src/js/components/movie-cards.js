@@ -32,20 +32,19 @@ export const makeMovieList = (results = [], allGenres = []) => {
     .join('');
 };
 
-// Рендерит 1 карточку, нужно передавать callBack для рендера жанров.
-export const makeOneCard = (
-  poster_path,
-  title,
-  genre_ids,
-  release_date,
-  id,
-  allGenres = []
-) => {
-  return `<li class="movie-card" data-id="${id}">
-  <img class="movie-card_img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" />
-  <h2 class="movie-card_title">${title}</h2>
-  <ul class="movie-card_genre-list">${makeGenre(genre_ids, allGenres)}</ul>
-  <p class="movie-card_relize-info">${release_date.slice(0, 4)}</p>
-</li>
-`;
+// Рендерит 1 карточку (модальное окно).
+export const makeModalCard = (title, vote_count, vote_average, popularity) => {
+  const card = `
+  <p class="modal__text-info" data-vote> ${vote_average.toFixed(
+    1
+  )} / ${vote_count} </p>
+  <p class="modal__text-info" data-popularity> ${popularity.toFixed(1)} </p>
+  <p class="modal__text-info" data-title> ${title} </p>
+ `;
+  return card;
+};
+// Рендерит список жанров (модальное окно).
+export const makeModalGenre = (genre = []) => {
+  const genreList = genre.map(genreItem => genreItem.name);
+  return genreList.join(', ');
 };
