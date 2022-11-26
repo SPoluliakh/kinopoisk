@@ -6,9 +6,16 @@ const makeGenre = (genre = [], allGenres = []) => {
     }
     return acc;
   }, []);
-  return genreList
-    .map(genreItem => `<li class="movie-card__genre-item">${genreItem}</li>`)
-    .join('');
+
+  let result = '';
+  genreList.map((genreItem, index) => {
+    if (index !== genreList.length - 1) {
+      result += `<li class="movie-card__genre-item">${genreItem},</li>`;
+    } else {
+      result += `<li class="movie-card__genre-item">${genreItem}</li>`;
+    }
+  });
+  return result;
 };
 
 //  Рендерит весь список с фильмами
