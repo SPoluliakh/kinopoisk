@@ -6,6 +6,5 @@ import { listRef } from './js/refs/refs';
 document.addEventListener('DOMContentLoaded', () => {
   setGenreOptions();
   moviesListMarkupFirstRender();
+  listRef.addEventListener('click', openMovieInfo);
 });
-
-listRef.addEventListener('click', openMovieInfo);
