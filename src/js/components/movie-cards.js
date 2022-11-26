@@ -24,7 +24,6 @@ export const makeMovieList = (results = [], allGenres = []) => {
         genre_ids,
         release_date,
         id,
-        vote_average
       }) => `<li class="movie-card" data-id="${id}"><div>
     <img class="movie-card__img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" />
     <h2 class="movie-card__title">${title}</h2>
