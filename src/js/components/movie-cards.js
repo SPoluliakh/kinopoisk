@@ -29,16 +29,18 @@ export const makeMovieList = (results = [], allGenres = []) => {
         id,
     }) => `<li class="movie-card" data-id="${id}">
   <img class="movie-card__img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" data-id="${id}"/>
- <div class="movie-card"data-id="${id}">
+ <div class="movie-card__info" data-id="${id}">
  <h2 class="movie-card__title"data-id="${id}">${title}</h2>
   <ul class="movie-card__genre-list"data-id="${id}">${makeGenre(
         genre_ids,
         allGenres
-      )}</ul>
-  <p class="movie-card__relize-info"data-id="${id}">${release_date.slice(
+      )}
+      <li class="movie-card__genre-item">|</li>
+  <li class="movie-card__relize-info" data-id="${id}">${release_date.slice(
         0,
         4
-      )}</p>
+      )}</li>
+      </ul>
   </div>
 </li>
 `
