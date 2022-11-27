@@ -8,15 +8,6 @@ const makeGenre = (genre = [], allGenres = []) => {
   }, []);
 
   return genreList.join(', ');
-  // let result = '';
-  // genreList.map((genreItem, index) => {
-  //   if (index !== genreList.length - 1) {
-  //     result += `<li class="movie-card__genre-item">${genreItem},</li>`;
-  //   } else {
-  //     result += `<li class="movie-card__genre-item">${genreItem}</li>`;
-  //   }
-  // });
-  // return result;
 };
 
 //  Рендерит весь список с фильмами
@@ -45,19 +36,27 @@ export const makeMovieList = (results = [], allGenres = []) => {
     .join('');
 };
 
+// Рендерит список жанров (модальное окно).
+const makeModalGenre = (genre = []) => {
+  const genreList = genre.map(genreItem => genreItem.name);
+  return genreList.join(', ');
+};
+
 // Рендерит 1 карточку (модальное окно).
-export const makeModalCard = (title, vote_count, vote_average, popularity) => {
+export const makeModalCard = (
+  title,
+  vote_count,
+  vote_average,
+  popularity,
+  genre = []
+) => {
   const card = `
   <p class="modal__text-info" data-vote> ${vote_average.toFixed(
     1
   )} / ${vote_count} </p>
   <p class="modal__text-info" data-popularity> ${popularity.toFixed(1)} </p>
   <p class="modal__text-info" data-title> ${title} </p>
+  <p class="modal__info-genres"> ${makeModalGenre(genre)} </p>
  `;
   return card;
-};
-// Рендерит список жанров (модальное окно).
-export const makeModalGenre = (genre = []) => {
-  const genreList = genre.map(genreItem => genreItem.name);
-  return genreList.join(', ');
 };
