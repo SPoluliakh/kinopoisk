@@ -37,11 +37,7 @@ main {
   text-transform: uppercase;
   color: var(--main-black);
 }
-.movie-card__genre-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
+
 .movie-card__genre-item,
 .movie-card__relize-info {
   margin-right: 2px;

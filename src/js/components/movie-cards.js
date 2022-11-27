@@ -6,15 +6,17 @@ const makeGenre = (genre = [], allGenres = []) => {
     }
     return acc;
   }, []);
-  let result = '';
-  genreList.map((genreItem, index) => {
-    if (index !== genreList.length - 1) {
-      result += `<li class="movie-card__genre-item">${genreItem},</li>`;
-    } else {
-      result += `<li class="movie-card__genre-item">${genreItem}</li>`;
-    }
-  });
-  return result;
+
+  return genreList.join(',');
+  // let result = '';
+  // genreList.map((genreItem, index) => {
+  //   if (index !== genreList.length - 1) {
+  //     result += `<li class="movie-card__genre-item">${genreItem},</li>`;
+  //   } else {
+  //     result += `<li class="movie-card__genre-item">${genreItem}</li>`;
+  //   }
+  // });
+  // return result;
 };
 
 //  Рендерит весь список с фильмами
@@ -31,15 +33,11 @@ export const makeMovieList = (results = [], allGenres = []) => {
   <img class="movie-card__img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" data-id="${id}"/>
  <div class="movie-card__info" data-id="${id}">
  <h2 class="movie-card__title"data-id="${id}">${title}</h2>
-  <ul class="movie-card__genre-list"data-id="${id}">${makeGenre(
+  <p class="movie-card__relize-info"data-id="${id}">${makeGenre(
         genre_ids,
         allGenres
-      )}
-      </ul>
-      <p class="movie-card__relize-info" data-id="${id}">${release_date.slice(
-        0,
-        4
-      )}</p>
+      )} | ${release_date.slice(0, 4)}
+      </p>
   </div>
 </li>
 `
