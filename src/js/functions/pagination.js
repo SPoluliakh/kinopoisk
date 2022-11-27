@@ -1,13 +1,12 @@
 import Pagination from 'tui-pagination';
-import { getPopular, getBySearchName, getByGenres } from '../api/get-api';
+import 'tui-pagination/dist/tui-pagination.css';
 
 const container = document.getElementById('tui-pagination-container');
-console.log(container);
 const options = { // below default value of options
-    totalItems: 10,
-    itemsPerPage: 10,
-    visiblePages: 10,
-    page: 1,
+    totalItems: 0,
+    itemsPerPage: 20,
+    visiblePages: 5,
+    page: 12,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
@@ -28,31 +27,32 @@ const options = { // below default value of options
             '</a>'
     }
 };
-console.log(options.template);
-
-// getPopular();
-// getBySearchName();
-// getByGenres();
-
-
-async function yourFutureFunction() {
-    const popularMovie = await getPopular(422);
-  console.log(popularMovie.data);
-
-  const inputSearch = await getBySearchName('Harry Potter', 1);
-  console.log(inputSearch.data);
-
-  const genre = await getByGenres(28, 1);
-  console.log(genre.data);
-
-//   const movieId = await getMovieById(551271);
-//   console.log(movieId.data);
-
-//   const genreList = await getGenreMovieList();
-//   console.log(genreList.data);
-}
-
-yourFutureFunction();
-
 
 export const pagination = new Pagination(container, options);
+
+const pagePaginationNumber = pagination.getCurrentPage();
+console.log(pagePaginationNumber);
+
+// ================================================
+
+// export async function givePopularMovies(){
+//     const moviesDataArray = await getPopular(pagePaginationNumber);
+//     const moviesDataforMarkupCreator = moviesDataArray.data.results;
+//     const totalResults = moviesDataArray.data.total_results;
+//     pagination.reset(totalResults);
+
+//     console.log(options.page);
+
+//     console.log(moviesDataforMarkupCreator);
+// }
+
+// ================================================
+
+// pagination.on('afterMove', updatePage);
+
+// async function updatePage(event) {
+//   const currentPage = event.page;
+//   console.log('currentPage', currentPage);
+
+//   await fetchPopularMovies(currentPage);
+// }
