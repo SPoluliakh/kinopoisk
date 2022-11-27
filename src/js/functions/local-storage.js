@@ -1,5 +1,6 @@
 import { getGenreMovieList } from '../api/get-api';
-import { LOCAL_STORAGE_KEY } from '../refs/refs';
+
+const LOCAL_STORAGE_KEY = 'genres';
 
 export const setGenreOptions = async () => {
   const genre = await getGenreMovieList();

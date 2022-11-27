@@ -1,0 +1,109 @@
+// width of screen
+$mobile: 480px;
+$tablet: 768px;
+$desctop: 1280px;
+// size of img
+$imgwidth: 280px;
+// color
+
+.home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.movie-list {
+  display: grid;
+  grid-template-rows: auto;
+}
+.movie-card,
+.movie-card__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  cursor: pointer;
+}
+
+.movie-list .movie-card__img {
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.movie-card__title {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0em;
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--main-black);
+}
+
+.movie-card__genre-item,
+.movie-card__relize-info {
+  margin-right: 2px;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.17;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--subtitle-color);
+}
+
+@media screen and (max-width: $tablet) {
+  .movie-list {
+    max-width: 280px;
+    max-height: calc($imgwidth * 1.436);
+    grid-template-columns: 1fr;
+    padding: 20px 0;
+    gap: 20px;
+  }
+  .movie-card {
+    flex-direction: column;
+  }
+  .movie-list .movie-card__img {
+    max-width: $imgwidth;
+    height: calc($imgwidth * 1.436);
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (min-width: $tablet) and (max-width: $desctop) {
+  .movie-list {
+    max-width: 704px;
+    grid-template-columns: 1fr 1fr;
+    padding: 60px 0;
+    gap: 32px;
+  }
+  .movie-card {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .movie-list .movie-card__img {
+    width: calc($imgwidth * 1.2);
+    max-height: calc($imgwidth * 1.625);
+  }
+}
+@media screen and (min-width: $desctop) {
+  .movie-list {
+    max-width: 1217px;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 60px 0;
+    row-gap: 30px;
+    column-gap: 16px;
+  }
+  .movie-card__info {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .movie-list .movie-card__img {
+    max-width: calc($imgwidth * 1.411);
+    max-height: calc($imgwidth * 2.05);
+  }
+  .movie-card__title,
+  .movie-card__genre-item,
+  .movie-card__relize-info {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
