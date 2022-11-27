@@ -7,7 +7,7 @@ const makeGenre = (genre = [], allGenres = []) => {
     return acc;
   }, []);
 
-  return genreList.join(',');
+  return genreList.join(', ');
   // let result = '';
   // genreList.map((genreItem, index) => {
   //   if (index !== genreList.length - 1) {
