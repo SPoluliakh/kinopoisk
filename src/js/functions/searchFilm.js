@@ -11,6 +11,9 @@ async function onFormSubmit(event) {
 
   if (!searchValue) {
     errorRef.classList.add('show-error');
+    setTimeout(() => {
+      errorRef.classList.remove('show-error');
+    }, 3000);
     return;
   }
 
@@ -20,6 +23,9 @@ async function onFormSubmit(event) {
 
     if (results.length === 0) {
       errorRef.classList.add('show-error');
+      setTimeout(() => {
+        errorRef.classList.remove('show-error');
+      }, 3000);
       return;
     }
 
