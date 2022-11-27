@@ -1,7 +1,7 @@
 // width of screen
 $mobile: 480px;
 $tablet: 768px;
-$desctop: 1024px;
+$desctop: 1280px;
 // size of img
 $imgwidth: 280px;
 // color
@@ -9,15 +9,17 @@ $imgwidth: 280px;
 main {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
-.movie-card__container {
+.movie-list {
   display: grid;
   grid-template-rows: auto;
 }
-.movie-list {
+.movie-card,
+.movie-card__info {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: left;
   cursor: pointer;
 }
 
@@ -38,44 +40,30 @@ main {
 .movie-card__genre-list {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 .movie-card__genre-item,
 .movie-card__relize-info {
+  margin-right: 2px;
   font-family: Roboto;
   font-size: 12px;
   font-weight: 500;
   line-height: 1.17;
   letter-spacing: 0em;
   text-align: left;
-  color: var(--genre-color);
+  color: var(--subtitle-color);
 }
 
-.movie-card_vote_average {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 36px;
-  height: 16px;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.67;
-  color: var(--main-white);
-  background: var(--genre-color);
-  text-align: center;
-  border-radius: 5px;
-}
 @media screen and (max-width: $tablet) {
-  .movie-card__container {
+  .movie-list {
     max-width: 280px;
+    max-height: calc($imgwidth * 1.436);
     grid-template-columns: 1fr;
     padding: 20px 0;
-  }
-  .movie-list {
-    flex-direction: column;
     gap: 20px;
+  }
+  .movie-card {
+    flex-direction: column;
   }
   .movie-list .movie-card__img {
     max-width: $imgwidth;
@@ -85,34 +73,41 @@ main {
 }
 
 @media screen and (min-width: $tablet) and (max-width: $desctop) {
-  .movie-card__container {
-    max-width: 616px;
+  .movie-list {
+    max-width: 704px;
     grid-template-columns: 1fr 1fr;
     padding: 60px 0;
-    gap: 30px;
+    gap: 32px;
   }
-  .movie-list {
+  .movie-card {
     flex-direction: row;
     flex-wrap: wrap;
   }
   .movie-list .movie-card__img {
-    max-width: calc($imgwidth * 1.05);
-    height: calc($imgwidth * 1.421);
+    width: calc($imgwidth * 1.2);
+    max-height: calc($imgwidth * 1.625);
   }
 }
 @media screen and (min-width: $desctop) {
-  .movie-card__container {
-    max-width: 882px;
+  .movie-list {
+    max-width: 1217px;
     grid-template-columns: 1fr 1fr 1fr;
     padding: 60px 0;
-    gap: 30px;
+    row-gap: 30px;
+    column-gap: 16px;
   }
-  .movie-list {
-    flex-direction: row;
+  .movie-card__info {
+    flex-direction: column;
     flex-wrap: wrap;
   }
   .movie-list .movie-card__img {
-    max-width: calc($imgwidth * 0.979);
-    height: calc($imgwidth * 1.421);
+    max-width: calc($imgwidth * 1.411);
+    max-height: calc($imgwidth * 2.05);
+  }
+  .movie-card__title,
+  .movie-card__genre-item,
+  .movie-card__relize-info {
+    font-size: 20px;
+    line-height: 1.2;
   }
 }
