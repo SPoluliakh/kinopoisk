@@ -5,15 +5,9 @@ import { filmData } from '../functions/openMovieInfo';
 const LOCAL_STORAGE_KEY = 'genres';
 
 export const setGenreOptions = async () => {
-  try {
-    if (JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)).length > 0) {
-      return;
-    }
-  } catch {
-    const genre = await getGenreMovieList();
-    const { genres } = genre.data;
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(genres));
-  }
+  const genre = await getGenreMovieList();
+  const { genres } = genre.data;
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(genres));
 };
 
 export const getGenreOptions = () => {
