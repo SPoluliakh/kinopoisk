@@ -3,9 +3,11 @@ export const backdropRef = document.querySelector('.backdrop');
 export const modalRef = document.querySelector('.modal__info-list--data');
 export const modalImgRef = document.querySelector('.modal__img');
 export const modalTitleRef = document.querySelector('.modal__title');
-export const modalGenresRef = document.querySelector('.modal__info-genres');
 export const searchFormRef = document.querySelector('.search');
-export const searchInputRef = document.querySelector('.search__input'); 
-export const errorRef = document.querySelector('.error'); 
-
-export const LOCAL_STORAGE_KEY = 'genres';
+export const searchInputRef = document.querySelector('.search__input');
+export const errorRef = document.querySelector('.error');
+export const modalDescriptionRef = document.querySelector(
+  '.modal__film-description'
+);
+export const watchedBtnRef = document.querySelector('.js-watched');
+export const queueBtnRef = document.querySelector('.js-queue');
