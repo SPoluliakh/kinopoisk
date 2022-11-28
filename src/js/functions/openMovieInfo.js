@@ -1,6 +1,6 @@
 import { makeModalCard } from '../components/movie-cards';
 import { getMovieById } from '../api/get-api';
-
+import { modalBtnsHandler } from '../functions/local-storage';
 import noImg from '../../images/noimage.png';
 import * as closeModal from './closeModal';
 
@@ -11,7 +11,6 @@ import {
   modalRef,
   modalDescriptionRef,
 } from '../refs/refs';
-import { modalBtnsHandler } from '../functions/local-storage';
 
 let filmData;
 export { filmData };
