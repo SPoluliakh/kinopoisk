@@ -1,7 +1,5 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
-import { listRef } from '../refs/refs';
-import { getPopular, getBySearchName, getByGenres } from '../api/get-api';
 import { moviesListMarkupFirstRender } from '../functions/render-home-page';
 
 const container = document.getElementById('tui-pagination-container');
@@ -33,27 +31,7 @@ const options = { // below default value of options
 
 const pagination = new Pagination(container, options);
 
-const pagePaginationNumber = pagination.getCurrentPage();
-
-export async function givePaginationNumber(pagePaginationNumber) {
-    console.log(pagePaginationNumber);
-    try {
-        const data = (await getPopular(pagePaginationNumber)).data.page;
-        // const data = (await getBySearchName(pagePaginationNumber)).data.page;
-        // const data = (await getByGenres(pagePaginationNumber)).data.page;
-        console.log(data);
-        // return data;
-        clearMoviesList();
-        moviesListMarkupFirstRender(data);
-    }
-    catch (error) {
-        console.log(error)
-    }
-}
-
-function clearMoviesList() {
-    listRef.innerHTML = '';
-}
+// const pagePaginationNumber = pagination.getCurrentPage();
 
 pagination.on('afterMove', updatePage);
 
@@ -61,5 +39,5 @@ async function updatePage(event) {
     const currentPage = event.page;
     console.log('currentPage', currentPage);
 
-    await givePaginationNumber(currentPage);
+    await moviesListMarkupFirstRender(currentPage);
 }
