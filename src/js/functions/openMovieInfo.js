@@ -39,8 +39,9 @@ export async function openMovieInfo(evt) {
     genres
   );
   modalRef.innerHTML = card;
-  modalImgRef.src =
-    `https://image.tmdb.org/t/p/original/${poster_path}` ?? `${noImg}`;
+  modalImgRef.src = poster_path
+    ? `https://image.tmdb.org/t/p/original/${poster_path}`
+    : `${noImg}`;
   modalImgRef.alt = `${title}`;
   modalTitleRef.textContent = `${title}`;
   modalDescriptionRef.textContent = `${overview}`;

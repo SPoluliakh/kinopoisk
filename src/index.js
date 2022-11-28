@@ -10,5 +10,5 @@ document.addEventListener('DOMContentLoaded', () => {
   setGenreOptions();
   moviesListMarkupFirstRender();
   listRef.addEventListener('click', openMovieInfo);
+  pagination();
 });
-
