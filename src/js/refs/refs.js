@@ -9,3 +9,5 @@ export const errorRef = document.querySelector('.error');
 export const modalDescriptionRef = document.querySelector(
   '.modal__film-description'
 );
+export const watchedBtnRef = document.querySelector('.js-watched');
+export const queueBtnRef = document.querySelector('.js-queue');

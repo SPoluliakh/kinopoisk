@@ -11,12 +11,16 @@ import {
   modalRef,
   modalDescriptionRef,
 } from '../refs/refs';
+import { modalBtnsHandler } from '../functions/local-storage';
+
+let filmData;
+export { filmData };
 
 export async function openMovieInfo(evt) {
   const film = evt.target;
   if (film.classList.contains('movie-list')) return;
 
-  const filmData = await getMovieById(film.dataset.id);
+  filmData = await getMovieById(film.dataset.id);
   const {
     poster_path,
     title,
@@ -25,6 +29,7 @@ export async function openMovieInfo(evt) {
     vote_average,
     popularity,
     overview,
+    id,
   } = filmData.data;
 
   const card = makeModalCard(
@@ -40,6 +45,8 @@ export async function openMovieInfo(evt) {
   modalImgRef.alt = `${title}`;
   modalTitleRef.textContent = `${title}`;
   modalDescriptionRef.textContent = `${overview}`;
+
+  modalBtnsHandler(id);
 
   backdropRef.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
