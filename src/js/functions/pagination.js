@@ -1,12 +1,15 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import { listRef } from '../refs/refs';
+import { getPopular, getBySearchName, getByGenres } from '../api/get-api';
+import { moviesListMarkupFirstRender } from '../functions/render-home-page';
 
 const container = document.getElementById('tui-pagination-container');
 const options = { // below default value of options
-    totalItems: 0,
+    totalItems: 10000,
     itemsPerPage: 20,
     visiblePages: 5,
-    page: 12,
+    page: 1,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
@@ -28,31 +31,35 @@ const options = { // below default value of options
     }
 };
 
-export const pagination = new Pagination(container, options);
+const pagination = new Pagination(container, options);
 
 const pagePaginationNumber = pagination.getCurrentPage();
-console.log(pagePaginationNumber);
 
-// ================================================
+export async function givePaginationNumber(pagePaginationNumber) {
+    console.log(pagePaginationNumber);
+    try {
+        const data = (await getPopular(pagePaginationNumber)).data.page;
+        // const data = (await getBySearchName(pagePaginationNumber)).data.page;
+        // const data = (await getByGenres(pagePaginationNumber)).data.page;
+        console.log(data);
+        // return data;
+        clearMoviesList();
+        moviesListMarkupFirstRender(data);
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
 
-// export async function givePopularMovies(){
-//     const moviesDataArray = await getPopular(pagePaginationNumber);
-//     const moviesDataforMarkupCreator = moviesDataArray.data.results;
-//     const totalResults = moviesDataArray.data.total_results;
-//     pagination.reset(totalResults);
+function clearMoviesList() {
+    listRef.innerHTML = '';
+}
 
-//     console.log(options.page);
+pagination.on('afterMove', updatePage);
 
-//     console.log(moviesDataforMarkupCreator);
-// }
+async function updatePage(event) {
+    const currentPage = event.page;
+    console.log('currentPage', currentPage);
 
-// ================================================
-
-// pagination.on('afterMove', updatePage);
-
-// async function updatePage(event) {
-//   const currentPage = event.page;
-//   console.log('currentPage', currentPage);
-
-//   await fetchPopularMovies(currentPage);
-// }
+    await givePaginationNumber(currentPage);
+}

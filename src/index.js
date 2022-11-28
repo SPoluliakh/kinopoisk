@@ -3,6 +3,7 @@ import { setGenreOptions } from './js/functions/local-storage';
 import { openMovieInfo } from './js/functions/openMovieInfo';
 import { listRef } from './js/refs/refs';
 import './js/functions/searchFilm';
+import { pagination } from './js/functions/pagination';
 
 document.addEventListener('DOMContentLoaded', () => {
   setGenreOptions();
