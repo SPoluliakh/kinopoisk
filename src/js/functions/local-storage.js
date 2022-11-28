@@ -60,31 +60,33 @@ export function modalBtnsHandler(externalId) {
 }
 
 export function onWatchedBtnClick() {
-  watched = JSON.parse(localStorage.getItem('watched'));
-  isAddedToWatched = watched.findIndex(film => Number(film.id) === id);
+  const watched = JSON.parse(localStorage.getItem('watched'));
+  const isAddedToWatched = watched.findIndex(film => Number(film.id) === id);
+  let watchedFilms;
 
   if (isAddedToWatched === -1) {
-    watched.push(filmData.data);
-    localStorage.setItem('watched', JSON.stringify(watched));
+    watchedFilms = [...watched, filmData.data];
+    localStorage.setItem('watched', JSON.stringify(watchedFilms));
     watchedBtnRef.textContent = 'remove from watched';
   } else {
-    watched.splice(isAddedToWatched, 1);
-    localStorage.setItem('watched', JSON.stringify(watched));
+    watchedFilms = watched.filter(movie => movie.id !== id);
+    localStorage.setItem('watched', JSON.stringify(watchedFilms));
     watchedBtnRef.textContent = 'add to watched';
   }
 }
 
 export function onQueueBtnClick() {
-  queue = JSON.parse(localStorage.getItem('queue'));
-  isAddedToQueue = queue.findIndex(film => Number(film.id) === id);
+  const queue = JSON.parse(localStorage.getItem('queue'));
+  const isAddedToQueue = queue.findIndex(film => Number(film.id) === id);
+  let queueFilms;
 
   if (isAddedToQueue === -1) {
-    queue.push(filmData.data);
-    localStorage.setItem('queue', JSON.stringify(queue));
+    queueFilms = [...queue, filmData.data];
+    localStorage.setItem('queue', JSON.stringify(queueFilms));
     queueBtnRef.textContent = 'remove from queue';
   } else {
-    queue.splice(isAddedToQueue, 1);
-    localStorage.setItem('queue', JSON.stringify(queue));
+    queueFilms = queue.filter(movie => movie.id !== id);
+    localStorage.setItem('queue', JSON.stringify(queueFilms));
     queueBtnRef.textContent = 'add to queue';
   }
 }
@@ -99,7 +101,7 @@ export function getWatchedItems() {
 
 export function getQueueItems() {
   try {
-    return JSON.parse(localStorage.getItem('watched'));
+    return JSON.parse(localStorage.getItem('queue'));
   } catch (error) {
     console.log(error);
   }
