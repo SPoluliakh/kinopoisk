@@ -1,4 +1,5 @@
-import { backdropRef } from '../refs/refs';
+import { backdropRef, watchedBtnRef, queueBtnRef } from '../refs/refs';
+import { onWatchedBtnClick, onQueueBtnClick } from '../functions/local-storage';
 
 export const closeByClick = evt => {
   if (evt.target.classList.contains('backdrop')) {
@@ -20,4 +21,6 @@ export const closeModal = () => {
   document.body.style.overflow = '';
   window.removeEventListener('keydown', closeByEsc);
   backdropRef.removeEventListener('click', closeByClick);
+  watchedBtnRef.removeEventListener('click', onWatchedBtnClick);
+  queueBtnRef.removeEventListener('click', onQueueBtnClick);
 };
