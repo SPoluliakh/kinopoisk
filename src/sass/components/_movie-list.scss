@@ -81,7 +81,7 @@ $imgwidth: 280px;
   }
   .movie-list .movie-card__img {
     width: calc($imgwidth * 1.2);
-    max-height: calc($imgwidth * 1.625);
+    height: calc($imgwidth * 1.625);
   }
 }
 @media screen and (min-width: $desctop) {
@@ -97,8 +97,8 @@ $imgwidth: 280px;
     flex-wrap: wrap;
   }
   .movie-list .movie-card__img {
-    max-width: calc($imgwidth * 1.411);
-    max-height: calc($imgwidth * 2.05);
+    width: calc($imgwidth * 1.411);
+    height: calc($imgwidth * 2.05);
   }
   .movie-card__title,
   .movie-card__genre-item,
