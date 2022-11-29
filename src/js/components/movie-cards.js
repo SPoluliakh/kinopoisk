@@ -23,7 +23,7 @@ export const makeMovieList = (results = [], allGenres = []) => {
         release_date,
         id,
       }) => `<li class="movie-card" data-id="${id}">
-  <img class="movie-card__img" src=${
+  <img loading="lazy" class="movie-card__img" src=${
     poster_path
       ? `https://image.tmdb.org/t/p/original/${poster_path}`
       : `${img}`
