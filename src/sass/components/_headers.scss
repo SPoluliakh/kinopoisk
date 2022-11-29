@@ -221,3 +221,7 @@
 .library-button {
     margin-right: 16px;
 }
+
+.search__input:focus.search__input::placeholder {
+    color: var(--modal-subTitle-color);
+  }
