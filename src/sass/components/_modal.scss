@@ -141,40 +141,42 @@
 
 .modal__button-wrap {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  justify-content: center;
 
-  &:last-child {
-    justify-content: center;
-  }
+  margin-bottom: 20px;
 }
 
 .modal__button {
   cursor: pointer;
+  font-family: inherit;
   font-size: 12px;
   line-height: 1.33;
-  padding: 6px 27px;
-  flex-basis: calc(100% / 2 - 10px);
+  padding: 10px 6px;
+
+  width: 110px;
   border-radius: 5px;
-  @media screen and (max-width: 768px) {
-    height: 62px;
-    width: 52px;
-  }
+  height: 54px;
+
   @media screen and (min-width: 768px) {
-    height: 48px;
+    width: 125px;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 136px;
   }
 
   transition: background-color 250ms linear;
-  &:not(:last-child) {
-    margin-bottom: 10px;
-  }
+
   &:first-child {
     margin-right: 20px;
   }
   &:hover {
     background-color: var(--active-btn-color);
   }
+}
+
+.modal__button--trailer {
+  display: block;
+  margin: 0 auto;
 }
 
 .modal__button--active {
