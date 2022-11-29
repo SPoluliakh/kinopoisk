@@ -25,13 +25,13 @@ export function modalBtnsHandler(externalId) {
   id = Number(externalId);
 
   if (!localStorage.getItem('watched')) {
-    watchedBtnRef.textContent = 'add to watched';
+    watchedBtnRef.textContent = 'ADD TO WATCHED';
 
     watched = [];
     localStorage.setItem('watched', JSON.stringify(watched));
   }
   if (!localStorage.getItem('queue')) {
-    queueBtnRef.textContent = 'add to queue';
+    queueBtnRef.textContent = 'ADD TO QUEUE';
 
     queue = [];
     localStorage.setItem('queue', JSON.stringify(queue));
@@ -41,16 +41,16 @@ export function modalBtnsHandler(externalId) {
   isAddedToWatched = watched.findIndex(film => Number(film.id) === Number(id));
 
   if (isAddedToWatched === -1) {
-    watchedBtnRef.textContent = 'add to watched';
+    watchedBtnRef.textContent = 'ADD TO WATCHED';
   } else {
-    watchedBtnRef.textContent = 'remove from watched';
+    watchedBtnRef.textContent = 'remove from whatched';
   }
 
   queue = JSON.parse(localStorage.getItem('queue'));
   isAddedToQueue = queue.findIndex(film => Number(film.id) === Number(id));
 
   if (isAddedToQueue === -1) {
-    queueBtnRef.textContent = 'add to queue';
+    queueBtnRef.textContent = 'ADD TO QUEUE';
   } else {
     queueBtnRef.textContent = 'remove from queue';
   }
@@ -67,11 +67,11 @@ export function onWatchedBtnClick() {
   if (isAddedToWatched === -1) {
     watchedFilms = [...watched, filmData.data];
     localStorage.setItem('watched', JSON.stringify(watchedFilms));
-    watchedBtnRef.textContent = 'remove from watched';
+    watchedBtnRef.textContent = 'remove from whatched';
   } else {
     watchedFilms = watched.filter(movie => movie.id !== id);
     localStorage.setItem('watched', JSON.stringify(watchedFilms));
-    watchedBtnRef.textContent = 'add to watched';
+    watchedBtnRef.textContent = 'ADD TO WATCHED';
   }
 }
 
@@ -87,7 +87,7 @@ export function onQueueBtnClick() {
   } else {
     queueFilms = queue.filter(movie => movie.id !== id);
     localStorage.setItem('queue', JSON.stringify(queueFilms));
-    queueBtnRef.textContent = 'add to queue';
+    queueBtnRef.textContent = 'ADD TO QUEUE';
   }
 }
 
