@@ -2,7 +2,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  // z-index: 30;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.42);
@@ -48,6 +47,11 @@
   width: 17px;
   height: 17px;
   cursor: pointer;
+  transition: scale 250ms linear;
+
+  &:hover {
+    scale: 1.5;
+  }
 }
 
 .modal__inner {
@@ -153,10 +157,30 @@
   padding: 6px 27px;
   flex-basis: calc(100% / 2 - 10px);
   border-radius: 5px;
+  @media screen and (max-width: 768px) {
+    height: 62px;
+    width: 52px;
+  }
+  @media screen and (min-width: 768px) {
+    height: 48px;
+  }
+
+  transition: background-color 250ms linear;
   &:not(:last-child) {
     margin-bottom: 10px;
   }
   &:first-child {
     margin-right: 20px;
+  }
+  &:hover {
+    background-color: var(--active-btn-color);
+  }
+}
+
+.modal__button--active {
+  background-color: var(--active-btn-color);
+  transition: background-color 250ms linear;
+  &:hover {
+    background-color: var(--main-white);
   }
 }
