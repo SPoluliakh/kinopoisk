@@ -54,3 +54,46 @@ export function makeFilmCard(data = getWatchedItems) {
     console.log(err);
   }
 }
+// on Delit from library
+export function makeFilmCardAfterDelitFromLibrary() {
+  if (libraryWatchedBtnRef?.classList.contains('active-button')) {
+    deliteFromWatched();
+  } else {
+    deliteFromQueue();
+  }
+}
+
+// delite from watched
+export function deliteFromWatched() {
+  try {
+    const localStorageWathed = getWatchedItems();
+
+    if (localStorageWathed?.length > 0) {
+      librarydivRef?.classList.add('visually-hidden');
+    } else {
+      librarydivRef?.classList.remove('visually-hidden');
+    }
+
+    const movieList = makeLibraryMovieList(localStorageWathed);
+    listRef.innerHTML = movieList;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// delite from queue
+export function deliteFromQueue() {
+  try {
+    const localStorageWathed = getQueueItems();
+
+    if (localStorageWathed?.length > 0) {
+      librarydivRef?.classList.add('visually-hidden');
+    } else {
+      librarydivRef?.classList.remove('visually-hidden');
+    }
+    const movieList = makeLibraryMovieList(localStorageWathed);
+    listRef.innerHTML = movieList;
+  } catch (err) {
+    console.log(err);
+  }
+}

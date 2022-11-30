@@ -1,6 +1,6 @@
 import { backdropRef, watchedBtnRef, queueBtnRef } from '../refs/refs';
 import { onWatchedBtnClick, onQueueBtnClick } from '../functions/local-storage';
-import { makeFilmCard } from './render-lib-page';
+import { makeFilmCardAfterDelitFromLibrary } from './render-lib-page';
 
 export const closeByClick = evt => {
   if (evt.target.classList.contains('backdrop')) {
@@ -27,5 +27,5 @@ const closeModal = () => {
   backdropRef.removeEventListener('click', closeByClick);
   watchedBtnRef.removeEventListener('click', onWatchedBtnClick);
   queueBtnRef.removeEventListener('click', onQueueBtnClick);
-  makeFilmCard();
+  makeFilmCardAfterDelitFromLibrary();
 };
