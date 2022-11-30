@@ -66,3 +66,38 @@ export const makeModalCard = (
  `;
   return card;
 };
+
+//  Возвращает необходимый список жанров для страници Library
+const makeLibraryGenre = (genre = []) => {
+  const genreList = genre.map(genreItem => genreItem.name);
+  return genreList.join(', ');
+};
+
+//  Рендерит весь список с фильмами для страници Library
+export const makeLibraryMovieList = (results = []) => {
+  return results
+    .map(
+      ({
+        poster_path,
+        title,
+        genres,
+        release_date,
+        id,
+      }) => `<li class="movie-card" data-id="${id}">
+  <img loading="lazy" class="movie-card__img" src=${
+    poster_path
+      ? `https://image.tmdb.org/t/p/original/${poster_path}`
+      : `${img}`
+  } alt="${title}" data-id="${id}"/>
+ <div class="movie-card__info" data-id="${id}">
+ <h2 class="movie-card__title"data-id="${id}">${title}</h2>
+  <p class="movie-card__relize-info"data-id="${id}">${makeLibraryGenre(
+        genres
+      )} | ${release_date.slice(0, 4)}
+      </p>
+  </div>
+</li>
+`
+    )
+    .join('');
+};

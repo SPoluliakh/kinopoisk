@@ -1,92 +1,69 @@
 import { getWatchedItems } from './local-storage';
 import { getQueueItems } from './local-storage';
-import { getGenreOptions } from './local-storage';
-import { listRef } from '../refs/refs'
+import { listRef } from '../refs/refs';
+import { makeLibraryMovieList } from '../components/movie-cards';
 
-const watchedBtn = document.querySelector('.watched-button')
-const queueBtn = document.querySelector('.queue-button')
-const div = document.querySelector('.empty-lib')
-console.log(div);
-watchedBtn.addEventListener('click', onWatchedBtn)
-queueBtn.addEventListener('click', onQueueBtn)
-
-
+const watchedBtn = document.querySelector('.watched-button');
+const queueBtn = document.querySelector('.queue-button');
+const div = document.querySelector('.empty-lib');
+// watchedBtn.addEventListener('click', onWatchedBtn);
+queueBtn.addEventListener('click', onQueueBtn);
+watchedBtn.addEventListener('click', onWatchedBtn);
 // рендер фильмов при открытии страницы
 
-onWatchedBtn()
-
+makeFilmCard();
 
 // наажтие кнопок
 
-function onWatchedBtn(e) { 
-
-    watchedBtn.classList.add("active-button")
-    queueBtn.classList.remove("active-button")
-
-    const localStorageWathed = getWatchedItems();
-
-    if (localStorageWathed.length === null) {
-        let markupTorender = makeEmptyList();
-        makeEmptyRender(markupTorender);
-    } else {let markupTorender = makeFilmCard(localStorageWathed);
-        makeRender(markupTorender);}
-    
+function onWatchedBtn() {
+  watchedBtn.classList.add('active-button');
+  queueBtn.classList.remove('active-button');
+  const localStorageWathed = getWatchedItems();
+  if (localStorageWathed?.length > 0) {
+    console.log(localStorageWathed.length > 0);
+    div.classList.add('visually-hidden');
+    makeFilmCard(getWatchedItems);
+  } else {
+    listRef.innerHTML = '';
+    div.classList.remove('visually-hidden');
+  }
 }
 
-function onQueueBtn(e) { 
+function onQueueBtn() {
+  queueBtn.classList.add('active-button');
+  watchedBtn.classList.remove('active-button');
 
-    queueBtn.classList.add("active-button")
-    watchedBtn.classList.remove("active-button")
+  const localStorageQueue = getQueueItems();
 
-    const localStorageQueue = getQueueItems();
-    
-    if (localStorageQueue === null) {
-        let markupTorender = makeEmptyList();
-        makeEmptyRender(markupTorender);
-    } else {let markupTorender = makeFilmCard(localStorageQueue);
-        makeRender(markupTorender)}
-    
+  if (localStorageQueue?.length > 0) {
+    div.classList.add('visually-hidden');
+    makeFilmCard(getQueueItems);
+  } else {
+    listRef.innerHTML = '';
+    div.classList.remove('visually-hidden');
+  }
 }
 
 // создание карточки с фильмами
 
-function makeFilmCard(films) {
-    const murkup = films
-    .map(
-    ({
-        poster_path,
-        title,
-        genre_ids,
-        release_date,
-        id,
-    }) => `<li class="movie-card" data-id="${id}">
-    <img class="movie-card__img" src=${
-    poster_path
-        ? `https://image.tmdb.org/t/p/original/${poster_path}`
-        : `${img}`
-    } alt="${title}" data-id="${id}"/>
-    <div class="movie-card__info" data-id="${id}">
-    <h2 class="movie-card__title"data-id="${id}">${title}</h2>
+function makeFilmCard(data = getWatchedItems) {
+  try {
+    const localStorageWathed = getWatchedItems();
 
-    </div>
-</li>
-`
-    )
-    .join('');;
-    return murkup;
+    if (localStorageWathed?.length > 0) {
+      console.log(localStorageWathed.length > 0);
+      div.classList.add('visually-hidden');
+    }
+    const movies = data() ?? [];
+    const movieList = makeLibraryMovieList(movies);
+    listRef.innerHTML = movieList;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 // создание заглушки если фильмы не выбраны
 
-function makeEmptyList() { 
-    return `<p>unfortunately there are no movies added to the library</p>`
-}
-
-// рендер карточек на страницу
-
-function makeRender(markupTorender) {
-    listRef.innerHTML = markupTorender;
-}
-function makeEmptyRender(markupTorender) { 
-    div.innerHTML = markupTorender
+function makeEmptyList() {
+  return `<p>unfortunately there are no movies added to the library</p>`;
 }
