@@ -33,7 +33,7 @@ function appendDevelopersMarkup() {
             <li class="dev-social-network__item">
                 <a class="dev-social-network__link" href="${git}">
                     <svg class="dev-social-network__icon" width="14px" height="14px">
-                        <use href="./images/sprite.svg#icon-github">
+                        <use href="/sprite.f14d31f7.svg#icon-github">
                         </use>
                     </svg>
                 </a>
@@ -41,7 +41,7 @@ function appendDevelopersMarkup() {
             <li class="dev-social-network__item">
                 <a class="dev-social-network__link" href="${linkedin}">
                     <svg class="dev-social-network__icon" width="14px" height="14px">
-                        <use href="./images/sprite.svg#icon-linkedin">
+                        <use href="/sprite.f14d31f7.svg#icon-linkedin">
                         </use>
                     </svg>
                 </a>
@@ -51,7 +51,7 @@ function appendDevelopersMarkup() {
 </li>`;
     })
     .join('');
-  refs.list.insertAdjacentHTML('beforeend', markup);
+  refs.list.innerHTML = markup;
 }
 
 function onCloseModal() {
