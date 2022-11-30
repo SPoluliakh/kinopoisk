@@ -1,1 +1,1 @@
-
+import './js/functions/render-lib-page';
