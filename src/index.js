@@ -11,11 +11,12 @@ import './js/functions/pagination';
 import './js/functions/developersModal';
 
 import { btnUp } from './js/components/to-top-button';
-
+import { darkmode } from './js/functions/darkmode';
 
 document.addEventListener('DOMContentLoaded', () => {
   setGenreOptions();
   moviesListMarkupFirstRender();
   listRef.addEventListener('click', openMovieInfo);
   btnUp.addEventListener();
+  darkmode();
 });
