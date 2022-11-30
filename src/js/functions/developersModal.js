@@ -1,4 +1,7 @@
 import Data from '../../../developers.json';
+
+import { linkedinRef, githubRef } from '../refs/refs';
+
 const developers = Data.developers;
 
 const refs = {
@@ -32,18 +35,19 @@ function appendDevelopersMarkup() {
         <ul class="dev-social-network">
             <li class="dev-social-network__item">
                 <a class="dev-social-network__link" href="${git}">
-                    <svg class="dev-social-network__icon" width="14px" height="14px">
-                        <use href="/sprite.f14d31f7.svg#icon-github">
-                        </use>
-                    </svg>
+                 <svg class="dev-social-network__icon icon-github" width="14px" height="14px">
+               <use href="/js-team-project/sprite.342caeee.svg#icon-github"></use>
+               </svg>
                 </a>
             </li>
             <li class="dev-social-network__item">
                 <a class="dev-social-network__link" href="${linkedin}">
-                    <svg class="dev-social-network__icon" width="14px" height="14px">
-                        <use href="/sprite.f14d31f7.svg#icon-linkedin">
-                        </use>
-                    </svg>
+              <svg
+              class="dev-social-network__icon icon-linkedin"
+                width="14px"
+                   height="14px" >                  
+                <use href="/js-team-project/sprite.342caeee.svg#icon-linkedin"></use>
+                  </svg>
                 </a>
             </li>
         </ul>
