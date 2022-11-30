@@ -7,7 +7,8 @@ $imgwidth: 280px;
 // color
 
 .home-page,
-.kids-page {
+.kids-page,
+.library-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,6 +28,7 @@ $imgwidth: 280px;
 .movie-list .movie-card__img {
   margin-bottom: 10px;
   border-radius: 5px;
+  object-fit: cover;
 }
 .movie-card__title {
   font-family: Roboto;
@@ -54,7 +56,6 @@ $imgwidth: 280px;
 @media screen and (max-width: $tablet) {
   .movie-list {
     max-width: 280px;
-    max-height: calc($imgwidth * 1.436);
     grid-template-columns: 1fr;
     padding: 20px 0;
     gap: 20px;

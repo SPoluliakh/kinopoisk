@@ -46,7 +46,7 @@ export function modalBtnsHandler(externalId) {
     watchedBtnRef.textContent = 'ADD TO WATCHED';
     watchedBtnRef.classList.remove('modal__button--active');
   } else {
-    watchedBtnRef.textContent = 'remove from whatched';
+    watchedBtnRef.textContent = 'REMOVE FROM WATCHED';
     watchedBtnRef.classList.add('modal__button--active');
   }
 
@@ -57,7 +57,7 @@ export function modalBtnsHandler(externalId) {
     queueBtnRef.textContent = 'ADD TO QUEUE';
     queueBtnRef.classList.remove('modal__button--active');
   } else {
-    queueBtnRef.textContent = 'remove from queue';
+    queueBtnRef.textContent = 'REMOVE FROM QUEUE';
     queueBtnRef.classList.add('modal__button--active');
   }
 
@@ -73,7 +73,7 @@ export function onWatchedBtnClick() {
   if (isAddedToWatched === -1) {
     watchedFilms = [...watched, filmData.data];
     localStorage.setItem('watched', JSON.stringify(watchedFilms));
-    watchedBtnRef.textContent = 'remove from whatched';
+    watchedBtnRef.textContent = 'REMOVE FROM WATCHED';
     watchedBtnRef.classList.add('modal__button--active');
   } else {
     watchedFilms = watched.filter(movie => movie.id !== id);
@@ -91,7 +91,7 @@ export function onQueueBtnClick() {
   if (isAddedToQueue === -1) {
     queueFilms = [...queue, filmData.data];
     localStorage.setItem('queue', JSON.stringify(queueFilms));
-    queueBtnRef.textContent = 'remove from queue';
+    queueBtnRef.textContent = 'REMOVE FROM QUEUE';
     queueBtnRef.classList.add('modal__button--active');
   } else {
     queueFilms = queue.filter(movie => movie.id !== id);
