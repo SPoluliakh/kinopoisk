@@ -64,6 +64,42 @@ export async function getGenreMovieList() {
   return axios.get(`${API_URL}${params}?${options}`);
 }
 
+export async function getPopularForKidsZero(name, page = 1) {
+  const params = 'discover/movie';
+  const options = new URLSearchParams({
+    api_key: API_KEY,
+    language: 'en-US',
+    certification_country: 'RU',
+    certification: '0+',
+    page: page,
+    query: `${name}`,
+  });
+  return axios.get(`${API_URL}${params}?${options}`);
+}
+export async function getPopularForKidsSix(name, page = 1) {
+  const params = 'discover/movie';
+  const options = new URLSearchParams({
+    api_key: API_KEY,
+    language: 'en-US',
+    certification_country: 'RU',
+    certification: '6+',
+    page: page,
+    query: `${name}`,
+  });
+  return axios.get(`${API_URL}${params}?${options}`);
+}
+export async function getPopularForKidsTwelve(name, page = 1) {
+  const params = 'discover/movie';
+  const options = new URLSearchParams({
+    api_key: API_KEY,
+    language: 'en-US',
+    certification_country: 'RU',
+    certification: '12+',
+    page: page,
+    query: `${name}`,
+  });
+  return axios.get(`${API_URL}${params}?${options}`);
+}
 // ======================================
 // Тест для понимая, что возвращает та или иная функция
 

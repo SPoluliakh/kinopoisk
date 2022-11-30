@@ -23,7 +23,11 @@ export const makeMovieList = (results = [], allGenres = []) => {
         release_date,
         id,
       }) => `<li class="movie-card" data-id="${id}">
-  <img class="movie-card__img" src=${ poster_path ? `https://image.tmdb.org/t/p/original/${poster_path}` : `${img}`} alt="${title}" data-id="${id}"/>
+  <img loading="lazy" class="movie-card__img" src=${
+    poster_path
+      ? `https://image.tmdb.org/t/p/original/${poster_path}`
+      : `${img}`
+  } alt="${title}" data-id="${id}"/>
  <div class="movie-card__info" data-id="${id}">
  <h2 class="movie-card__title"data-id="${id}">${title}</h2>
   <p class="movie-card__relize-info"data-id="${id}">${makeGenre(
@@ -53,12 +57,47 @@ export const makeModalCard = (
   genre = []
 ) => {
   const card = `
-  <p class="modal__text-info" data-vote> ${vote_average.toFixed(
-    1
-  )} / ${vote_count} </p>
+<div class="modal__text-info-wrap"><span class="modal__text-info modal__text-info--orange" data-vote>
+  ${vote_average.toFixed(1)} 
+</span> /<span class="modal__text-info" data-vote>  ${vote_count} </span></div>
   <p class="modal__text-info" data-popularity> ${popularity.toFixed(1)} </p>
   <p class="modal__text-info" data-title> ${title} </p>
-  <p class="modal__info-genres"> ${makeModalGenre(genre)} </p>
+  <p class="modal__text-info"> ${makeModalGenre(genre)} </p>
  `;
   return card;
+};
+
+//  Возвращает необходимый список жанров для страници Library
+const makeLibraryGenre = (genre = []) => {
+  const genreList = genre.map(genreItem => genreItem.name);
+  return genreList.join(', ');
+};
+
+//  Рендерит весь список с фильмами для страници Library
+export const makeLibraryMovieList = (results = []) => {
+  return results
+    .map(
+      ({
+        poster_path,
+        title,
+        genres,
+        release_date,
+        id,
+      }) => `<li class="movie-card" data-id="${id}">
+  <img loading="lazy" class="movie-card__img" src=${
+    poster_path
+      ? `https://image.tmdb.org/t/p/original/${poster_path}`
+      : `${img}`
+  } alt="${title}" data-id="${id}"/>
+ <div class="movie-card__info" data-id="${id}">
+ <h2 class="movie-card__title"data-id="${id}">${title}</h2>
+  <p class="movie-card__relize-info"data-id="${id}">${makeLibraryGenre(
+        genres
+      )} | ${release_date.slice(0, 4)}
+      </p>
+  </div>
+</li>
+`
+    )
+    .join('');
 };

@@ -3,6 +3,12 @@
 @import './utils/vars';
 @import './utils/visually-hidden';
 
-@import './components/headers';
+@import './components/kids';
 @import './components/movie-list';
+@import './components/spinner';
+
+@import './components/pagination';
 @import './components/modal';
+@import './components/footer';
+@import './components/developers-modal';
+@import './components/to-top-button';

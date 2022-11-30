@@ -1,0 +1,304 @@
+.kids-header {
+  display: block;
+  margin: 0 auto;
+  min-height: 233px;
+  @media screen and (min-width: 321px) and (max-width: 764px) {
+    min-height: 300px;
+  }
+  width: 100%;
+  padding-top: 40px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(
+      to right,
+      var(--btn-color),
+      var(--btn-color)
+    ),
+    url('../images/kids/kids-320-1@.jpg');
+
+  @media screen and (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: linear-gradient(
+        to right,
+        var(--btn-color),
+        var(--btn-color)
+      ),
+      url('../images/kids/kids-320-2@.jpg');
+  }
+
+  @media screen and (min-width: 768px) {
+    min-height: 215px;
+    background-image: linear-gradient(
+        to right,
+        var(--btn-color),
+        var(--btn-color)
+      ),
+      url('../images/kids/kids-768-1@.jpg');
+    @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          to right,
+          var(--btn-color),
+          var(--btn-color)
+        ),
+        url('../images/kids/kids-768-2@.jpg');
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    min-height: 220px;
+    background-image: linear-gradient(
+        to right,
+        var(--btn-color),
+        var(--btn-color)
+      ),
+      url('../images/kids/kids-1200-1@.jpg');
+    @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          to right,
+          var(--btn-color),
+          var(--btn-color)
+        ),
+        url('../images/kids/kids-1200-2@.jpg');
+    }
+  }
+  @media screen and (min-width: 1900px) {
+    min-height: 340px;
+  }
+}
+
+.navigation-wrapper {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 56px;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: baseline;
+}
+
+.logo-img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 30px;
+  line-height: 1.17;
+  font-weight: 500;
+  color: var(--main-white);
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+.logo-text__accent {
+  color: pink;
+}
+
+.navigation {
+  display: block;
+}
+
+.navigation__list {
+  display: flex;
+}
+
+.navigation__item {
+  position: relative;
+
+  &:not(:last-child) {
+    margin-right: 40px;
+  }
+}
+
+.navigation__link {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.17;
+  color: var(--main-white);
+}
+
+.navigation__link.current:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  height: 3px;
+  width: 100%;
+  background-color: var(--bad-request-color);
+}
+// Block Kids-Search
+.kids-search {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  margin: 0 auto;
+  font: inherit;
+
+  width: 394px;
+  @media screen and (max-width: 1279px) {
+    width: 336px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 280px;
+  }
+}
+
+.kids-search__input {
+  width: 100%;
+  height: 20px;
+  font-size: 14px;
+  line-height: 1.14;
+  padding: 4px 0;
+  border: none;
+  outline: none;
+  color: var(--main-white);
+  background-color: transparent;
+  border-bottom: 0.5px solid pink;
+
+  &::placeholder {
+    color: inherit;
+  }
+}
+
+.kids-search__button {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.kids-search__button-icon {
+  width: 12px;
+  height: 12px;
+  fill: var(--main-white);
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 393px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.14;
+  color: var(--bad-request-color);
+  opacity: 0;
+  @media screen and (max-width: 767px) {
+    margin-top: 16px;
+    width: 280px;
+  }
+}
+
+.show-error {
+  opacity: 1;
+}
+
+.kids-page__filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 60px;
+  gap: 10px;
+}
+.button-zero,
+.button-six,
+.button-twelve {
+  text-decoration: none;
+  color: #6b5770;
+  background-image: linear-gradient(90deg, #fd7f34, #bd155b);
+  display: inline-block;
+  padding: 14px 30px;
+  border: 1px solid;
+  position: relative;
+  z-index: 0;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  appearance: none;
+  touch-action: manipulation;
+}
+
+.button-zero:before,
+.button-six:before,
+.button-twelve:before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  background: linear-gradient(90deg, #fd7f34, #bd155b);
+  z-index: -2;
+  transition: 0.4s;
+  border-radius: 5px;
+}
+.button-zero:after,
+.button-six:after,
+.button-twelve:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #fff, #fff);
+  z-index: -1;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+.button-zero:hover,
+.button-six:hover,
+.button-twelve:after {
+  color: #fff;
+  transition: 0.3s;
+}
+.button-zero:hover:after,
+.button-six:hover:after,
+.button-twelve:hover:after {
+  background: linear-gradient(90deg, #fd7f34, #bd155b);
+}
+.button-zero:active:after,
+.button-six:active:after,
+.button-twelve:active:after {
+  background: linear-gradient(90deg, #d96d2d, #760f3a);
+}
+.button-zero:focus-visible,
+.button-six:focus-visible,
+.button-twelve:focus-visible {
+  box-shadow: 0 0 0 3px #fd7f34;
+}
+.button-zero:disabled,
+.button-six:disabled,
+.button-twelve:disabled {
+  pointer-events: none;
+}
+.button-zero:disabled:before,
+.button-six:disabled:before,
+.button-twelve:disabled:before {
+  filter: grayscale(100%);
+}

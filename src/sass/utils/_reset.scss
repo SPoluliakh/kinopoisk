@@ -11,8 +11,11 @@ html {
 body {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
+  font-weight: 500;
 }
-
+main {
+  min-height: calc(100vh - 293px);
+}
 /* Стили для обнуления верхних отступов у элементов */
 h1,
 h2,
@@ -62,7 +65,7 @@ address {
     padding: 0 32px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     padding: 0 32px;
     width: 1280px;
   }
