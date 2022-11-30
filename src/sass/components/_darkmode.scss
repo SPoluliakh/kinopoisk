@@ -16,18 +16,24 @@
     isolation: isolate;
     background-color: var(--darkmode-main);
   }
-  & .modal {
+  & .modal,
+  & .dev-modal {
     background-color: var(--darkmode-modal);
   }
   & .modal__title,
   & .modal__text-info,
   & .modal__film-description,
   & .modal__text-info-wrap,
-  & .movie-card__title {
+  & .movie-card__title,
+  & .dev-modal__team-name,
+  & .dev-modal__position {
     color: var(--main-white);
   }
   & .modal__sub-title-description {
     color: var(--modal-subTitle-color);
+  }
+  & .dev-modal__button {
+    background-color: transparent;
   }
 }
 
