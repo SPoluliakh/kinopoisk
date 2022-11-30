@@ -1,0 +1,88 @@
+.pagehome-header {
+  isolation: isolate;
+  .darkmode--activated & {
+    border-bottom: 1px solid var(--darkmode-secondary);
+  }
+}
+
+.movie-card__relize-info {
+  isolation: isolate;
+}
+
+.darkmode--activated {
+  & .home-page,
+  & .pagination,
+  & .footer {
+    isolation: isolate;
+    background-color: var(--darkmode-main);
+  }
+  & .modal {
+    background-color: var(--darkmode-modal);
+  }
+  & .modal__title,
+  & .modal__text-info,
+  & .modal__film-description,
+  & .modal__text-info-wrap,
+  & .movie-card__title {
+    color: var(--main-white);
+  }
+  & .modal__sub-title-description {
+    color: var(--modal-subTitle-color);
+  }
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox-label {
+  background-color: var(--darkmode-secondary);
+
+  width: 50px;
+  height: 26px;
+  border-radius: 50px;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 300ms;
+  &:hover {
+    box-shadow: 0px 0px 24px -2px rgba(255, 255, 255, 0.47);
+  }
+}
+
+.checkbox-label .ball {
+  background-color: var(--darkmode-main);
+
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .checkbox-label .ball {
+  transform: translateX(24px);
+}
+
+.fa-moon:before {
+  content: '🌛';
+}
+.fa-sun:before {
+  content: '🌞';
+  margin-left: 3px;
+}
+
+.fa,
+.fab,
+.fad,
+.fal,
+.far,
+.fas {
+  font-style: normal;
+}
