@@ -85,6 +85,12 @@
 .logo {
     display: flex;
     align-items: baseline;
+    transform: scale(1);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover,
+    &:focus {
+      transform: scale(1.1);
+    }
 }
 
 .logo-img {
@@ -115,7 +121,12 @@
 
 .navigation__item {
     position: relative;
-
+    transform: scale(1);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover,
+    &:focus {
+      transform: scale(1.2);
+    }
     &:not(:last-child) {
         margin-right: 40px;
     }
@@ -127,6 +138,11 @@
     font-weight: 500;
     line-height: 1.17;
     color: var(--main-white);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover,
+    &:focus {
+      color: var(--bad-request-color);
+    }
 }
 
 .navigation__link.current:after {
@@ -183,6 +199,12 @@
     border: none;
     outline: none;
     background-color: transparent;
+    transform: scale(1);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover,
+    &:focus {
+      transform: scale(1.2);
+    }
 }
 
 .search__button-icon {
