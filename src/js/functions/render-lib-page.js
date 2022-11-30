@@ -6,7 +6,6 @@ import { makeLibraryMovieList } from '../components/movie-cards';
 const watchedBtn = document.querySelector('.watched-button');
 const queueBtn = document.querySelector('.queue-button');
 const div = document.querySelector('.empty-lib');
-// watchedBtn.addEventListener('click', onWatchedBtn);
 queueBtn.addEventListener('click', onQueueBtn);
 watchedBtn.addEventListener('click', onWatchedBtn);
 // рендер фильмов при открытии страницы
@@ -60,10 +59,4 @@ function makeFilmCard(data = getWatchedItems) {
   } catch (err) {
     console.log(err);
   }
-}
-
-// создание заглушки если фильмы не выбраны
-
-function makeEmptyList() {
-  return `<p>unfortunately there are no movies added to the library</p>`;
 }
