@@ -15,6 +15,7 @@ import {
   kidsSearchFormRef,
   errorRef,
 } from './js/refs/refs';
+import './js/functions/developersModal';
 
 import { openMovieInfo } from './js/functions/openMovieInfo';
 import { listRef } from './js/refs/refs';
