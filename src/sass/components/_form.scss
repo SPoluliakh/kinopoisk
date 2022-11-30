@@ -1,0 +1,96 @@
+body.scroll-hidden {
+	background: #eee !important;	
+  overflow: hidden;
+}
+.errorMessage{
+    font-size: 16px;
+    font-weight: 700;
+}
+.btn-block{
+    margin: 10px 0;
+    width: 100%;
+}
+.btn-block.out.active {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100px;
+    transform: translate(-50%);
+    background-color: black;
+    border-radius: 10px;
+    border-color: 2px solid yellow;
+    color: yellow;
+    cursor: pointer;
+}
+.form-signin.active {
+    z-index: 40;
+    display: flex;
+}
+.backdropForm {
+    opacity: 0;
+}
+.backdropForm.active {
+    z-index: 30;
+    width: 100vw;
+    height: 100vh;
+    opacity: 1;
+    overflow: overlay;
+    background-color: #fffffff2;
+    transition: opacity .1s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+.form-signin {
+    position: fixed;
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.1);  
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+
+
+  .form-signin-heading {
+	  margin-bottom: 30px;
+	}
+
+	.form-control-mail,
+    .form-control-password {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+		// @include box-sizing(border-box);
+
+		&:focus {
+		  z-index: 2;
+		}
+	}
+
+	input[type="text"] {
+	  margin-bottom: -1px;
+	  border-bottom-left-radius: 0;
+	  border-bottom-right-radius: 0;
+	}
+
+	input[type="password"] {
+	  margin-bottom: 20px;
+	  border-top-left-radius: 0;
+	  border-top-right-radius: 0;
+	}
+}
