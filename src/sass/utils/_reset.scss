@@ -13,7 +13,9 @@ body {
   font-style: normal;
   font-weight: 500;
 }
-
+main {
+  min-height: calc(100vh - 293px);
+}
 /* Стили для обнуления верхних отступов у элементов */
 h1,
 h2,

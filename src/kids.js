@@ -16,6 +16,15 @@ import {
   errorRef,
 } from './js/refs/refs';
 
+import { openMovieInfo } from './js/functions/openMovieInfo';
+import { listRef } from './js/refs/refs';
+import { btnUp } from './js/components/to-top-button';
+
+document.addEventListener('DOMContentLoaded', () => {
+  listRef.addEventListener('click', openMovieInfo);
+  btnUp.addEventListener();
+});
+
 // import './js/functions/pagination';
 
 zeroPlus.addEventListener('click', renderKidsMovieForZero);

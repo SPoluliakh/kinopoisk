@@ -10,7 +10,6 @@ import './js/functions/developersModal';
 
 import { btnUp } from './js/components/to-top-button';
 
-
 document.addEventListener('DOMContentLoaded', () => {
   setGenreOptions();
   moviesListMarkupFirstRender();
