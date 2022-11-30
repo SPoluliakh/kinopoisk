@@ -5,6 +5,7 @@ import { listRef } from './js/refs/refs';
 
 import './js/functions/searchFilm';
 import './js/functions/pagination';
+import './js/functions/developersModal';
 
 document.addEventListener('DOMContentLoaded', () => {
   setGenreOptions();
