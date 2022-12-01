@@ -49,4 +49,9 @@ export const btnUp = {
       });
     });
   },
+  closeModalCheck() {
+    if (window.pageYOffset > 850) {
+      this.show();
+    }
+  },
 };

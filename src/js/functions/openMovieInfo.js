@@ -11,6 +11,7 @@ import {
   modalRef,
   modalDescriptionRef,
 } from '../refs/refs';
+import { btnUp } from '../components/to-top-button';
 
 let filmData;
 export { filmData };
@@ -47,6 +48,7 @@ export async function openMovieInfo(evt) {
   modalDescriptionRef.textContent = `${overview}`;
 
   modalBtnsHandler(id);
+  btnUp.hide();
 
   backdropRef.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
