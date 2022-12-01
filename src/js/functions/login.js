@@ -85,7 +85,7 @@ newUser.addEventListener('click', (e)=>{e.preventDefault(); createNewUser()})
 const monitorAuthState = async() =>{
 onAuthStateChanged (auth, user => {
     if (user) {
-        console.log(user);
+        // console.log(user);
         bodyScroll.classList.remove('scroll-hidden');
         showApp();
         errorMessage.innerHTML = ''
