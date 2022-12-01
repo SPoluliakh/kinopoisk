@@ -42,13 +42,13 @@ header {
   }
   & .library-page {
     isolation: isolate;
-    background-color: #080000;
+    background-color: var(--darkmode-library);
   }
   & main {
     border-bottom: 1px solid var(--modal-subTitle-color);
   }
   & .library-footer {
-    background-color: #080000;
+    background-color: var(--darkmode-library);
   }
 }
 
@@ -90,7 +90,7 @@ header {
 }
 
 .library-checkbox-label {
-  background-color: #080000;
+  background-color: var(--darkmode-library);
   & .ball {
     background-color: var(--darkmode-secondary);
   }
