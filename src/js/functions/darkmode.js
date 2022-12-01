@@ -20,4 +20,16 @@ export function darkmode() {
   checkbox.addEventListener('change', () => {
     darkmode.toggle();
   });
+
+  if (document.querySelector('.library-page')) {
+    document.querySelector('.footer').classList.add('library-footer');
+    document
+      .querySelector('.checkbox-label')
+      .classList.add('library-checkbox-label');
+  } else {
+    document.querySelector('.footer').classList.remove('library-footer');
+    document
+      .querySelector('.checkbox-label')
+      .classList.remove('library-checkbox-label');
+  }
 }
