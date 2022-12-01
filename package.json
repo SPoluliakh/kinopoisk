@@ -18,6 +18,7 @@
     "url": "https://github.com/goitacademy/parcel-project-template/issues"
   },
   "dependencies": {
+    "@firebase/app": "^0.8.4",
     "axios": "^1.2.0",
     "darkmode-js": "^1.5.7",
     "firebase": "^9.14.0",
