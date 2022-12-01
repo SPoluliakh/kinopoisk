@@ -44,15 +44,10 @@ export async function updateMoviesList(event) {
   // pagination.reset(total_results);
 }
 
-import { searchFormRef, searchInputRef, listRef, errorRef } from '../refs/refs';
+import { searchFormRef, listRef, errorRef } from '../refs/refs';
 import { getBySearchName } from '../api/get-api';
 import { makeMovieList } from '../components/movie-cards';
 import { getGenreOptions } from './local-storage';
-import {
-  pagination,
-  updateMoviesList,
-  updateMoviesListByName,
-} from '../functions/pagination';
 
 searchFormRef.addEventListener('submit', onFormSubmit);
 let searchValue;
