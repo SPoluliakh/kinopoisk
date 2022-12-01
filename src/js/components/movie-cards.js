@@ -1,7 +1,7 @@
 import img from '../../images/noimage.png';
 
 let imgWidth = '';
-window. innerWidth <= 768 ? imgWidth = 300: imgWidth = 400;
+window.innerWidth <= 768 ? (imgWidth = 300) : (imgWidth = 400);
 
 //  Возвращает необходимый список жанров
 const makeGenre = (genre = [], allGenres = []) => {
@@ -17,7 +17,6 @@ const makeGenre = (genre = [], allGenres = []) => {
 
 //  Рендерит весь список с фильмами
 export const makeMovieList = (results = [], allGenres = []) => {
-
   return results
     .map(
       ({
