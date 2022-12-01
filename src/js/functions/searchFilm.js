@@ -2,17 +2,14 @@ import { searchFormRef, listRef, errorRef } from '../refs/refs';
 import { getBySearchName } from '../api/get-api';
 import { makeMovieList } from '../components/movie-cards';
 import { getGenreOptions } from './local-storage';
-import {
-  pagination,
-  updateMoviesList,
-  updateMoviesListByName,
-} from '../functions/pagination';
+import { pagination, updateMoviesList } from '../functions/pagination';
 
+let searchValue;
 searchFormRef.addEventListener('submit', onFormSubmit);
 
 async function onFormSubmit(event) {
   event.preventDefault();
-  const searchValue = event.currentTarget.searchQuery.value.trim();
+  searchValue = event.currentTarget.searchQuery.value.trim();
   const movies = await getBySearchName(searchValue);
   const { results } = movies.data;
 
@@ -28,7 +25,6 @@ async function onFormSubmit(event) {
   const genres = getGenreOptions() ?? [];
   const movieList = makeMovieList(results, genres);
   listRef.innerHTML = movieList;
-  // searchInputRef.value = '';
 
   if (!searchValue) {
     errorRef.classList.add('show-error');
@@ -37,7 +33,11 @@ async function onFormSubmit(event) {
     }, 3000);
     return;
   }
+
   
+
+  // Pagination part
+
   try {
     pagination.reset();
     pagination.off('afterMove', updateMoviesList);
@@ -46,4 +46,14 @@ async function onFormSubmit(event) {
   } catch (error) {
     console.log(error);
   }
+}
+
+export async function updateMoviesListByName(event) {
+  const currentPage = event.page;
+  const movies = await getBySearchName(searchValue, currentPage);
+  const { results } = movies.data;
+  const genres = getGenreOptions() ?? [];
+  const movieList = makeMovieList(results, genres);
+  listRef.innerHTML = movieList;
+  document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
 }
