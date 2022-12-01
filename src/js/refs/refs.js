@@ -1,6 +1,7 @@
 export const listRef = document.querySelector('.movie-list');
 export const kidsListRef = document.querySelector('.kids-movie-list');
 // Modal
+export const homeSectionRef = document.querySelector('.home-page');
 export const backdropRef = document.querySelector('.backdrop');
 export const modalRef = document.querySelector('.modal__info-list--data');
 export const modalImgRef = document.querySelector('.modal__img');
@@ -20,6 +21,7 @@ export const kidsSearchFormRef = document.querySelector('.kids-search__input');
 export const libraryWatchedBtnRef = document.querySelector('.watched-button');
 export const libraryQueueBtnRef = document.querySelector('.queue-button');
 export const librarydivRef = document.querySelector('.empty-lib');
+
 // Search
 export const searchFormRef = document.querySelector('.search');
 export const searchInputRef = document.querySelector('.search__input');

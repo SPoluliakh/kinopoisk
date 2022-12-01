@@ -5,6 +5,7 @@ import {
   libraryWatchedBtnRef,
   libraryQueueBtnRef,
   librarydivRef,
+  homeSectionRef,
 } from '../refs/refs';
 import { makeLibraryMovieList } from '../components/movie-cards';
 
@@ -56,6 +57,9 @@ export function makeFilmCard(data = getWatchedItems) {
 }
 // on Delit from library
 export function makeFilmCardAfterDelitFromLibrary() {
+  if (homeSectionRef?.classList.contains('home-page')) {
+    return;
+  }
   if (libraryWatchedBtnRef?.classList.contains('active-button')) {
     deliteFromWatched();
   } else {
