@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('/src/fonts/Roboto.eot');
+  src: url('/src/fonts/Roboto.eot?#iefix') format('embedded-opentype'),
+    url('/src/fonts/Roboto.woff2') format('woff2'),
+    url('/src/fonts/Roboto.woff') format('woff'),
+    url('/src/fonts/Roboto.ttf') format('truetype'),
+    url('/src/fonts/Roboto.svg#Roboto') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-2044;
+}
+
+@font-face {
+  font-family: 'Roboto Medium';
+  src: url('/src/fonts/Roboto Medium.eot');
+  src: url('/src/fonts/Roboto Medium.eot?#iefix') format('embedded-opentype'),
+    url('/src/fonts/Roboto Medium.woff2') format('woff2'),
+    url('/src/fonts/Roboto Medium.woff') format('woff'),
+    url('/src/fonts/Roboto Medium.ttf') format('truetype'),
+    url('/src/fonts/Roboto Medium.svg#Roboto Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-2044;
+}
