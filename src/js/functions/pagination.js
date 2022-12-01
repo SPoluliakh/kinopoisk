@@ -78,7 +78,6 @@ export async function updateMoviesListByName(event) {
     }, 3000);
     return;
   }
-
   errorRef.classList.remove('show-error');
   const genres = getGenreOptions() ?? [];
   const movieList = makeMovieList(results, genres);
