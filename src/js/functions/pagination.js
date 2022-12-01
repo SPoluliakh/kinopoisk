@@ -37,42 +37,6 @@ pagination.on('afterMove', updateMoviesList);
 
 export async function updateMoviesList(event) {
   const currentPage = event.page;
-
   await moviesListMarkupFirstRender(currentPage);
-  document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-import { searchFormRef, listRef, errorRef } from '../refs/refs';
-import { getBySearchName } from '../api/get-api';
-import { makeMovieList } from '../components/movie-cards';
-import { getGenreOptions } from './local-storage';
-
-searchFormRef.addEventListener('submit', onFormSubmit);
-
-let searchValue;
-
-async function onFormSubmit(event) {
-  event.preventDefault();
-  searchValue = event.currentTarget.searchQuery.value.trim();
-}
-
-export async function updateMoviesListByName(event) {
-  const currentPage = event.page;
-
-  const movies = await getBySearchName(searchValue, currentPage);
-  const { results } = movies.data;
-
-  if (results.length === 0) {
-    errorRef.classList.add('show-error');
-    setTimeout(() => {
-      errorRef.classList.remove('show-error');
-    }, 3000);
-    return;
-  }
-  errorRef.classList.remove('show-error');
-  const genres = getGenreOptions() ?? [];
-  const movieList = makeMovieList(results, genres);
-  listRef.innerHTML = movieList;
-  // searchInputRef.value = '';
   document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
 }
