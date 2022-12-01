@@ -39,4 +39,4 @@ export async function updateMoviesList(event) {
   const currentPage = event.page;
   await moviesListMarkupFirstRender(currentPage);
   document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
-}
+

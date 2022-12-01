@@ -33,7 +33,11 @@ async function onFormSubmit(event) {
     }, 3000);
     return;
   }
+
+  
+
   // Pagination part
+
   try {
     pagination.reset();
     pagination.off('afterMove', updateMoviesList);

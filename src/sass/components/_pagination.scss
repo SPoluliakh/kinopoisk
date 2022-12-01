@@ -1,5 +1,9 @@
+$mobile: 320px;
+$tablet: 768px;
+$desctop: 1280px;
+
 .pagination.section {
-    padding-top: 40px;
+    padding-top: 20px;
     padding-bottom: 40px;
 }
 
@@ -7,4 +11,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.tui-pagination .tui-page-btn {
+    width: 56px;
+}
+
+@media screen and (max-width: 767px) {
+    .pagination.container {
+        max-width: 320px;
+    }
+
+    .tui-pagination span.tui-first,
+    .tui-pagination span.tui-last,
+    .tui-pagination span.tui-prev-is-ellip,
+    .tui-pagination span.tui-next-is-ellip,
+    .tui-pagination .tui-page-btn.tui-first,
+    .tui-pagination .tui-page-btn.tui-last,
+    .tui-pagination .tui-page-btn.tui-prev-is-ellip,
+    .tui-pagination .tui-page-btn.tui-next-is-ellip {
+        display: none;
+    }
+}
+
+@media screen and (min-width: $tablet) {
+    .tui-pagination .tui-page-btn:not(:first-child) {
+        margin-left: 4px;
+    }
 }
