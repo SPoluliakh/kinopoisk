@@ -1,5 +1,8 @@
 import img from '../../images/noimage.png';
 
+let imgWidth = '';
+window. innerWidth <= 768 ? imgWidth = 300: imgWidth = 400;
+
 //  Возвращает необходимый список жанров
 const makeGenre = (genre = [], allGenres = []) => {
   const genreList = allGenres.reduce((acc, genreItem) => {
@@ -14,6 +17,7 @@ const makeGenre = (genre = [], allGenres = []) => {
 
 //  Рендерит весь список с фильмами
 export const makeMovieList = (results = [], allGenres = []) => {
+
   return results
     .map(
       ({
@@ -25,7 +29,7 @@ export const makeMovieList = (results = [], allGenres = []) => {
       }) => `<li class="movie-card" data-id="${id}">
   <img loading="lazy" class="movie-card__img" src=${
     poster_path
-      ? `https://image.tmdb.org/t/p/original/${poster_path}`
+      ? `https://image.tmdb.org/t/p/w${imgWidth}/${poster_path}`
       : `${img}`
   } alt="${title}" data-id="${id}"/>
  <div class="movie-card__info" data-id="${id}">
@@ -86,7 +90,7 @@ export const makeLibraryMovieList = (results = []) => {
       }) => `<li class="movie-card" data-id="${id}">
   <img loading="lazy" class="movie-card__img" src=${
     poster_path
-      ? `https://image.tmdb.org/t/p/original/${poster_path}`
+      ? `https://image.tmdb.org/t/p/w${imgWidth}/${poster_path}`
       : `${img}`
   } alt="${title}" data-id="${id}"/>
  <div class="movie-card__info" data-id="${id}">
