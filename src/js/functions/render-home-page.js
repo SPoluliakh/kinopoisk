@@ -1,4 +1,4 @@
-import { getPopular, getBySearchName } from '../api/get-api';
+import { getPopular } from '../api/get-api';
 import { makeMovieList } from '../components/movie-cards';
 import { getGenreOptions } from './local-storage';
 import { listRef } from '../refs/refs';

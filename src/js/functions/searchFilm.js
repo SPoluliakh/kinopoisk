@@ -1,4 +1,4 @@
-import { searchFormRef, searchInputRef, listRef, errorRef } from '../refs/refs';
+import { searchFormRef, listRef, errorRef } from '../refs/refs';
 import { getBySearchName } from '../api/get-api';
 import { makeMovieList } from '../components/movie-cards';
 import { getGenreOptions } from './local-storage';
@@ -14,7 +14,6 @@ async function onFormSubmit(event) {
   event.preventDefault();
   const searchValue = event.currentTarget.searchQuery.value.trim();
   const movies = await getBySearchName(searchValue);
-  console.log(movies.data);
   const { results } = movies.data;
 
   if (results.length === 0) {
@@ -38,7 +37,7 @@ async function onFormSubmit(event) {
     }, 3000);
     return;
   }
-  // ========================================================================
+  
   try {
     pagination.reset();
     pagination.off('afterMove', updateMoviesList);

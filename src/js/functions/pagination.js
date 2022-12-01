@@ -1,6 +1,5 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
-import { btnUp } from '../components/to-top-button';
 import { moviesListMarkupFirstRender } from '../functions/render-home-page';
 
 const container = document.getElementById('tui-pagination-container');
@@ -41,7 +40,6 @@ export async function updateMoviesList(event) {
 
   await moviesListMarkupFirstRender(currentPage);
   document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
-  // pagination.reset(total_results);
 }
 
 import { searchFormRef, listRef, errorRef } from '../refs/refs';
@@ -50,7 +48,9 @@ import { makeMovieList } from '../components/movie-cards';
 import { getGenreOptions } from './local-storage';
 
 searchFormRef.addEventListener('submit', onFormSubmit);
+
 let searchValue;
+
 async function onFormSubmit(event) {
   event.preventDefault();
   searchValue = event.currentTarget.searchQuery.value.trim();
@@ -59,11 +59,7 @@ async function onFormSubmit(event) {
 export async function updateMoviesListByName(event) {
   const currentPage = event.page;
 
-  console.log(searchValue);
-  console.log(currentPage);
-
   const movies = await getBySearchName(searchValue, currentPage);
-  console.log(movies.data);
   const { results } = movies.data;
 
   if (results.length === 0) {
