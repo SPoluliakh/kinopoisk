@@ -110,6 +110,7 @@ $imgwidth: 280px;
   }
 }
 
+
 span {
   display: inline-block;
 }
@@ -167,3 +168,14 @@ span {
   transform-box: fill-box;
   left: calc(40% - 0rem);
 }
+
+.empty-lib {
+ margin: 0 auto;
+ padding: 20px;
+}
+
+.empty-lib__text {
+  text-align: center;
+  margin-top: 10px;
+}
+
