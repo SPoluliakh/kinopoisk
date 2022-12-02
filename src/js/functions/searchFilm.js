@@ -1,11 +1,14 @@
-import { searchFormRef, listRef, errorRef } from '../refs/refs';
+import Pagination from 'tui-pagination';
+import 'tui-pagination/dist/tui-pagination.css';
+import { searchFormRef, listRef, paginationContainer, errorRef } from '../refs/refs';
 import { getBySearchName } from '../api/get-api';
 import { makeMovieList } from '../components/movie-cards';
 import { getGenreOptions } from './local-storage';
-import { pagination, updateMoviesList } from '../functions/pagination';
+import { pagination, updateMoviesList, makePaginationOptions } from '../functions/pagination';
 import { startSpinner, stopSpinner } from "../components/spinner";
 
 let searchValue;
+
 searchFormRef.addEventListener('submit', onFormSubmit);
 
 async function onFormSubmit(event) {
@@ -13,8 +16,9 @@ async function onFormSubmit(event) {
   searchValue = event.currentTarget.searchQuery.value.trim();
   startSpinner();
   const movies = await getBySearchName(searchValue);
-  const { results } = movies.data;
- 
+  const { results, total_results } = movies.data;
+  const paginationOptions = makePaginationOptions(total_results);
+  
   if (results.length === 0) {
     errorRef.classList.add('show-error');
     setTimeout(() => {
@@ -39,24 +43,24 @@ async function onFormSubmit(event) {
     return;
   }
 
-  
-
   // Pagination part
 
   try {
     pagination.reset();
     pagination.off('afterMove', updateMoviesList);
-    pagination.off('afterMove', updateMoviesListByName);
-    pagination.on('afterMove', updateMoviesListByName);
+    const paginationByName = new Pagination(paginationContainer, paginationOptions);
+    paginationByName.off('afterMove', updateMoviesListByName);
+    paginationByName.on('afterMove', updateMoviesListByName);
   } catch (error) {
     console.log(error);
   }
 }
 
-export async function updateMoviesListByName(event) {
+async function updateMoviesListByName(event) {
   const currentPage = event.page;
   const movies = await getBySearchName(searchValue, currentPage);
   const { results } = movies.data;
+  console.log(movies.data);
   const genres = getGenreOptions() ?? [];
   const movieList = makeMovieList(results, genres);
   listRef.innerHTML = movieList;
