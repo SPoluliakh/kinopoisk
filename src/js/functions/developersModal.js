@@ -1,5 +1,9 @@
+<<<<<<< Updated upstream
 import Data from '../../../developers.json';
 const developers = Data.developers;
+=======
+import { appendDevelopersMarkup } from "../components/developers-cards.js";
+>>>>>>> Stashed changes
 
 const refs = {
   modalOpen: document.querySelector('#open-modal'),
@@ -12,9 +16,10 @@ const refs = {
 refs.modalOpen.addEventListener('click', onOpenModal);
 refs.backdrop.addEventListener('click', onCloseModal);
 
+
 function onOpenModal() {
-  console.log('Click');
   toggleModal();
+<<<<<<< Updated upstream
   appendDevelopersMarkup();
 }
 
@@ -52,10 +57,15 @@ function appendDevelopersMarkup() {
     })
     .join('');
   refs.list.insertAdjacentHTML('beforeend', markup);
+=======
+  const renderedCards = appendDevelopersMarkup()
+  refs.list.innerHTML = renderedCards;
+>>>>>>> Stashed changes
 }
 
 function onCloseModal() {
   toggleModal();
+  refs.list.innerHTML = ""
 }
 
 function toggleModal() {
