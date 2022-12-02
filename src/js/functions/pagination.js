@@ -1,5 +1,5 @@
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
+// import 'tui-pagination/dist/tui-pagination.css';
 import { moviesListMarkupFirstRender } from '../functions/render-home-page';
 import { paginationContainer } from '../refs/refs';
 
