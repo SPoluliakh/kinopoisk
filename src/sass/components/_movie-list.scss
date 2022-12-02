@@ -110,6 +110,65 @@ $imgwidth: 280px;
   }
 }
 
+
+span {
+  display: inline-block;
+}
+.kids-animation__text {
+  color: #fd7f35;
+  text-align: center;
+  text-transform: uppercase;
+  height: 80px;
+  box-sizing: border-box;
+  letter-spacing: 6px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-family: Khula, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  display: flex;
+  padding-top: 20px;
+  @media screen and (min-width: 768px) {
+    height: 100px;
+    font-size: 26px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: 100px;
+    font-size: 30px;
+  }
+}
+
+#snell {
+  position: absolute;
+  top: 133px;
+  // left: 200px;
+  z-index: 100;
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    top: 115px;
+  }
+  @media screen and (min-width: 1280px) {
+    top: 120px;
+  }
+}
+
+#eye1 {
+  animation: swing ease-in-out 0.6s infinite alternate;
+  transform-origin: bottom;
+  transform-box: fill-box;
+  left: calc(52% - 0rem);
+}
+
+#eye2 {
+  animation: swing ease-in-out 0.5s infinite alternate;
+  transform-origin: bottom;
+  transform-box: fill-box;
+  left: calc(40% - 0rem);
+}
+
 .empty-lib {
  margin: 0 auto;
  padding: 20px;
@@ -119,3 +178,4 @@ $imgwidth: 280px;
   text-align: center;
   margin-top: 10px;
 }
+
