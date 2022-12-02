@@ -1,7 +1,6 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import { moviesListMarkupFirstRender } from '../functions/render-home-page';
-
 const container = document.getElementById('tui-pagination-container');
 const options = {
   // below default value of options

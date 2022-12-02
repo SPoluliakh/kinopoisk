@@ -2,37 +2,24 @@ import {
   getPopularForKidsZero,
   getPopularForKidsSix,
   getPopularForKidsTwelve,
-  getBySearchName,
 } from './js/api/get-api';
 import { getGenreOptions } from './js/functions/local-storage';
 import { makeMovieList } from './js/components/movie-cards';
-import {
-  listRef,
-  zeroPlus,
-  sixPlus,
-  twelvePlus,
-  kidsFormRef,
-  kidsSearchFormRef,
-  errorRef,
-} from './js/refs/refs';
+import { listRef, zeroPlus, sixPlus, twelvePlus } from './js/refs/refs';
 import './js/functions/developersModal';
-
 import { openMovieInfo } from './js/functions/openMovieInfo';
-import { listRef } from './js/refs/refs';
 import { btnUp } from './js/components/to-top-button';
+
+import Letterize from 'letterizejs';
+import anime from 'animejs/lib/anime.es.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   listRef.addEventListener('click', openMovieInfo);
   btnUp.addEventListener();
 });
-
-// import './js/functions/pagination';
-
 zeroPlus.addEventListener('click', renderKidsMovieForZero);
 sixPlus.addEventListener('click', renderKidsMovieForSix);
 twelvePlus.addEventListener('click', renderKidsMovieForTwelve);
-// относится к поиску по имени
-// kidsFormRef.addEventListener('submit', onFormSubmitKids);
 
 // Отрисовка детских фильмов по критерию возраста 0+
 export async function renderKidsMovieForZero(page = 1) {
@@ -87,40 +74,45 @@ export async function renderKidsMovieForTwelve(page = 1) {
   twelvePlus.disabled = true;
 }
 
-// 1. Продумать и доработать ПОИСК по названиею
-// async function onFormSubmitKids(event) {
-//   event.preventDefault();
-//   const searchValue = event.currentTarget.searchQuery.value.trim();
+// Анимация текста
+const test = new Letterize({
+  targets: '.animate-me',
+});
+const animation = anime.timeline({
+  targets: test.listAll,
+  delay: anime.stagger(100, {
+    grid: [test.list[0].length, test.list.length],
+    from: 'center',
+  }),
+  loop: true,
+});
 
-//   if (!searchValue) {
-//     errorRef.classList.add('show-error');
-//     setTimeout(() => {
-//       errorRef.classList.remove('show-error');
-//     }, 3000);
-//     return;
-//   }
+animation
+  .add({
+    scale: 0.5,
+  })
+  .add({
+    letterSpacing: '10px',
+  })
+  .add({
+    scale: 1,
+  })
+  .add({
+    letterSpacing: '6px',
+  });
 
-//   try {
-//     const movies = await getBySearchName(searchValue);
-//     const { results } = movies.data;
-
-//     if (results.length === 0) {
-//       errorRef.classList.add('show-error');
-//       setTimeout(() => {
-//         errorRef.classList.remove('show-error');
-//       }, 3000);
-//       return;
-//     }
-
-//     errorRef.classList.remove('show-error');
-//     const genres = getGenreOptions() ?? [];
-//     const movieList = makeMovieList(results, genres);
-//     listRef.innerHTML = movieList;
-//     kidsSearchFormRef.value = '';
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
-// 2. Сделать пагинацию или кнопку показать больше
-// 3. Заблокировать возврат на главную страницу без пароля
+// ======== Анимация улитки =============
+var design = anime({
+  targets: 'svg #XMLID5',
+  keyframes: [
+    { translateX: -1200 },
+    { rotateY: 180 },
+    { translateX: 1500 },
+    { rotateY: 0 },
+    { translateX: -1200 },
+    { rotateY: 180 },
+    { translateX: 300 },
+  ],
+  easing: 'easeInOutSine',
+  duration: 60000,
+});
