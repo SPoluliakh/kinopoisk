@@ -15,8 +15,7 @@ export const queueBtnRef = document.querySelector('.js-queue');
 export const zeroPlus = document.querySelector('.button-zero');
 export const sixPlus = document.querySelector('.button-six');
 export const twelvePlus = document.querySelector('.button-twelve');
-export const kidsFormRef = document.querySelector('.kids-search');
-export const kidsSearchFormRef = document.querySelector('.kids-search__input');
+
 // Library
 export const libraryWatchedBtnRef = document.querySelector('.watched-button');
 export const libraryQueueBtnRef = document.querySelector('.queue-button');
