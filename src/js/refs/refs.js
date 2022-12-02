@@ -9,8 +9,10 @@ export const modalTitleRef = document.querySelector('.modal__title');
 export const modalDescriptionRef = document.querySelector(
   '.modal__film-description'
 );
+export const trailerBtnRef = document.querySelector('.modal__button--trailer');
 export const watchedBtnRef = document.querySelector('.js-watched');
 export const queueBtnRef = document.querySelector('.js-queue');
+export const trailerWrapRef = document.querySelector('.modal__trailer');
 // kids refs
 export const zeroPlus = document.querySelector('.button-zero');
 export const sixPlus = document.querySelector('.button-six');

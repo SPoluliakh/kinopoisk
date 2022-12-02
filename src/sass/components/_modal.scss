@@ -1,3 +1,5 @@
+@import './trailers';
+
 .backdrop {
   position: fixed;
   top: 0;
@@ -8,11 +10,6 @@
   opacity: 1;
   transition: opacity 100ms;
   overflow: overlay;
-
-  &.is-hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
 }
 
 .modal {
@@ -26,6 +23,8 @@
   transition: transform 100ms;
   padding: 48px 20px 40px 20px;
   width: 280px;
+  height: 90vh;
+  overflow-y: auto;
 
   @media screen and (min-width: 768px) {
     width: 704px;

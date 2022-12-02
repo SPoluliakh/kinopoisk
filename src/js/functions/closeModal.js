@@ -1,11 +1,24 @@
-import { backdropRef, watchedBtnRef, queueBtnRef } from '../refs/refs';
+import {
+  backdropRef,
+  watchedBtnRef,
+  queueBtnRef,
+  trailerWrapRef,
+  trailerBtnRef,
+} from '../refs/refs';
 import { onWatchedBtnClick, onQueueBtnClick } from '../functions/local-storage';
 import { makeFilmCardAfterDelitFromLibrary } from './render-lib-page';
+import { onTrailerBtnClick } from './get-trailers';
 import { btnUp } from '../components/to-top-button';
 
 export const closeByClick = evt => {
+  if (!trailerWrapRef.classList.contains('is-hidden')) {
+    closeTrailers();
+    return;
+  }
+
   if (evt.target.classList.contains('backdrop')) {
     closeModal();
+    return;
   }
   if (
     evt.target.classList.contains('modal__close-icone') ||
@@ -17,17 +30,25 @@ export const closeByClick = evt => {
 
 export const closeByEsc = evt => {
   if (evt.code === 'Escape') {
-    closeModal();
+    !trailerWrapRef.classList.contains('is-hidden')
+      ? closeTrailers()
+      : closeModal();
   }
 };
 
 const closeModal = () => {
+  trailerWrapRef.classList.add('is-hidden');
   backdropRef.classList.add('is-hidden');
   document.body.style.overflow = '';
   window.removeEventListener('keydown', closeByEsc);
   backdropRef.removeEventListener('click', closeByClick);
   watchedBtnRef.removeEventListener('click', onWatchedBtnClick);
   queueBtnRef.removeEventListener('click', onQueueBtnClick);
+  trailerBtnRef.removeEventListener('click', onTrailerBtnClick);
   makeFilmCardAfterDelitFromLibrary();
   btnUp.closeModalCheck();
+};
+
+const closeTrailers = () => {
+  trailerWrapRef.classList.add('is-hidden');
 };

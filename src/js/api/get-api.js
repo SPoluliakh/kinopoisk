@@ -109,7 +109,6 @@ export async function getMovieTrailer(movieId) {
   const options = new URLSearchParams({
     api_key: API_KEY,
     language: 'en-US',
-    page: page,
     movie_id: `${movieId}`,
   });
   return axios.get(`${API_URL}${params}?${options}`);

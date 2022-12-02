@@ -1,0 +1,21 @@
+.modal__trailer {
+  position: absolute;
+  z-index: 35;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.player {
+  width: 280px;
+
+  @media screen and (min-width: 768px) {
+    width: 696px;
+    height: 320px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 826px;
+    height: 660px;
+  }
+}
