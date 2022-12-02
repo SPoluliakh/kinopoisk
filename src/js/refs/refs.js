@@ -12,10 +12,22 @@ export const modalDescriptionRef = document.querySelector(
 );
 export const watchedBtnRef = document.querySelector('.js-watched');
 export const queueBtnRef = document.querySelector('.js-queue');
+
 // kids refs
 export const zeroPlus = document.querySelector('.button-zero');
 export const sixPlus = document.querySelector('.button-six');
 export const twelvePlus = document.querySelector('.button-twelve');
+
+// Game Snake
+export const btnPlay = document.querySelector('.play-snake');
+export const btnExit = document.querySelector('.exit-snake');
+export const footer = document.querySelector('.footer');
+export const kidsAnimationText = document.querySelector(
+  '.kids-animation__text'
+);
+export const kidsPageFilter = document.querySelector('.kids-page__filter');
+export const noSelect = document.querySelector('.noselect');
+export const gameSnake = document.querySelector('.kids-animation__snake');
 
 // Library
 export const libraryWatchedBtnRef = document.querySelector('.watched-button');
