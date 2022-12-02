@@ -1,4 +1,5 @@
 export const listRef = document.querySelector('.movie-list');
+export const paginationContainer = document.getElementById('tui-pagination-container');
 export const kidsListRef = document.querySelector('.kids-movie-list');
 // Modal
 export const homeSectionRef = document.querySelector('.home-page');
