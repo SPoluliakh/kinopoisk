@@ -44,6 +44,10 @@ export const searchFormRef = document.querySelector('.search');
 export const searchInputRef = document.querySelector('.search__input');
 export const errorRef = document.querySelector('.error');
 
-// //////////////
+export const searchListRef = document.querySelector('.search-list');
+
+
+
 export const githubRef = document.querySelector('.icon-github');
 export const linkedinRef = document.querySelector('.icon-linkedin');
+
