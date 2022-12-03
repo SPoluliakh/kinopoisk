@@ -14,17 +14,17 @@ position: relative;
   z-index: 9999;
 }
 
-h4 {
+h2 {
   width: 100%;
   text-align: center;
   text-transform: capitalize;
   font-family: sans-serif;
-  color: aqua;
+  color: rgb(240, 190, 25);
 }
 
 .wrapper {
-  width: 70px;
-  height: 70px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -32,18 +32,18 @@ h4 {
 }
 
 .loader {
-  width: 35px;
-  height: 35px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   position: absolute;
 }
 
 .spinner {
-  width: 5px;
-  height: 5px;
-  background-color: aqua;
+  width: 8px;
+  height: 8px;
+  background-color: rgb(240, 190, 25);;
   border-radius: 50%;
-  box-shadow: 0 0 10px 0.5px aqua;
+  box-shadow: 0 0 10px 0.5px rgb(240, 190, 25);;
 }
 
 .loader:first-child {
