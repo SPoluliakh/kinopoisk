@@ -19,7 +19,7 @@ import './js/functions/developersModal';
 import { openMovieInfo } from './js/functions/openMovieInfo';
 import { btnUp } from './js/components/to-top-button';
 import './js/components/kidsAnimation';
-import './js/components/snake';
+
 document.addEventListener('DOMContentLoaded', () => {
   listRef.addEventListener('click', openMovieInfo);
   zeroPlus.addEventListener('click', renderKidsMovieForZero);

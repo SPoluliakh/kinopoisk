@@ -6,7 +6,7 @@ import {
 import { getGenreOptions } from './local-storage';
 import { makeMovieList } from '../components/movie-cards';
 import { listRef, zeroPlus, sixPlus, twelvePlus } from '../refs/refs';
-import { hiddenGameSnake } from '../components/snake';
+
 // Отрисовка детских фильмов по критерию возраста 0+
 export async function renderKidsMovieForZero(page = 1) {
   try {
