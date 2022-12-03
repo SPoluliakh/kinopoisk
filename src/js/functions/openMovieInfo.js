@@ -42,7 +42,7 @@ export async function openMovieInfo(evt) {
   );
   modalRef.innerHTML = card;
   modalImgRef.src = poster_path
-    ? `https://image.tmdb.org/t/p/original/${poster_path}`
+    ? `https://image.tmdb.org/t/p/w300/${poster_path}`
     : `${noImg}`;
   modalImgRef.alt = `${title}`;
   modalTitleRef.textContent = `${title}`;

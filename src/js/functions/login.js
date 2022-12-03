@@ -22,7 +22,7 @@ export const startPage = () =>{
   darkmode();
 }
 
-const firebaseConfig = {
+const firebaseConfig  = {
   apiKey: "AIzaSyCGogj3fGE6tA7X8GsT_L5_K13QQ4ppLp4",
   authDomain: "team-project-filmoteka-fd028.firebaseapp.com",
   projectId: "team-project-filmoteka-fd028",
@@ -31,6 +31,7 @@ const firebaseConfig = {
   appId: "1:647650787195:web:c479a609e1b68f161ec7de",
   measurementId: "G-0KS32BVV0R"
 };
+Object.freeze(firebaseConfig);
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -61,6 +62,8 @@ const showApp = () => {
     backdrop.classList.remove('active');
     bodyScroll.classList.remove('scroll-hidden');
     closeFormBtn.removeEventListener('click',closeModalForm);
+    user.removeEventListener('click', loginUser);
+    newUser.removeEventListener('click', registreteNewUser);
 }
 const showLoginError = (error) => {
     if(error.code == 'auth/wrong-password'){
@@ -83,7 +86,6 @@ const loginEmailPassword = async () =>{
     startSpinner();
     const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     localStorage.setItem('statusUser', 'identificationUser');
-    console.log(userCredential.user);
     startPage();
     showApp();
     }
@@ -95,7 +97,7 @@ const loginEmailPassword = async () =>{
     stopSpinner();
   };
 }
-user.addEventListener('click', (e)=>{e.preventDefault(); loginEmailPassword()})
+const loginUser = user.addEventListener('click', (e)=>{e.preventDefault(); loginEmailPassword()})
 
 const createNewUser  = async () =>{
     const loginEmail = document.querySelector('.form-control-mail').value;
@@ -116,7 +118,7 @@ const createNewUser  = async () =>{
     stopSpinner()
   };
 }
-newUser.addEventListener('click', (e)=>{e.preventDefault(); createNewUser()})
+const registreteNewUser = newUser.addEventListener('click', (e)=>{e.preventDefault(); createNewUser()})
 
 
 const monitorAuthState = async() =>{
@@ -141,9 +143,11 @@ if(localStorage.getItem('statusUser') !== 'anonym'){monitorAuthState()} else {
 const logout = async() => {
 await signOut(auth);
 localStorage.setItem('statusUser', 'anonym');
+if (localStorage.getItem('statusUser') === 'anonym')
+    {autorization.classList.add('active'),loginout.classList.remove('active')} else {loginout.classList.add('active'), autorization.classList.remove('active')} 
 }
 
-loginout.addEventListener('click', (e)=>{e.preventDefault(); logout()})
+loginout.addEventListener('click', (e)=>{e.preventDefault(); logout()});
 autorization.addEventListener('click', (e)=>{e.preventDefault(); logout();showLoginForm()})
 
 
