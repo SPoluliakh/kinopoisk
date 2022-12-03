@@ -17,14 +17,14 @@ export function appendDevelopersMarkup() {
         <p class="dev-modal__position">${position}</p>
         <ul class="dev-social-network">
             <li class="dev-social-network__item">
-                <a class="dev-social-network__link"  target='_blank'>
+                <a class="dev-social-network__link" href="${git}" target='_blank'>
                  <svg class="dev-social-network__icon icon-github">
                     <use href="${github}"></use>
                </svg>
                 </a>
             </li>
             <li class="dev-social-network__item">
-                <a class="dev-social-network__link"  target='_blank'>
+                <a class="dev-social-network__link" href="${linkedin}" target='_blank'>
               <svg
               class="dev-social-network__icon icon-linkedin">                  
                 <use href="${linkedIn}"></use>
