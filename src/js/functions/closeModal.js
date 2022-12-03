@@ -7,7 +7,7 @@ import {
 } from '../refs/refs';
 import { onWatchedBtnClick, onQueueBtnClick } from '../functions/local-storage';
 import { makeFilmCardAfterDelitFromLibrary } from './render-lib-page';
-import { onTrailerBtnClick } from './get-trailers';
+import { onTrailerBtnClick, closeTrailer } from './get-trailers';
 import { btnUp } from '../components/to-top-button';
 
 export const closeByClick = evt => {
@@ -37,7 +37,6 @@ export const closeByEsc = evt => {
 };
 
 const closeModal = () => {
-  trailerWrapRef.classList.add('is-hidden');
   backdropRef.classList.add('is-hidden');
   document.body.style.overflow = '';
   window.removeEventListener('keydown', closeByEsc);
@@ -50,5 +49,6 @@ const closeModal = () => {
 };
 
 const closeTrailers = () => {
+  closeTrailer();
   trailerWrapRef.classList.add('is-hidden');
 };
