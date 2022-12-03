@@ -1,13 +1,20 @@
 <div class="dev-backdrop is-hidden" id="backdrop">
-    <div class="dev-modal" id="modal">
-        <div class="dev-modal__container container">
-            <button class="dev-modal__button" id="close-modal">
-                <svg width="14px" height="14px">
-                    <use href="./images/sprite.svg#icon-close"></use>
-                </svg>
-            </button>
-            <h2 class="dev-modal__team-name">Developers team</h2>
-            <ul class="dev-modal__list"></ul>
-        </div>
+  <div class="dev-modal" id="modal">
+    <div class="dev-modal__container container">
+      <button class="dev-modal__button" id="close-modal">
+        <svg width="14px" height="14px">
+          <use href="./images/sprite.svg#icon-close"></use>
+        </svg>
+      </button>
+      <h2 class="dev-modal__team-name">Developers team</h2>
+      <ul class="dev-modal__list"></ul>
     </div>
+  </div>
 </div>
+<!--Используется только для динамического отрисовки svg -->
+<svg class="dev-social-network__icon is-hidden">
+  <use class="icon-github" href="./images/sprite.svg#icon-github"></use>
+</svg>
+<svg class="dev-social-network__icon is-hidden">
+  <use class="icon-linkedin" href="./images/sprite.svg#icon-linkedin"></use>
+</svg>
