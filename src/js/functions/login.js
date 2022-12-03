@@ -1,8 +1,26 @@
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-
 import { initializeApp } from "firebase/app";
 import { startSpinner, stopSpinner } from "../components/spinner";
+import { moviesListMarkupFirstRender } from '../../js/functions/render-home-page';
+import { setGenreOptions } from '../../js/functions/local-storage';
+import { openMovieInfo } from '../../js/functions/openMovieInfo';
+import { listRef } from '../../js/refs/refs';
+import '../../js/functions/searchFilm';
+import '../../js/functions/login';
+import '../../js/functions/pagination';
+import '../../js/functions/developersModal';
+import { btnUp } from '../../js/components/to-top-button';
+import { darkmode } from '../../js/functions/darkmode';
+import { listRef } from '../refs/refs';
+
+export const startPage = () =>{
+  setGenreOptions();
+  moviesListMarkupFirstRender();
+  listRef.addEventListener('click', openMovieInfo);
+  btnUp.addEventListener();
+  darkmode();
+}
 
 const firebaseConfig = {
   apiKey: "AIzaSyCGogj3fGE6tA7X8GsT_L5_K13QQ4ppLp4",
@@ -22,21 +40,27 @@ const form = document.querySelector('.form-signin');
 const newUser = document.querySelector('.sign');
 const user = document.querySelector('.login');
 const loginout = document.querySelector('.out');
+const autorization = document.querySelector('.autorization');
 const errorMessage = document.querySelector('.errorMessage');
 const backdrop = document.querySelector('.backdropForm');
 const bodyScroll = document.querySelector('body');
-const formSignin = document.querySelector('.form-signin')
+const formSignin = document.querySelector('.form-signin');
+const closeFormBtn = document.querySelector('.form__close-icone');
 
 const showLoginForm = () => {
     formSignin.classList.add('active');
     loginout.classList.remove('active');
+    autorization.classList.remove('active');
     backdrop.classList.add('active');
 }
 
 const showApp = () => {
     formSignin.classList.remove('active');
-    loginout.classList.add('active');
+    if (localStorage.getItem('statusUser') === 'anonym')
+    {autorization.classList.add('active'),loginout.classList.remove('active')} else {loginout.classList.add('active'), autorization.classList.remove('active')}  ;
     backdrop.classList.remove('active');
+    bodyScroll.classList.remove('scroll-hidden');
+    closeFormBtn.removeEventListener('click',closeModalForm);
 }
 const showLoginError = (error) => {
     if(error.code == 'auth/wrong-password'){
@@ -45,14 +69,23 @@ const showLoginError = (error) => {
         errorMessage.innerHTML = "Wrong email. Try again."}
     else {errorMessage.innerHTML = `Error: ${error.message}`}
 }
+const closeForm = () =>{
+  localStorage.setItem('statusUser', 'anonym');
+  startPage();
+  showApp();
+}
+const closeModalForm = closeFormBtn.addEventListener('click', (e)=>{e.preventDefault(); closeForm()});
 
 const loginEmailPassword = async () =>{
     const loginEmail = document.querySelector('.form-control-mail').value;
     const loginPassword = document.querySelector('.form-control-password').value;
   try {
     startSpinner();
-    const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+    const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+    localStorage.setItem('statusUser', 'identificationUser');
     console.log(userCredential.user);
+    startPage();
+    showApp();
     }
   catch(error) {
     showLoginError(error)
@@ -69,8 +102,11 @@ const createNewUser  = async () =>{
     const loginPassword = document.querySelector('.form-control-password').value;
   try {
     startSpinner();
-    const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
+    const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword);
+    localStorage.setItem('statusUser', 'identificationUser');
     console.log(userCredential.user);
+    startPage();
+    showApp();
     }
   catch(error) {
     showLoginError(error)
@@ -82,10 +118,10 @@ const createNewUser  = async () =>{
 }
 newUser.addEventListener('click', (e)=>{e.preventDefault(); createNewUser()})
 
+
 const monitorAuthState = async() =>{
 onAuthStateChanged (auth, user => {
     if (user) {
-        // console.log(user);
         bodyScroll.classList.remove('scroll-hidden');
         showApp();
         errorMessage.innerHTML = ''
@@ -98,10 +134,20 @@ onAuthStateChanged (auth, user => {
 })
 }
 
-monitorAuthState()
+if(localStorage.getItem('statusUser') !== 'anonym'){monitorAuthState()} else {
+  showApp();
+}
 
 const logout = async() => {
-await signOut(auth)
+await signOut(auth);
+localStorage.setItem('statusUser', 'anonym');
 }
-loginout.addEventListener('click', (e)=>{e.preventDefault(); logout()})
 
+loginout.addEventListener('click', (e)=>{e.preventDefault(); logout()})
+autorization.addEventListener('click', (e)=>{e.preventDefault(); logout();showLoginForm()})
+
+
+if (localStorage.getItem('movieList')){
+  startPage();
+  listRef.innerHTML = JSON.parse(localStorage.getItem('movieList'));
+}
