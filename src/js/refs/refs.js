@@ -15,7 +15,6 @@ export const modalDescriptionRef = document.querySelector(
 export const trailerBtnRef = document.querySelector('.modal__button--trailer');
 export const watchedBtnRef = document.querySelector('.js-watched');
 export const queueBtnRef = document.querySelector('.js-queue');
-
 export const trailerWrapRef = document.querySelector('.modal__trailer');
 
 // kids refs
@@ -44,4 +43,11 @@ export const librarydivRef = document.querySelector('.empty-lib');
 export const searchFormRef = document.querySelector('.search');
 export const searchInputRef = document.querySelector('.search__input');
 export const errorRef = document.querySelector('.error');
+
 export const searchListRef = document.querySelector('.search-list');
+
+
+
+export const githubRef = document.querySelector('.icon-github');
+export const linkedinRef = document.querySelector('.icon-linkedin');
+
