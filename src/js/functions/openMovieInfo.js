@@ -3,6 +3,7 @@ import { getMovieById } from '../api/get-api';
 import { modalBtnsHandler } from '../functions/local-storage';
 import noImg from '../../images/noimage.png';
 import * as closeModal from './closeModal';
+import { getTrailer } from './get-trailers';
 
 import {
   backdropRef,
@@ -49,6 +50,7 @@ export async function openMovieInfo(evt) {
 
   modalBtnsHandler(id);
   btnUp.hide();
+  getTrailer(film.dataset.id);
 
   backdropRef.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';

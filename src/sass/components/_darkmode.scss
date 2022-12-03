@@ -31,7 +31,8 @@ header {
   & .modal__text-info-wrap,
   & .movie-card__title,
   & .dev-modal__team-name,
-  & .dev-modal__position {
+  & .dev-modal__position,
+  & .tui-pagination .tui-page-btn {
     color: var(--main-white);
   }
   & .modal__sub-title-description {
@@ -49,6 +50,14 @@ header {
   }
   & .library-footer {
     background-color: var(--darkmode-library);
+  }
+  & .tui-pagination .tui-first,
+  & .tui-pagination .tui-prev,
+  & .tui-pagination .tui-next,
+  & .tui-pagination .tui-last,
+  & .tui-pagination .tui-prev-is-ellip,
+  & .tui-pagination .tui-next-is-ellip {
+    background-color: var(--modal-subTitle-color);
   }
 }
 

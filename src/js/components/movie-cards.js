@@ -36,7 +36,7 @@ export const makeMovieList = (results = [], allGenres = []) => {
   <p class="movie-card__relize-info"data-id="${id}">${makeGenre(
         genre_ids,
         allGenres
-      )} | ${release_date.slice(0, 4)}
+      )} | ${release_date ? release_date.slice(0, 4) : 'no infomation about release date'}
       </p>
   </div>
 </li>

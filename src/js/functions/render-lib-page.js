@@ -6,6 +6,7 @@ import {
   libraryQueueBtnRef,
   librarydivRef,
   homeSectionRef,
+  kidsSectionPRef,
 } from '../refs/refs';
 import { makeLibraryMovieList } from '../components/movie-cards';
 
@@ -57,13 +58,18 @@ export function makeFilmCard(data = getWatchedItems) {
 }
 // on Delit from library
 export function makeFilmCardAfterDelitFromLibrary() {
-  if (homeSectionRef?.classList.contains('home-page')) {
+  if (
+    homeSectionRef?.classList.contains('home-page') ||
+    kidsSectionPRef?.classList.contains('kids-animation')
+  ) {
     return;
   }
   if (libraryWatchedBtnRef?.classList.contains('active-button')) {
     deliteFromWatched();
+    return;
   } else {
     deliteFromQueue();
+    return;
   }
 }
 

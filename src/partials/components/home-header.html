@@ -1,7 +1,7 @@
 <header class="pagehome-header">
   <div class="container">
     <div class="navigation-wrapper">
-      <a href="./index.html" class="logo">
+      <a href="./index.html" class="logo" aria-label="logo Filmoteka">
         <svg class="logo-img">
           <use
             href="./images/sprite.svg#icon-film"
@@ -26,8 +26,11 @@
         </ul>
       </nav>
     </div>
-
+<p class="error">
+  Search result not successful. Enter the correct movie name
+</p>
     <form class="search">
+      
       <input
         type="text"
         class="search__input"
@@ -35,7 +38,7 @@
         autocomplete="off"
         placeholder="Movie search"
       />
-      <button type="submit" class="search__button">
+      <button type="submit" class="search__button" aria-label="search-button">
         <svg class="search__button-icon">
           <use
             href="./images/sprite.svg#icon-search"
@@ -45,9 +48,8 @@
         </svg>
       </button>
     </form>
-    <p class="error">
-      Search result not successful. Enter the correct movie name
-    </p>
+    <ul class="search-list visually-hidden"></ul>
+   
     <div>
       <input type="checkbox" class="checkbox" id="checkbox" />
       <label for="checkbox" class="checkbox-label">

@@ -4,9 +4,10 @@ $tablet: 768px;
 $desctop: 1280px;
 
 body.scroll-hidden {
-	background: #eee !important;	
+  background: #eee !important;
   overflow: hidden;
 }
+
 .form-signin-heading{
   text-align: center;
 }
@@ -30,19 +31,20 @@ body.scroll-hidden {
 .btn-block:hover,
 .btn-block:focus {
   background-color: #ffbf00;
+
 }
 .btn-block.out.active {
-    z-index: 100;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 100px;
-    transform: translate(-50%);
-    background-color: black;
-    border-radius: 10px;
-    border-color: 2px solid yellow;
-    color: yellow;
-    cursor: pointer;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100px;
+  transform: translate(-50%);
+  background-color: black;
+  border-radius: 10px;
+  border-color: 2px solid yellow;
+  color: orangered;
+  cursor: pointer;
 }
 .btn-block.autorization.active{
     z-index: 100;
@@ -58,16 +60,20 @@ body.scroll-hidden {
     cursor: pointer;
 }
 .form-signin.active {
+
     z-index: 40;
     display: flex;
     -moz-box-shadow: 6px 7px 39px 11px #fff;
 -webkit-box-shadow: 6px 7px 39px 11px #fff;
 box-shadow: 6px 7px 39px 11px #fff;
+
+
 }
 .backdropForm {
-    opacity: 0;
+  opacity: 0;
 }
 .backdropForm.active {
+
     z-index: 30;
     width: 100vw;
     height: 100vh;
@@ -100,9 +106,11 @@ box-shadow: 6px 7px 39px 11px #fff;
     left: 50%;
     transform: translate(-50%, -50%);
 
+
   .form-signin-heading {
-	  margin-bottom: 30px;
-	}
+    margin-bottom: 30px;
+  }
+
 
 	.form-control-mail,
   .form-control-password {
@@ -180,3 +188,4 @@ box-shadow: 6px 7px 39px 11px #fff;
     min-width: 600px;
     }
 }
+
