@@ -5,60 +5,56 @@ import {
 } from '../api/get-api';
 import { getGenreOptions } from './local-storage';
 import { makeMovieList } from '../components/movie-cards';
-import { listRef, zeroPlus, sixPlus, twelvePlus } from '../refs/refs';
+import { listRef, zeroPlus, sixPlus, twelvePlus, paginationContainer } from '../refs/refs';
+import Pagination from 'tui-pagination';
+import { makePaginationOptions, removeHiddenPagination } from '../functions/pagination';
 
-// Отрисовка детских фильмов по критерию возраста 0+
-export async function renderKidsMovieForZero(page = 1) {
-  try {
-    const movies = await getPopularForKidsZero(page);
-    const { results } = movies.data;
-    const genres = getGenreOptions() ?? [];
-    const movieList = makeMovieList(results, genres);
+export function renderKidsMoviesByAge(kidsAgeAPIFunction) {
+  return async function renderKidsMovies(page = 1) {
+    try {
+      const movies = await kidsAgeAPIFunction(page);
+      const { results, total_results } = movies.data;
+      const paginationOptionsForKidsZero = makePaginationOptions(total_results);
+      removeHiddenPagination();
+      const genres = getGenreOptions() ?? [];
+      const movieList = makeMovieList(results, genres);
 
-    listRef.innerHTML = movieList;
-  } catch (error) {
-    console.log(error);
+      listRef.innerHTML = movieList;
+
+      const paginationForKidsZero = new Pagination(paginationContainer, paginationOptionsForKidsZero);
+      paginationForKidsZero.on('afterMove', paginateKidsMoviesByAge(kidsAgeAPIFunction));
+    } catch (error) {
+      console.log(error);
+    }
+
+    if (kidsAgeAPIFunction === getPopularForKidsZero) {
+      zeroPlus.disabled = true;
+      sixPlus.disabled = false;
+      twelvePlus.disabled = false;
+    }
+    if (kidsAgeAPIFunction === getPopularForKidsSix) {
+      zeroPlus.disabled = false;
+      sixPlus.disabled = true;
+      twelvePlus.disabled = false;
+    }
+    if (kidsAgeAPIFunction === getPopularForKidsTwelve) {
+      zeroPlus.disabled = false;
+      sixPlus.disabled = false;
+      twelvePlus.disabled = true;
+    }
+    
+    // hiddenGameSnake();
   }
-  zeroPlus.disabled = true;
-  sixPlus.disabled = false;
-  twelvePlus.disabled = false;
-  hiddenGameSnake();
 }
-// Отрисовка детских фильмов по критерию возраста 6+
-export async function renderKidsMovieForSix(page = 1) {
-  try {
-    const movies = await getPopularForKidsSix(page);
 
+function paginateKidsMoviesByAge(kidsAgeAPIFunction) {
+  return async function paginateKidsMovies(event) {
+    const currentPage = event.page;
+    const movies = await kidsAgeAPIFunction(currentPage);
     const { results } = movies.data;
-
     const genres = getGenreOptions() ?? [];
     const movieList = makeMovieList(results, genres);
-
     listRef.innerHTML = movieList;
-  } catch (error) {
-    console.log(error);
+    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  zeroPlus.disabled = false;
-  sixPlus.disabled = true;
-  twelvePlus.disabled = false;
-  hiddenGameSnake();
-}
-// Отрисовка детских фильмов по критерию возраста 12+
-export async function renderKidsMovieForTwelve(page = 1) {
-  try {
-    const movies = await getPopularForKidsTwelve(page);
-
-    const { results } = movies.data;
-
-    const genres = getGenreOptions() ?? [];
-    const movieList = makeMovieList(results, genres);
-
-    listRef.innerHTML = movieList;
-  } catch (error) {
-    console.log(error);
-  }
-  zeroPlus.disabled = false;
-  sixPlus.disabled = false;
-  twelvePlus.disabled = true;
-  hiddenGameSnake();
 }
