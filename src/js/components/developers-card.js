@@ -8,9 +8,10 @@ export function appendDevelopersMarkup() {
   const github = '/sprite.f14d31f7.svg#icon-github';
   const linkedIn = '/sprite.f14d31f7.svg#icon-linkedin';
 
-  return developers
-    .map(({ name, position, git, photo300, photo600, linkedin }) => {
-      return `<li class="dev-modal__card">
+  try {
+    return developers
+      .map(({ name, position, git, photo300, photo600, linkedin }) => {
+        return `<li class="dev-modal__card">
         <img class="dev-modal__picture" src="${photo300}" alt="${name} >
     <div class="dev-modal__wrapper">
         <h2 class="dev-modal__name">${name}</h2>
@@ -34,6 +35,9 @@ export function appendDevelopersMarkup() {
         </ul>
     </div>
 </li>`;
-    })
-    .join('');
+      })
+      .join('');
+  } catch (err) {
+    console.log(err);
+  }
 }
