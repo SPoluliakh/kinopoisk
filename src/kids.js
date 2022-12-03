@@ -1,7 +1,10 @@
 import {
-  renderKidsMovieForZero,
-  renderKidsMovieForSix,
-  renderKidsMovieForTwelve,
+  getPopularForKidsZero,
+  getPopularForKidsSix,
+  getPopularForKidsTwelve,
+} from './js/api/get-api';
+import {
+  renderKidsMoviesByAge,
 } from './js/functions/renderPopularKidsMovie';
 import {
   listRef,
@@ -19,11 +22,13 @@ import './js/functions/developersModal';
 import { openMovieInfo } from './js/functions/openMovieInfo';
 import { btnUp } from './js/components/to-top-button';
 import './js/components/kidsAnimation';
+import { addHiddenPagination } from './js/functions/pagination';
 
 document.addEventListener('DOMContentLoaded', () => {
+  addHiddenPagination();
   listRef.addEventListener('click', openMovieInfo);
-  zeroPlus.addEventListener('click', renderKidsMovieForZero);
-  sixPlus.addEventListener('click', renderKidsMovieForSix);
-  twelvePlus.addEventListener('click', renderKidsMovieForTwelve);
+  zeroPlus.addEventListener('click', renderKidsMoviesByAge(getPopularForKidsZero));
+  sixPlus.addEventListener('click', renderKidsMoviesByAge(getPopularForKidsSix));
+  twelvePlus.addEventListener('click', renderKidsMoviesByAge(getPopularForKidsTwelve));
   btnUp.addEventListener();
 });

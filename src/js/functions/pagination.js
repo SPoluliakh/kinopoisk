@@ -43,3 +43,11 @@ export function makePaginationOptions(totalResults = 10000) {
     },
   };
 }
+
+export function addHiddenPagination() {
+  paginationContainer.classList.add('visually-hidden');
+}
+
+export function removeHiddenPagination() {
+  paginationContainer.classList.remove('visually-hidden');
+}
