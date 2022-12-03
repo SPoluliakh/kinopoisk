@@ -32,7 +32,13 @@ body.scroll-hidden {
 .btn-block:focus {
   background-color: #ffbf00;
 }
-.btn-block.out.active {
+.btn-block.out,
+.btn-block.autorization {
+display: none;
+}
+.btn-block.out.active,
+.btn-block.autorization.active {
+  display: block;
   z-index: 20;
   position: absolute;
   top: 0;
@@ -42,7 +48,7 @@ body.scroll-hidden {
   background-color: black;
   border-radius: 10px;
   border-color: 2px solid yellow;
-  color: orangered;
+  color: yellow;
   cursor: pointer;
 }
 .btn-block.autorization.active {
