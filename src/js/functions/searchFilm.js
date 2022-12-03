@@ -19,6 +19,14 @@ async function onFormSubmit(event) {
   event.preventDefault();
   searchValue = event.currentTarget.searchQuery.value.trim();
   startSpinner();
+  if (!searchValue) {
+    errorRef.classList.add('show-error');
+    setTimeout(() => {
+      errorRef.classList.remove('show-error');
+    }, 3000);
+    stopSpinner();
+    return;
+  }
   const movies = await getBySearchName(searchValue);
   const { results, total_results } = movies.data;
   const paginationOptions = makePaginationOptions(total_results);
@@ -38,15 +46,6 @@ async function onFormSubmit(event) {
   const movieList = makeMovieList(results, genres);
   listRef.innerHTML = movieList;
   searchListRef.innerHTML = '';
-
-  if (!searchValue) {
-    errorRef.classList.add('show-error');
-    setTimeout(() => {
-      errorRef.classList.remove('show-error');
-    }, 3000);
-    stopSpinner();
-    return;
-  }
 
   // Pagination part
 
