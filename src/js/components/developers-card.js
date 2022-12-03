@@ -5,6 +5,9 @@ import { linkedinRef, githubRef } from '../refs/refs';
 const developers = Data.developers;
 
 export function appendDevelopersMarkup() {
+  const github = '/sprite.f14d31f7.svg#icon-github';
+  const linkedIn = '/sprite.f14d31f7.svg#icon-linkedin';
+
   return developers
     .map(({ name, position, git, photo300, photo600, linkedin }) => {
       return `<li class="dev-modal__card">
@@ -14,23 +17,23 @@ export function appendDevelopersMarkup() {
         <p class="dev-modal__position">${position}</p>
         <ul class="dev-social-network">
             <li class="dev-social-network__item">
-                <a class="dev-social-network__link" href="${git}">
-                 <svg class="dev-social-network__icon">
-                    <use href="/sprite.f14d31f7.svg#icon-github""></use>
+                <a class="dev-social-network__link" href="${git}" target='_blank'>
+                 <svg class="dev-social-network__icon icon-github">
+                    <use href="${github}"></use>
                </svg>
                 </a>
             </li>
             <li class="dev-social-network__item">
-                <a class="dev-social-network__link" href="${linkedin}">
+                <a class="dev-social-network__link" href="${linkedin}" target='_blank'>
               <svg
               class="dev-social-network__icon icon-linkedin">                  
-                <use href="/sprite.f14d31f7.svg#icon-linkedin"></use>
+                <use href="${linkedIn}"></use>
                   </svg>
                 </a>
             </li>
         </ul>
     </div>
-</li>`;    
+</li>`;
     })
-      .join('')
+    .join('');
 }
