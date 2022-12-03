@@ -44,3 +44,4 @@ export const librarydivRef = document.querySelector('.empty-lib');
 export const searchFormRef = document.querySelector('.search');
 export const searchInputRef = document.querySelector('.search__input');
 export const errorRef = document.querySelector('.error');
+export const searchListRef = document.querySelector('.search-list');
