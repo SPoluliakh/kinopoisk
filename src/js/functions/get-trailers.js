@@ -17,7 +17,7 @@ export async function onTrailerBtnClick(id) {
   return (trailerWrapRef.innerHTML = trailer);
 }
 
-export async function closeTrailer() {
+export function closeTrailer() {
   const trailer = `<iframe class="player" type="text/html" allowfullscreen="allowfullscreen"
   src=""
   frameborder="0"></iframe>`;

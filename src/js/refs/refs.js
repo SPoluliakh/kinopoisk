@@ -22,6 +22,7 @@ export const trailerWrapRef = document.querySelector('.modal__trailer');
 export const zeroPlus = document.querySelector('.button-zero');
 export const sixPlus = document.querySelector('.button-six');
 export const twelvePlus = document.querySelector('.button-twelve');
+export const kidsSectionPRef = document.querySelector('.kids-animation');
 
 // Game Snake
 export const btnPlay = document.querySelector('.play-snake');
