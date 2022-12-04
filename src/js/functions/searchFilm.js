@@ -62,6 +62,7 @@ async function onFormSubmit(event) {
 
 async function updateMoviesListByName(event) {
   const currentPage = event.page;
+  localStorage.setItem('page', currentPage)
   const movies = await getBySearchName(searchValue, currentPage);
   const { results } = movies.data;
   console.log(movies.data);

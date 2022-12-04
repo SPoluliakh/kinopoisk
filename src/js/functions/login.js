@@ -47,12 +47,22 @@ const backdrop = document.querySelector('.backdropForm');
 const bodyScroll = document.querySelector('body');
 const formSignin = document.querySelector('.form-signin');
 const closeFormBtn = document.querySelector('.form__close-icone');
+let count = 0;
+
+const keyEsc =  (e) => {
+  e.preventDefault();
+  if(e.key === "Escape") {
+      closeForm()
+  }
+}
 
 const showLoginForm = () => {
     formSignin.classList.add('active');
     loginout.classList.remove('active');
     autorization.classList.remove('active');
     backdrop.classList.add('active');
+    document.addEventListener('keydown', keyEsc);
+    count +=1;
 }
 
 const showApp = () => {
@@ -64,6 +74,7 @@ const showApp = () => {
     closeFormBtn.removeEventListener('click',closeModalForm);
     user.removeEventListener('click', loginUser);
     newUser.removeEventListener('click', registreteNewUser);
+    document.removeEventListener('keydown', keyEsc);
 }
 const showLoginError = (error) => {
     if(error.code == 'auth/wrong-password'){
@@ -74,7 +85,7 @@ const showLoginError = (error) => {
 }
 const closeForm = () =>{
   localStorage.setItem('statusUser', 'anonym');
-  startPage();
+  if(count < 1){startPage()};
   showApp();
 }
 const closeModalForm = closeFormBtn.addEventListener('click', (e)=>{e.preventDefault(); closeForm()});
@@ -86,7 +97,7 @@ const loginEmailPassword = async () =>{
     startSpinner();
     const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     localStorage.setItem('statusUser', 'identificationUser');
-    startPage();
+    if(count < 1){startPage()};
     showApp();
     }
   catch(error) {
@@ -107,7 +118,7 @@ const createNewUser  = async () =>{
     const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword);
     localStorage.setItem('statusUser', 'identificationUser');
     console.log(userCredential.user);
-    startPage();
+    if(count < 1){startPage()};
     showApp();
     }
   catch(error) {

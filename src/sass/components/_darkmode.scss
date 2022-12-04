@@ -41,7 +41,11 @@ header {
   & .dev-modal__button {
     background-color: transparent;
   }
-  & .library-page {
+  // & .library-page {
+  //   isolation: isolate;
+  //   background-color: var(--darkmode-library);
+  // }
+  & main {
     isolation: isolate;
     background-color: var(--darkmode-library);
   }
@@ -58,6 +62,12 @@ header {
   & .tui-pagination .tui-prev-is-ellip,
   & .tui-pagination .tui-next-is-ellip {
     background-color: var(--modal-subTitle-color);
+  }
+  & .empty-lib__text {
+    color: var(--main-white);
+  }
+  & .footer__info {
+    color: var(--modal-subTitle-color);
   }
 }
 

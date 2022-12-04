@@ -5,7 +5,6 @@ $desctop: 1280px;
 // size of img
 $imgwidth: 280px;
 
-
 .home-page,
 .kids-page,
 .library-page {
@@ -17,12 +16,28 @@ $imgwidth: 280px;
   display: grid;
   grid-template-rows: auto;
 }
+
+.movie-card {
+  transition: box-shadow 250ms linear;
+
+  &:hover {
+    box-shadow: 0 1px 4px var(--subtitle-color),
+      -23px 0 20px -23px var(--subtitle-color),
+      23px 0 20px -23px var(--subtitle-color),
+      0 0 40px var(--subtitle-color) inset;
+  }
+}
+
 .movie-card,
 .movie-card__info {
   display: flex;
   flex-direction: column;
   justify-content: left;
   cursor: pointer;
+}
+
+.movie-card__info {
+  padding: 5px;
 }
 
 .movie-list .movie-card__img {

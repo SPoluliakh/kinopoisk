@@ -21,18 +21,12 @@ export const trailerWrapRef = document.querySelector('.modal__trailer');
 export const zeroPlus = document.querySelector('.button-zero');
 export const sixPlus = document.querySelector('.button-six');
 export const twelvePlus = document.querySelector('.button-twelve');
-export const kidsSectionPRef = document.querySelector('.kids-animation');
-
-// Game Snake
-export const btnPlay = document.querySelector('.play-snake');
-export const btnExit = document.querySelector('.exit-snake');
-export const footer = document.querySelector('.footer');
-export const kidsAnimationText = document.querySelector(
-  '.kids-animation__text'
-);
-export const kidsPageFilter = document.querySelector('.kids-page__filter');
-export const noSelect = document.querySelector('.noselect');
-export const gameSnake = document.querySelector('.kids-animation__snake');
+export const kidsSectionRef = document.querySelector('.kids-animation');
+export const kidsSectionGames = document.querySelector('.kids-games');
+export const gameMemory = document.querySelector('.game');
+// Games
+export const memoryGamesBtn = document.getElementById('memory-games');
+export const btnExitGame = document.querySelector('.exit-game');
 
 // Library
 export const libraryWatchedBtnRef = document.querySelector('.watched-button');
@@ -46,8 +40,5 @@ export const errorRef = document.querySelector('.error');
 
 export const searchListRef = document.querySelector('.search-list');
 
-
-
 export const githubRef = document.querySelector('.icon-github');
 export const linkedinRef = document.querySelector('.icon-linkedin');
-

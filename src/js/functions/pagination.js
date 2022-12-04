@@ -1,7 +1,6 @@
 import Pagination from 'tui-pagination';
 // import 'tui-pagination/dist/tui-pagination.css';
 import { paginationContainer } from '../refs/refs';
-import { moviesListMarkupFirstRender } from '../functions/render-home-page';
 
 export function makePaginationOptions(totalResults = 10000) {
   return {

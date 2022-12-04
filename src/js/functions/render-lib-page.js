@@ -5,7 +5,7 @@ import {
   libraryQueueBtnRef,
   librarydivRef,
   homeSectionRef,
-  kidsSectionPRef,
+  kidsSectionRef,
 } from '../refs/refs';
 import { makeLibraryMovieList } from '../components/movie-cards';
 import Pagination from 'tui-pagination';
@@ -95,7 +95,7 @@ export function makeFilmCard(data = getWatchedItems) {
 export function makeFilmCardAfterDelitFromLibrary() {
   if (
     homeSectionRef?.classList.contains('home-page') ||
-    kidsSectionPRef?.classList.contains('kids-animation')
+    kidsSectionRef?.classList.contains('kids-animation')
   ) {
     return;
   }
