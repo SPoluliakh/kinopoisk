@@ -11,6 +11,7 @@ import { btnUp } from './js/components/to-top-button';
 import './js/components/kidsAnimation';
 import { addHiddenPagination } from './js/functions/pagination';
 import './js/components/gameMemory';
+import './js/components/tic-tac-toe';
 
 document.addEventListener('DOMContentLoaded', () => {
   addHiddenPagination();

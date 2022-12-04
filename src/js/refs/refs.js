@@ -22,11 +22,20 @@ export const zeroPlus = document.querySelector('.button-zero');
 export const sixPlus = document.querySelector('.button-six');
 export const twelvePlus = document.querySelector('.button-twelve');
 export const kidsSectionRef = document.querySelector('.kids-animation');
+export const kidsPage = document.querySelector('.kids-page');
+// Список игр
 export const kidsSectionGames = document.querySelector('.kids-games');
-export const gameMemory = document.querySelector('.game');
 // Games
+// Кнопки игр
 export const memoryGamesBtn = document.getElementById('memory-games');
+export const ticTacToeGamesBtn = document.getElementById('tic-tac-toe-games');
+// Выход их игры
 export const btnExitGame = document.querySelector('.exit-game');
+// Секция Игр
+export const games = document.querySelector('.game');
+// Блоки игр
+export const ticTacToe = document.querySelector('.tic-tac-toe');
+export const memoryGame = document.querySelector('.memory-game');
 
 // Library
 export const libraryWatchedBtnRef = document.querySelector('.watched-button');

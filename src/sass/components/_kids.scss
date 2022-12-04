@@ -147,6 +147,15 @@
   width: 100%;
   background-color: var(--bad-request-color);
 }
+
+.kids-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.kids-page.hidden {
+  display: none;
+}
 .kids-page > .movie-list {
   padding-top: 25px;
 }
@@ -225,7 +234,8 @@
 .button-six:hover,
 .button-twelve:hover,
 .btn-games:hover,
-.game-list__btn:hover {
+.game-list__btn:hover,
+.exit-game:hover {
   color: #fff;
   transition: 0.3s;
 }
@@ -233,35 +243,40 @@
 .button-six:hover:after,
 .button-twelve:hover:after,
 .btn-games:hover:after,
-.game-list__btn:hover:after {
+.game-list__btn:hover:after,
+.exit-game:hover:after {
   background: linear-gradient(90deg, #fd7f34, #bd155b);
 }
 .button-zero:active:after,
 .button-six:active:after,
 .button-twelve:active:after,
 .btn-games:active:after,
-.game-list__btn:active:after {
+.game-list__btn:active:after,
+.exit-game:active:after {
   background: linear-gradient(90deg, #d96d2d, #760f3a);
 }
 .button-zero:focus-visible,
 .button-six:focus-visible,
 .button-twelve:focus-visible,
 .btn-games:focus-visible,
-.game-list__btn:focus-visible {
+.game-list__btn:focus-visible,
+.exit-game:focus-visible {
   box-shadow: 0 0 0 3px #fd7f34;
 }
 .button-zero:disabled,
 .button-six:disabled,
 .button-twelve:disabled,
 .btn-games:disabled,
-.game-list__btn:disabled {
+.game-list__btn:disabled,
+.exit-game:disabled {
   pointer-events: none;
 }
 .button-zero:disabled:before,
 .button-six:disabled:before,
 .button-twelve:disabled:before,
 .btn-games:disabled:before,
-.game-list__btn:disabled:before {
+.game-list__btn:disabled:before,
+.exit-game:disabled:before {
   filter: grayscale(100%);
 }
 

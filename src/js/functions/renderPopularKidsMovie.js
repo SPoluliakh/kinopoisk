@@ -11,6 +11,7 @@ import {
   sixPlus,
   twelvePlus,
   paginationContainer,
+  kidsPage,
 } from '../refs/refs';
 import Pagination from 'tui-pagination';
 import {
@@ -21,6 +22,7 @@ import {
 export function renderKidsMoviesByAge(kidsAgeAPIFunction) {
   return async function renderKidsMovies(page = 1) {
     try {
+      kidsPage.classList.remove('hidden');
       const movies = await kidsAgeAPIFunction(page);
       const { results, total_results } = movies.data;
       const paginationOptionsForKidsMovies = makePaginationOptions(total_results);
