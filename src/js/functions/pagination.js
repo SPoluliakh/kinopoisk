@@ -11,6 +11,7 @@ pagination.on('afterMove', updateMoviesList);
 
 export async function updateMoviesList(event) {
   const currentPage = event.page;
+  localStorage.setItem('page', event.page);
   await moviesListMarkupFirstRender(currentPage);
   document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
 }
