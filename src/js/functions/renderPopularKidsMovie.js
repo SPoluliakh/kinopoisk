@@ -5,9 +5,18 @@ import {
 } from '../api/get-api';
 import { getGenreOptions } from './local-storage';
 import { makeMovieList } from '../components/movie-cards';
-import { listRef, zeroPlus, sixPlus, twelvePlus, paginationContainer } from '../refs/refs';
+import {
+  listRef,
+  zeroPlus,
+  sixPlus,
+  twelvePlus,
+  paginationContainer,
+} from '../refs/refs';
 import Pagination from 'tui-pagination';
-import { makePaginationOptions, removeHiddenPagination } from '../functions/pagination';
+import {
+  makePaginationOptions,
+  removeHiddenPagination,
+} from '../functions/pagination';
 
 export function renderKidsMoviesByAge(kidsAgeAPIFunction) {
   return async function renderKidsMovies(page = 1) {
@@ -21,8 +30,14 @@ export function renderKidsMoviesByAge(kidsAgeAPIFunction) {
 
       listRef.innerHTML = movieList;
 
-      const paginationForKidsZero = new Pagination(paginationContainer, paginationOptionsForKidsZero);
-      paginationForKidsZero.on('afterMove', paginateKidsMoviesByAge(kidsAgeAPIFunction));
+      const paginationForKidsZero = new Pagination(
+        paginationContainer,
+        paginationOptionsForKidsZero
+      );
+      paginationForKidsZero.on(
+        'afterMove',
+        paginateKidsMoviesByAge(kidsAgeAPIFunction)
+      );
     } catch (error) {
       console.log(error);
     }
@@ -42,9 +57,7 @@ export function renderKidsMoviesByAge(kidsAgeAPIFunction) {
       sixPlus.disabled = false;
       twelvePlus.disabled = true;
     }
-    
-    // hiddenGameSnake();
-  }
+  };
 }
 
 function paginateKidsMoviesByAge(kidsAgeAPIFunction) {
@@ -56,5 +69,5 @@ function paginateKidsMoviesByAge(kidsAgeAPIFunction) {
     const movieList = makeMovieList(results, genres);
     listRef.innerHTML = movieList;
     document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+  };
 }

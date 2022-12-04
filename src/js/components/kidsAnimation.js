@@ -29,7 +29,7 @@ animation
   });
 
 // ======== Анимация улитки =============
-var design = anime({
+let design = anime({
   targets: 'svg #XMLID5',
   keyframes: [
     { translateX: -1200 },
