@@ -104,7 +104,7 @@ export function makeFilmCard(data = getWatchedItems) {
 
     const movies = data() ?? [];
     const newMovies = cutPagesForPagination(movies);
-    const ourMovies = newMovies[0].results;
+    const ourMovies = newMovies[0]?.results ?? [];
     const movieList = makeLibraryMovieList(ourMovies);
     listRef.innerHTML = movieList;
   } catch (err) {
