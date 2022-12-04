@@ -48,11 +48,19 @@ const bodyScroll = document.querySelector('body');
 const formSignin = document.querySelector('.form-signin');
 const closeFormBtn = document.querySelector('.form__close-icone');
 
+const keyEsc =  (e) => {
+  e.preventDefault();
+  if(e.key === "Escape") {
+      closeForm()
+  }
+}
+
 const showLoginForm = () => {
     formSignin.classList.add('active');
     loginout.classList.remove('active');
     autorization.classList.remove('active');
     backdrop.classList.add('active');
+    document.addEventListener('keydown', keyEsc)
 }
 
 const showApp = () => {
@@ -64,6 +72,7 @@ const showApp = () => {
     closeFormBtn.removeEventListener('click',closeModalForm);
     user.removeEventListener('click', loginUser);
     newUser.removeEventListener('click', registreteNewUser);
+    document.removeEventListener('keydown', keyEsc);
 }
 const showLoginError = (error) => {
     if(error.code == 'auth/wrong-password'){

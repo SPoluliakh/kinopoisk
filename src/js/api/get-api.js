@@ -19,6 +19,7 @@ export async function getPopular(page = 1) {
 // "name" - запрос пользователя,
 // "page" - для пагинации
 export async function getBySearchName(name, page = 1) {
+  localStorage.setItem('page', page);
   const params = 'search/movie';
   const options = new URLSearchParams({
     api_key: API_KEY,
