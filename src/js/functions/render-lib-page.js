@@ -21,7 +21,7 @@ import { cutPagesForPagination } from '../functions/pagination-cut-pages';
 
 const localStorageQueue = getQueueItems();
 const paginationOptionsForQueueMovies = makePaginationOptions(
-  localStorageQueue.length
+  localStorageQueue?.length
 );
 const paginationForLibraryMoviesQueue = new Pagination(
   paginationContainer,
@@ -30,7 +30,7 @@ const paginationForLibraryMoviesQueue = new Pagination(
 
 const localStorageWathed = getWatchedItems();
 const paginationOptionsForWatchedMovies = makePaginationOptions(
-  localStorageWathed.length
+  localStorageWathed?.length
 );
 const paginationForLibraryMovies = new Pagination(
   paginationContainer,

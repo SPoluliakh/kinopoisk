@@ -7,34 +7,21 @@
 // } from 'firebase/auth';
 // import { initializeApp } from 'firebase/app';
 // import { startSpinner, stopSpinner } from '../components/spinner';
-// import { moviesListMarkupFirstRender } from '../../js/functions/render-home-page';
-// import { setGenreOptions } from '../../js/functions/local-storage';
-// import { openMovieInfo } from '../../js/functions/openMovieInfo';
-// import { listRef } from '../../js/refs/refs';
 // import '../../js/functions/searchFilm';
 // import '../../js/functions/login';
 // import '../../js/functions/pagination';
 // import '../../js/functions/developersModal';
-// import { btnUp } from '../../js/components/to-top-button';
-// import { darkmode } from '../../js/functions/darkmode';
+
 // import { listRef } from '../refs/refs';
 
-// export const startPage = () => {
-//   setGenreOptions();
-//   moviesListMarkupFirstRender();
-//   listRef.addEventListener('click', openMovieInfo);
-//   btnUp.addEventListener();
-//   darkmode();
-// };
-
-// const firebaseConfig  = {
-//   apiKey: "AIzaSyCGogj3fGE6tA7X8GsT_L5_K13QQ4ppLp4",
-//   authDomain: "team-project-filmoteka-fd028.firebaseapp.com",
-//   projectId: "team-project-filmoteka-fd028",
-//   storageBucket: "team-project-filmoteka-fd028.appspot.com",
-//   messagingSenderId: "647650787195",
-//   appId: "1:647650787195:web:c479a609e1b68f161ec7de",
-//   measurementId: "G-0KS32BVV0R"
+// const firebaseConfig = {
+//   apiKey: 'AIzaSyCGogj3fGE6tA7X8GsT_L5_K13QQ4ppLp4',
+//   authDomain: 'team-project-filmoteka-fd028.firebaseapp.com',
+//   projectId: 'team-project-filmoteka-fd028',
+//   storageBucket: 'team-project-filmoteka-fd028.appspot.com',
+//   messagingSenderId: '647650787195',
+//   appId: '1:647650787195:web:c479a609e1b68f161ec7de',
+//   measurementId: 'G-0KS32BVV0R',
 // };
 // Object.freeze(firebaseConfig);
 
@@ -54,118 +41,153 @@
 // const closeFormBtn = document.querySelector('.form__close-icone');
 // let count = 0;
 
-// const keyEsc =  (e) => {
+// const keyEsc = e => {
 //   e.preventDefault();
-//   if(e.key === "Escape") {
-//       closeForm()
+//   if (e.key === 'Escape') {
+//     closeForm();
 //   }
-// }
+// };
 
 // const showLoginForm = () => {
-//     formSignin.classList.add('active');
-//     loginout.classList.remove('active');
-//     autorization.classList.remove('active');
-//     backdrop.classList.add('active');
-//     document.addEventListener('keydown', keyEsc);
-//     count +=1;
-// }
+//   formSignin.classList.add('active');
+//   loginout.classList.remove('active');
+//   autorization.classList.remove('active');
+//   backdrop.classList.add('active');
+//   document.addEventListener('keydown', keyEsc);
+//   count += 1;
+// };
 
 // const showApp = () => {
-//     formSignin.classList.remove('active');
-//     if (localStorage.getItem('statusUser') === 'anonym')
-//     {autorization.classList.add('active'),loginout.classList.remove('active')} else {loginout.classList.add('active'), autorization.classList.remove('active')}  ;
-//     backdrop.classList.remove('active');
-//     bodyScroll.classList.remove('scroll-hidden');
-//     closeFormBtn.removeEventListener('click',closeModalForm);
-//     user.removeEventListener('click', loginUser);
-//     newUser.removeEventListener('click', registreteNewUser);
-//     document.removeEventListener('keydown', keyEsc);
-// }
-// const showLoginError = (error) => {
-//     if(error.code == 'auth/wrong-password'){
-//         errorMessage.innerHTML = "Wrong password. Try again."}
-//     else if(error.code == 'auth/invalid-email'){
-//         errorMessage.innerHTML = "Wrong email. Try again."}
-//     else {errorMessage.innerHTML = `Error: ${error.message}`}
-// }
-// const closeForm = () =>{
+//   formSignin.classList.remove('active');
+//   if (localStorage.getItem('statusUser') === 'anonym') {
+//     autorization.classList.add('active'), loginout.classList.remove('active');
+//   } else {
+//     loginout.classList.add('active'), autorization.classList.remove('active');
+//   }
+//   backdrop.classList.remove('active');
+//   bodyScroll.classList.remove('scroll-hidden');
+//   closeFormBtn.removeEventListener('click', closeModalForm);
+//   user.removeEventListener('click', loginUser);
+//   newUser.removeEventListener('click', registreteNewUser);
+//   document.removeEventListener('keydown', keyEsc);
+// };
+// const showLoginError = error => {
+//   if (error.code == 'auth/wrong-password') {
+//     errorMessage.innerHTML = 'Wrong password. Try again.';
+//   } else if (error.code == 'auth/invalid-email') {
+//     errorMessage.innerHTML = 'Wrong email. Try again.';
+//   } else {
+//     errorMessage.innerHTML = `Error: ${error.message}`;
+//   }
+// };
+// const closeForm = () => {
 //   localStorage.setItem('statusUser', 'anonym');
-//   if(count < 1){startPage()};
+//   if (count < 1) {
+//     startPage();
+//   }
 //   showApp();
-// }
-// const closeModalForm = closeFormBtn.addEventListener('click', (e)=>{e.preventDefault(); closeForm()});
+// };
+// const closeModalForm = closeFormBtn.addEventListener('click', e => {
+//   e.preventDefault();
+//   closeForm();
+// });
 
-// const loginEmailPassword = async () =>{
-//     const loginEmail = document.querySelector('.form-control-mail').value;
-//     const loginPassword = document.querySelector('.form-control-password').value;
+// const loginEmailPassword = async () => {
+//   const loginEmail = document.querySelector('.form-control-mail').value;
+//   const loginPassword = document.querySelector('.form-control-password').value;
 //   try {
 //     startSpinner();
-//     const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+//     const userCredential = await signInWithEmailAndPassword(
+//       auth,
+//       loginEmail,
+//       loginPassword
+//     );
 //     localStorage.setItem('statusUser', 'identificationUser');
-//     if(count < 1){startPage()};
-//     showApp();
+//     if (count < 1) {
+//       startPage();
 //     }
-//   catch(error) {
-//     showLoginError(error)
-//   }
-//   finally {
+//     showApp();
+//   } catch (error) {
+//     showLoginError(error);
+//   } finally {
 //     form.reset();
 //     stopSpinner();
-//   };
-// }
-// const loginUser = user.addEventListener('click', (e)=>{e.preventDefault(); loginEmailPassword()})
+//   }
+// };
+// const loginUser = user.addEventListener('click', e => {
+//   e.preventDefault();
+//   loginEmailPassword();
+// });
 
-// const createNewUser  = async () =>{
-//     const loginEmail = document.querySelector('.form-control-mail').value;
-//     const loginPassword = document.querySelector('.form-control-password').value;
+// const createNewUser = async () => {
+//   const loginEmail = document.querySelector('.form-control-mail').value;
+//   const loginPassword = document.querySelector('.form-control-password').value;
 //   try {
 //     startSpinner();
-//     const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword);
+//     const userCredential = await createUserWithEmailAndPassword(
+//       auth,
+//       loginEmail,
+//       loginPassword
+//     );
 //     localStorage.setItem('statusUser', 'identificationUser');
 //     console.log(userCredential.user);
-//     if(count < 1){startPage()};
+//     if (count < 1) {
+//       startPage();
+//     }
 //     showApp();
-//     }
-//   catch(error) {
-//     showLoginError(error)
-//   }
-//   finally {
+//   } catch (error) {
+//     showLoginError(error);
+//   } finally {
 //     form.reset();
-//     stopSpinner()
-//   };
-// }
-// const registreteNewUser = newUser.addEventListener('click', (e)=>{e.preventDefault(); createNewUser()})
+//     stopSpinner();
+//   }
+// };
+// const registreteNewUser = newUser.addEventListener('click', e => {
+//   e.preventDefault();
+//   createNewUser();
+// });
 
-// const monitorAuthState = async() =>{
-// onAuthStateChanged (auth, user => {
+// const monitorAuthState = async () => {
+//   onAuthStateChanged(auth, user => {
 //     if (user) {
-//         bodyScroll.classList.remove('scroll-hidden');
-//         showApp();
-//         errorMessage.innerHTML = ''
+//       bodyScroll.classList.remove('scroll-hidden');
+//       showApp();
+//       errorMessage.innerHTML = '';
+//     } else {
+//       showLoginForm();
+//       bodyScroll.classList.add('scroll-hidden');
+//       errorMessage.innerHTML = 'You are not logged in';
 //     }
-//     else {
-//     showLoginForm();
-//     bodyScroll.classList.add('scroll-hidden');
-//     errorMessage.innerHTML = 'You are not logged in'
-//     }
-// })
-// }
+//   });
+// };
 
-// if(localStorage.getItem('statusUser') !== 'anonym'){monitorAuthState()} else {
+// if (localStorage.getItem('statusUser') !== 'anonym') {
+//   monitorAuthState();
+// } else {
 //   showApp();
 // }
 
-// const logout = async() => {
-// await signOut(auth);
-// localStorage.setItem('statusUser', 'anonym');
-// if (localStorage.getItem('statusUser') === 'anonym')
-//     {autorization.classList.add('active'),loginout.classList.remove('active')} else {loginout.classList.add('active'), autorization.classList.remove('active')}
-// }
+// const logout = async () => {
+//   await signOut(auth);
+//   localStorage.setItem('statusUser', 'anonym');
+//   if (localStorage.getItem('statusUser') === 'anonym') {
+//     autorization.classList.add('active'), loginout.classList.remove('active');
+//   } else {
+//     loginout.classList.add('active'), autorization.classList.remove('active');
+//   }
+// };
 
-// loginout.addEventListener('click', (e)=>{e.preventDefault(); logout()});
-// autorization.addEventListener('click', (e)=>{e.preventDefault(); logout();showLoginForm()})
+// loginout.addEventListener('click', e => {
+//   e.preventDefault();
+//   logout();
+// });
+// autorization.addEventListener('click', e => {
+//   e.preventDefault();
+//   logout();
+//   showLoginForm();
+// });
 
-// if (localStorage.getItem('movieList')){
+// if (localStorage.getItem('movieList')) {
 //   startPage();
 //   listRef.innerHTML = JSON.parse(localStorage.getItem('movieList'));
 // }
