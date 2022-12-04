@@ -9,19 +9,33 @@ import {
 } from '../refs/refs';
 import { makeLibraryMovieList } from '../components/movie-cards';
 import Pagination from 'tui-pagination';
-import { makePaginationOptions, addHiddenPagination, removeHiddenPagination } from './pagination';
+import {
+  makePaginationOptions,
+  addHiddenPagination,
+  removeHiddenPagination,
+} from './pagination';
 import { paginationContainer } from '../refs/refs';
 import { cutPagesForPagination } from '../functions/pagination-cut-pages';
 
 // default Library Pagination
 
 const localStorageQueue = getQueueItems();
-const paginationOptionsForQueueMovies = makePaginationOptions(localStorageQueue.length);
-const paginationForLibraryMoviesQueue = new Pagination(paginationContainer, paginationOptionsForQueueMovies);
+const paginationOptionsForQueueMovies = makePaginationOptions(
+  localStorageQueue.length
+);
+const paginationForLibraryMoviesQueue = new Pagination(
+  paginationContainer,
+  paginationOptionsForQueueMovies
+);
 
 const localStorageWathed = getWatchedItems();
-const paginationOptionsForWatchedMovies = makePaginationOptions(localStorageWathed.length);
-const paginationForLibraryMovies = new Pagination(paginationContainer, paginationOptionsForWatchedMovies);
+const paginationOptionsForWatchedMovies = makePaginationOptions(
+  localStorageWathed.length
+);
+const paginationForLibraryMovies = new Pagination(
+  paginationContainer,
+  paginationOptionsForWatchedMovies
+);
 
 // нажатие кнопок
 
@@ -35,7 +49,10 @@ export function onWatchedBtn() {
   paginationForLibraryMoviesQueue.reset();
   paginationForLibraryMoviesQueue.off('afterMove', paginateQueueMovies);
   const paginationOptionsForWatchedMovies = makePaginationOptions(totalResults);
-  const paginationForLibraryMovies = new Pagination(paginationContainer, paginationOptionsForWatchedMovies);
+  const paginationForLibraryMovies = new Pagination(
+    paginationContainer,
+    paginationOptionsForWatchedMovies
+  );
   paginationForLibraryMovies.on('afterMove', paginateWatchedMovies);
 
   if (localStorageWathed?.length > 0) {
@@ -57,7 +74,10 @@ export function onQueueBtn() {
   paginationForLibraryMovies.reset();
   paginationForLibraryMovies.off('afterMove', paginateWatchedMovies);
   const paginationOptionsForQueueMovies = makePaginationOptions(totalResults);
-  const paginationForLibraryMoviesQueue = new Pagination(paginationContainer, paginationOptionsForQueueMovies);
+  const paginationForLibraryMoviesQueue = new Pagination(
+    paginationContainer,
+    paginationOptionsForQueueMovies
+  );
   paginationForLibraryMoviesQueue.on('afterMove', paginateQueueMovies);
 
   if (localStorageQueue?.length > 0) {

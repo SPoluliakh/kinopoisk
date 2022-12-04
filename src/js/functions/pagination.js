@@ -1,6 +1,7 @@
 import Pagination from 'tui-pagination';
 // import 'tui-pagination/dist/tui-pagination.css';
 import { paginationContainer } from '../refs/refs';
+import { moviesListMarkupFirstRender } from './render-home-page';
 
 export function makePaginationOptions(totalResults = 10000) {
   return {
@@ -39,6 +40,7 @@ pagination.on('afterMove', updateMoviesList);
 
 export async function updateMoviesList(event) {
   const currentPage = event.page;
+
   await moviesListMarkupFirstRender(currentPage);
   document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
 }

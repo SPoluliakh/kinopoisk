@@ -9,11 +9,11 @@ import './js/functions/developersModal';
 import { openMovieInfo } from './js/functions/openMovieInfo';
 import { btnUp } from './js/components/to-top-button';
 import './js/components/kidsAnimation';
-import { addHiddenPagination } from './js/functions/pagination';
+// import { addHiddenPagination } from './js/functions/pagination';
 import './js/components/gameMemory';
 
 document.addEventListener('DOMContentLoaded', () => {
-  addHiddenPagination();
+  // addHiddenPagination();
   listRef.addEventListener('click', openMovieInfo);
   zeroPlus.addEventListener(
     'click',
