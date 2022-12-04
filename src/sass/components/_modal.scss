@@ -10,7 +10,7 @@
   background-color: rgba(0, 0, 0, 0.42);
   opacity: 1;
 
-  transition: opacity 2500ms linear, visibility 2500ms linear;
+  transition: opacity 250ms linear, visibility 250ms linear;
 }
 
 .backdrop.is-hidden {
@@ -35,7 +35,7 @@
   width: 280px;
   height: 90vh;
 
-  transition: transform 2500ms linear;
+  transition: transform 250ms linear;
 
   .backdrop.is-hidden & {
     transform: translate(-50%, -50%) scale(2);
