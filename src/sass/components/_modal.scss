@@ -9,8 +9,14 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.42);
   opacity: 1;
-  transition: opacity 100ms;
-  overflow: overlay;
+
+  transition: opacity 2500ms linear, visibility 2500ms linear;
+}
+
+.backdrop.is-hidden {
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .modal {
@@ -18,25 +24,35 @@
   top: 50%;
   left: 50%;
 
+  overflow-y: auto;
+  border: 2px solid var(--active-btn-color);
+  border-radius: 7px;
   box-shadow: 0px 0px 30px 4px rgba(0, 0, 0, 0.42);
   background-color: var(--modal-bg-color);
   transform: translate(-50%, -50%) scale(1);
-  transition: transform 100ms;
+
   padding: 48px 20px 40px 20px;
   width: 280px;
   height: 90vh;
-  overflow-y: auto;
+
+  transition: transform 2500ms linear;
+
+  .backdrop.is-hidden & {
+    transform: translate(-50%, -50%) scale(2);
+  }
 
   @media screen and (min-width: 768px) {
     width: 704px;
+    height: 552px;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     padding: 48px 72px 40px 36px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1280px) {
     width: 806px;
+    height: 558px;
   }
 }
 
@@ -47,6 +63,7 @@
   width: 17px;
   height: 17px;
   cursor: pointer;
+
   transition: scale 250ms linear;
 
   &:hover {
@@ -153,6 +170,7 @@
   line-height: 1.33;
   padding: 10px 6px;
 
+  border: 1px solid var(--active-btn-color);
   width: 110px;
   border-radius: 5px;
   height: 54px;
@@ -180,9 +198,9 @@
 }
 
 .modal__button--active {
-  background-color: var(--active-btn-color);
+  background-color: orange;
   transition: background-color 250ms linear;
   &:hover {
-    background-color: var(--main-white);
+    background-color: var(--active-btn-color);
   }
 }

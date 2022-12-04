@@ -27,14 +27,16 @@ body.scroll-hidden {
   padding: 15px;
   min-height: 25px;
   min-width: 120px;
+  cursor: pointer;
+  transition: background-color 250ms linear;
 }
 .btn-block:hover,
 .btn-block:focus {
-  background-color: #ffbf00;
+  background-color: var(--active-btn-color);
 }
 .btn-block.out,
 .btn-block.autorization {
-display: none;
+  display: none;
 }
 .btn-block.out.active,
 .btn-block.autorization.active {
@@ -47,8 +49,8 @@ display: none;
   transform: translate(-50%);
   background-color: black;
   border-radius: 10px;
-  border-color: 2px solid yellow;
-  color: yellow;
+  border-color: 2px solid var(--active-btn-color);
+  color: var(--active-btn-color);
   cursor: pointer;
 }
 .btn-block.autorization.active {
@@ -60,8 +62,8 @@ display: none;
   transform: translate(-50%);
   background-color: black;
   border-radius: 10px;
-  border-color: 2px solid yellow;
-  color: yellow;
+  border-color: 2px solid var(--active-btn-color);
+  color: var(--active-btn-color);
   cursor: pointer;
 }
 .form-signin.active {
@@ -126,6 +128,7 @@ display: none;
     min-height: 25px;
     min-width: 120px;
     outline: 3px ridge rgba(244, 166, 41, 0.9);
+    transition: background-color 250ms linear;
 
     &:focus {
       z-index: 2;
@@ -143,21 +146,32 @@ display: none;
     margin-bottom: 20px;
   }
 }
-.form__close-icone,
+
+.icon-vector {
+  width: 17px;
+  height: 17px;
+}
 .form__close-icone-inner {
   width: 17px;
   height: 17px;
-  cursor: pointer;
-  transition: scale 0.25s linear;
+
   position: absolute;
-  top: 15px;
-  right: 15px;
 }
 .form__close-icone {
   background-color: white;
   height: 20px;
   width: 20px;
   border: none;
+
+  cursor: pointer;
+  transition: scale 0.25s linear;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  &:hover {
+    scale: 1.2;
+  }
 }
 
 @media screen and (max-width: $tablet) {
