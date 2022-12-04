@@ -2,30 +2,37 @@ import {
   memoryGamesBtn,
   kidsSectionRef,
   kidsSectionGames,
-  gameMemory,
+  games,
   btnExitGame,
+  ticTacToe,
+  memoryGame,
 } from '../refs/refs';
 
 memoryGamesBtn.addEventListener('click', startMemoryGame);
 btnExitGame.addEventListener('click', returnDOM);
 
 // ============== Function hidden content =================================
-function clearDOM() {
+export function clearDOM() {
   kidsSectionRef.classList.add('visually-hidden');
   kidsSectionGames.classList.add('visually-hidden');
 }
-function returnDOM() {
+export function returnDOM() {
   kidsSectionRef.classList.remove('visually-hidden');
   kidsSectionGames.classList.remove('visually-hidden');
-  gameMemory.classList.add('hidden-game');
+  games.classList.add('hidden-game');
+  ticTacToe.classList.remove('hidden-game');
+  memoryGame.classList.remove('hidden-game');
+  console.log('Сними класс');
 }
+
 // =========================================================================
 
 // ============= Memory Game ================================================
 function startMemoryGame() {
   // Работа с DOM ================
   clearDOM();
-  gameMemory.classList.remove('hidden-game');
+  games.classList.remove('hidden-game');
+  ticTacToe.classList.add('hidden-game');
   // =============================
   class MemoryGame {
     constructor() {
