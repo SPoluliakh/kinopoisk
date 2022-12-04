@@ -23,21 +23,15 @@ export function renderKidsMoviesByAge(kidsAgeAPIFunction) {
     try {
       const movies = await kidsAgeAPIFunction(page);
       const { results, total_results } = movies.data;
-      const paginationOptionsForKidsZero = makePaginationOptions(total_results);
+      const paginationOptionsForKidsMovies = makePaginationOptions(total_results);
       removeHiddenPagination();
       const genres = getGenreOptions() ?? [];
       const movieList = makeMovieList(results, genres);
 
       listRef.innerHTML = movieList;
 
-      const paginationForKidsZero = new Pagination(
-        paginationContainer,
-        paginationOptionsForKidsZero
-      );
-      paginationForKidsZero.on(
-        'afterMove',
-        paginateKidsMoviesByAge(kidsAgeAPIFunction)
-      );
+      const paginationForKidsMovies = new Pagination(paginationContainer, paginationOptionsForKidsMovies);
+      paginationForKidsMovies.on('afterMove', paginateKidsMoviesByAge(kidsAgeAPIFunction));
     } catch (error) {
       console.log(error);
     }
