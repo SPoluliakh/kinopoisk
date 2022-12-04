@@ -147,19 +147,30 @@
   width: 100%;
   background-color: var(--bad-request-color);
 }
+.kids-page > .movie-list {
+  padding-top: 25px;
+}
+// ============= Kids animation & filter movie ===========
 
-.kids-page__filter {
+.kids-animation {
+  padding-top: 15px;
+}
+
+.kids-filter {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 15px;
   gap: 10px;
 }
+
+// ============= block button's ===========================
 .button-zero,
 .button-six,
 .button-twelve,
-.play-snake,
-.exit-snake {
+.btn-games,
+.game-list__btn,
+.exit-game {
   text-decoration: none;
   color: #6b5770;
   background-image: linear-gradient(90deg, #fd7f34, #bd155b);
@@ -176,12 +187,12 @@
   appearance: none;
   touch-action: manipulation;
 }
-
 .button-zero:before,
 .button-six:before,
 .button-twelve:before,
-.play-snake:before,
-.exit-snake:before {
+.btn-games:before,
+.game-list__btn:before,
+.exit-game:before {
   content: '';
   position: absolute;
   left: -2px;
@@ -196,8 +207,9 @@
 .button-zero:after,
 .button-six:after,
 .button-twelve:after,
-.play-snake:after,
-.exit-snake:after {
+.btn-games:after,
+.game-list__btn:after,
+.exit-game:after {
   content: '';
   position: absolute;
   left: 0;
@@ -212,56 +224,76 @@
 .button-zero:hover,
 .button-six:hover,
 .button-twelve:hover,
-.play-snake:hover,
-.exit-snake:hover {
+.btn-games:hover,
+.game-list__btn:hover {
   color: #fff;
   transition: 0.3s;
 }
 .button-zero:hover:after,
 .button-six:hover:after,
 .button-twelve:hover:after,
-.play-snake:hover:after,
-.exit-snake:hover:after {
+.btn-games:hover:after,
+.game-list__btn:hover:after {
   background: linear-gradient(90deg, #fd7f34, #bd155b);
 }
 .button-zero:active:after,
 .button-six:active:after,
 .button-twelve:active:after,
-.play-snake:active:after,
-.exit-snake:active:after {
+.btn-games:active:after,
+.game-list__btn:active:after {
   background: linear-gradient(90deg, #d96d2d, #760f3a);
 }
 .button-zero:focus-visible,
 .button-six:focus-visible,
 .button-twelve:focus-visible,
-.play-snake:focus-visible,
-.exit-snake:focus-visible {
+.btn-games:focus-visible,
+.game-list__btn:focus-visible {
   box-shadow: 0 0 0 3px #fd7f34;
 }
 .button-zero:disabled,
 .button-six:disabled,
 .button-twelve:disabled,
-.play-snake:disabled,
-.exit-snake:disabled {
+.btn-games:disabled,
+.game-list__btn:disabled {
   pointer-events: none;
 }
 .button-zero:disabled:before,
 .button-six:disabled:before,
 .button-twelve:disabled:before,
-.play-snake:disabled:before,
-.exit-snake:disabled:before {
+.btn-games:disabled:before,
+.game-list__btn:disabled:before {
   filter: grayscale(100%);
 }
 
-.kids-animation {
-  padding-top: 15px;
+// ==================== Snell ===================
+.kids-animation__snell {
+  position: absolute;
+  top: 133px;
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    top: 115px;
+  }
+  @media screen and (min-width: 1280px) {
+    top: 120px;
+  }
+  @media screen and (min-width: 1900px) {
+    top: 240px;
+  }
 }
-.snake-game {
-  padding-top: 15px;
+#eye1 {
+  animation: swing ease-in-out 0.6s infinite alternate;
+  transform-origin: bottom;
+  transform-box: fill-box;
+  left: calc(52% - 0rem);
 }
-span {
-  display: inline-block;
+#eye2 {
+  animation: swing ease-in-out 0.5s infinite alternate;
+  transform-origin: bottom;
+  transform-box: fill-box;
+  left: calc(40% - 0rem);
 }
+
+//  Kids animation text
 .kids-animation__text {
   color: var(--subtitle-color);
   text-align: center;
@@ -287,141 +319,4 @@ span {
     // height: 100px;
     font-size: 30px;
   }
-}
-
-.kids-animation__snell {
-  position: absolute;
-  top: 133px;
-  width: 100%;
-  @media screen and (min-width: 768px) {
-    top: 115px;
-  }
-  @media screen and (min-width: 1280px) {
-    top: 120px;
-  }
-  @media screen and (min-width: 1900px) {
-    top: 240px;
-  }
-}
-
-#eye1 {
-  animation: swing ease-in-out 0.6s infinite alternate;
-  transform-origin: bottom;
-  transform-box: fill-box;
-  left: calc(52% - 0rem);
-}
-
-#eye2 {
-  animation: swing ease-in-out 0.5s infinite alternate;
-  transform-origin: bottom;
-  transform-box: fill-box;
-  left: calc(40% - 0rem);
-}
-.snake-btn {
-  gap: 10px;
-  justify-content: center;
-}
-
-.kids-animation__snake {
-  text-align: center;
-}
-canvas {
-  background-color: #181825;
-}
-.container-snake {
-  margin-top: 15px;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
-}
-#ui {
-  display: flex;
-  align-items: center;
-  font-size: 10px;
-  flex-flow: column;
-  margin-left: 10px;
-}
-.score-text {
-  font-weight: 200;
-  transform: rotate(270deg);
-}
-#score {
-  margin-top: 20px;
-  font-size: 30px;
-  font-weight: 800;
-}
-.noselect {
-  user-select: none;
-  display: none;
-}
-
-.replay {
-  font-size: 10px;
-  padding: 10px 20px;
-  background: #6e7888;
-  border: none;
-  color: #222738;
-  border-radius: 20px;
-  font-weight: 800;
-  transform: rotate(270deg);
-  cursor: pointer;
-  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.replay:hover {
-  background: #a6aab5;
-  background: var(--subtitle-color);
-  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.replay svg {
-  margin-right: 8px;
-}
-@media (max-width: 600px) {
-  .replay {
-    margin-bottom: 20px;
-  }
-  .replay,
-  h2 {
-    transform: rotate(0deg);
-  }
-  #ui {
-    flex-flow: row wrap;
-    margin-bottom: 20px;
-  }
-  #score {
-    margin-top: 0;
-    margin-left: 20px;
-  }
-  .container-snake {
-    flex-flow: column wrap;
-  }
-}
-#author {
-  width: 100%;
-  bottom: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  color: inherit;
-  text-transform: uppercase;
-  padding-left: 35px;
-}
-#author span {
-  font-size: 10px;
-  margin-left: 20px;
-  color: inherit;
-  letter-spacing: 4px;
-}
-#author h1 {
-  font-size: 25px;
-}
-.wrapper-snake {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
 }
