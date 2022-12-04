@@ -1,19 +1,7 @@
 import Pagination from 'tui-pagination';
 // import 'tui-pagination/dist/tui-pagination.css';
-import { moviesListMarkupFirstRender } from '../functions/render-home-page';
 import { paginationContainer } from '../refs/refs';
-
-const options = makePaginationOptions();
-
-export const pagination = new Pagination(paginationContainer, options);
-
-pagination.on('afterMove', updateMoviesList);
-
-export async function updateMoviesList(event) {
-  const currentPage = event.page;
-  await moviesListMarkupFirstRender(currentPage);
-  document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
-}
+import { moviesListMarkupFirstRender } from '../functions/render-home-page';
 
 export function makePaginationOptions(totalResults = 10000) {
   return {
@@ -42,6 +30,18 @@ export function makePaginationOptions(totalResults = 10000) {
         '</a>',
     },
   };
+}
+
+const options = makePaginationOptions();
+
+export const pagination = new Pagination(paginationContainer, options);
+
+pagination.on('afterMove', updateMoviesList);
+
+export async function updateMoviesList(event) {
+  const currentPage = event.page;
+  await moviesListMarkupFirstRender(currentPage);
+  document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 export function addHiddenPagination() {
