@@ -189,7 +189,6 @@
   }
   &:hover {
     background-color: var(--active-btn-color);
-    border: 2px solid #86ff01;
   }
 }
 
@@ -199,7 +198,7 @@
 }
 
 .modal__button--active {
-  background-color: var(--active-btn-color);
+  background-color: #e18d56;
   transition: background-color 250ms linear;
   &:hover {
     background-color: var(--active-btn-color);
