@@ -80,14 +80,19 @@ export function onWatchedBtnClick() {
 
   if (isAddedToWatched === -1) {
     watchedFilms = [...watched, filmData.data];
-    writeUserDataWathed(
-      localStorage.getItem('userID'),
-      filmData.data.id,
-      filmData.data.poster_path,
-      filmData.data.title,
-      filmData.data.genres,
-      filmData.data.release_date,
-      filmData.data.id
+
+    console.log(filmData.data);
+    writeUserDataWathed(localStorage.getItem('userID'), filmData.data.id,  
+    filmData.data.poster_path,
+    filmData.data.title,
+    filmData.data.genres,
+    filmData.data.release_date,
+    filmData.data.id,
+    filmData.data.vote_count,
+    filmData.data.vote_average,
+    filmData.data.popularity,
+    filmData.data.overview
+
     );
     localStorage.setItem('watched', JSON.stringify(watchedFilms));
     watchedBtnRef.textContent = 'REMOVE FROM WATCHED';
@@ -108,14 +113,18 @@ export function onQueueBtnClick() {
 
   if (isAddedToQueue === -1) {
     queueFilms = [...queue, filmData.data];
-    writeUserDataQueue(
-      localStorage.getItem('userID'),
-      filmData.data.id,
-      filmData.data.poster_path,
-      filmData.data.title,
-      filmData.data.genres,
-      filmData.data.release_date,
-      filmData.data.id
+
+    writeUserDataQueue(localStorage.getItem('userID'), filmData.data.id,  
+    filmData.data.poster_path,
+    filmData.data.title,
+    filmData.data.genres,
+    filmData.data.release_date,
+    filmData.data.id,
+    filmData.data.vote_count,
+    filmData.data.vote_average,
+    filmData.data.popularity,
+    filmData.data.overview
+
     );
     localStorage.setItem('queue', JSON.stringify(queueFilms));
     queueBtnRef.textContent = 'REMOVE FROM QUEUE';
@@ -131,9 +140,11 @@ export function onQueueBtnClick() {
 
 export function getWatchedItems() {
   try {
+
     return listOfDataWathed?.length > 0
       ? listOfDataWathed
       : JSON.parse(localStorage.getItem('watched'));
+
   } catch (error) {
     console.log(error);
   }
@@ -141,9 +152,11 @@ export function getWatchedItems() {
 
 export function getQueueItems() {
   try {
+
     return listOfDataQueue?.length > 0
       ? listOfDataQueue
       : JSON.parse(localStorage.getItem('queue'));
+
   } catch (error) {
     console.log(error);
   }
