@@ -326,6 +326,11 @@ draw {
     font-size: 40px;
   }
 }
+#human {
+  @media screen and (max-width: 1279px) {
+    display: none;
+  }
+}
 .btn:hover {
   transform: rotate(3deg) scale(1.3);
 }
