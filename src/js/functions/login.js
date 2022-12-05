@@ -204,12 +204,11 @@ if (localStorage.getItem('movieList')) {
 }
 // Fire Database
 
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-// const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
 import { getDatabase, ref, set, onValue, remove } from 'firebase/database';
 const dataBase = getDatabase();
+
+export let listOfDataQueue = [];
+export let listOfDataWathed = [];
 
 // додає в БД фільм DataWathed
 export function writeUserDataWathed(
@@ -219,7 +218,11 @@ export function writeUserDataWathed(
   title,
   genres,
   release_date,
-  id
+  id,
+  vote_count,
+  vote_average,
+  popularity,
+  overview
 ) {
   set(ref(dataBase, 'wathed/' + userId + '/' + idMove), {
     poster_path: poster_path,
@@ -227,6 +230,10 @@ export function writeUserDataWathed(
     genres: genres,
     release_date: release_date,
     id: id,
+    vote_count: vote_count,
+    vote_average: vote_average,
+    popularity: popularity,
+    overview: overview
   });
 }
 
@@ -238,7 +245,11 @@ export function writeUserDataQueue(
   title,
   genres,
   release_date,
-  id
+  id,
+  vote_count,
+  vote_average,
+  popularity,
+  overview
 ) {
   set(ref(dataBase, 'queue/' + userId + '/' + idMove), {
     poster_path: poster_path,
@@ -246,6 +257,10 @@ export function writeUserDataQueue(
     genres: genres,
     release_date: release_date,
     id: id,
+    vote_count: vote_count,
+    vote_average: vote_average,
+    popularity: popularity,
+    overview: overview
   });
 }
 
@@ -258,9 +273,10 @@ onValue(starCountRefWatched, snapshot => {
   if (userID !== '' && userID !== null) {
     list = Object.values(data[userID]);
   }
-  let listOfDataWathed = list.map(key => key);
+  listOfDataWathed = list.map(key => key);
   console.log('DataWathed : ');
   console.log(listOfDataWathed);
+  return listOfDataWathed
 });
 
 // отримати перелік фільмів з БД DataQueue
@@ -272,9 +288,10 @@ onValue(starCountRefQueue, snapshot => {
   if (userID !== '' && userID !== null) {
     list = Object.values(data[userID]);
   }
-  let listOfDataQueue = list.map(key => key);
+  listOfDataQueue = list.map(key => key);
   console.log('DataQueue : ');
   console.log(listOfDataQueue);
+  return listOfDataQueue
 });
 
 // Видаляє фільм з БД DataWathed
@@ -286,3 +303,5 @@ export function deleteUserDataWathed(userId, idMove) {
 export function deleteUserDataQueue(userId, idMove) {
   remove(ref(dataBase, 'queue/' + userId + '/' + idMove), {});
 }
+
+

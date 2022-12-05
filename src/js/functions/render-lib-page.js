@@ -80,7 +80,7 @@ export function onQueueBtn() {
   );
   paginationForLibraryMoviesQueue.on('afterMove', paginateQueueMovies);
 
-  if (localStorageQueue?.length > 0) {
+  if (localStorageQueue.length > 0) {
     librarydivRef.classList.add('visually-hidden');
     makeFilmCard(getQueueItems);
   } else {
