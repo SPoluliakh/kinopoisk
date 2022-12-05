@@ -111,7 +111,7 @@ export function makeFilmCard(data = getWatchedItems) {
     console.log(err);
   }
 }
-// on Delit from library
+// on Delete from library
 export function makeFilmCardAfterDelitFromLibrary() {
   if (
     homeSectionRef?.classList.contains('home-page') ||
