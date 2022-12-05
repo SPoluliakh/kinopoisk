@@ -192,6 +192,10 @@ $desctop: 1280px;
     padding-bottom: 40px;
 }
 
+.pagination.section.invisible{
+    display: none;
+}
+
 .pagination.container{
     display: flex;
     justify-content: center;

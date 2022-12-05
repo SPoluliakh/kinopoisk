@@ -1,6 +1,6 @@
 import Pagination from 'tui-pagination';
 // import 'tui-pagination/dist/tui-pagination.css';
-import { paginationContainer } from '../refs/refs';
+import { paginationSection, paginationContainer } from '../refs/refs';
 import { moviesListMarkupFirstRender } from './render-home-page';
 
 export function makePaginationOptions(totalResults = 10000) {
@@ -46,11 +46,11 @@ export async function updateMoviesList(event) {
 }
 
 export function addHiddenPagination() {
-  paginationContainer.classList.add('visually-hidden');
+  paginationSection.classList.add('invisible');
 }
 
 export function removeHiddenPagination() {
-  paginationContainer.classList.remove('visually-hidden');
+  paginationSection.classList.remove('invisible');
 }
 
 export function cutPagesForPagination(dataArray, itemsPerPage = 20) {
