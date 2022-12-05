@@ -53,6 +53,7 @@ export async function openMovieInfo(evt) {
   getTrailer(film.dataset.id);
 
   backdropRef.classList.remove('is-hidden');
+  modalRef.classList.remove('is-hidden'); //////////////////////////
   document.body.style.overflow = 'hidden';
   window.addEventListener('keydown', closeModal.closeByEsc);
   backdropRef.addEventListener('click', closeModal.closeByClick);

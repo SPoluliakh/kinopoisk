@@ -4,6 +4,7 @@ import {
   queueBtnRef,
   trailerWrapRef,
   trailerBtnRef,
+  modalRef, ///////////////////////////
 } from '../refs/refs';
 import { onWatchedBtnClick, onQueueBtnClick } from '../functions/local-storage';
 import { makeFilmCardAfterDelitFromLibrary } from './render-lib-page';
@@ -38,6 +39,7 @@ export const closeByEsc = evt => {
 
 const closeModal = () => {
   backdropRef.classList.add('is-hidden');
+  modalRef.classList.add('is-hidden'); ////////////////////////////////
   document.body.style.overflow = '';
   window.removeEventListener('keydown', closeByEsc);
   backdropRef.removeEventListener('click', closeByClick);
