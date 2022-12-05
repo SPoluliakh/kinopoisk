@@ -4,7 +4,13 @@ import {
   getPopularForKidsTwelve,
 } from './js/api/get-api';
 import { renderKidsMoviesByAge } from './js/functions/renderPopularKidsMovie';
-import { listRef, zeroPlus, sixPlus, twelvePlus } from './js/refs/refs';
+import {
+  listRef,
+  zeroPlus,
+  sixPlus,
+  twelvePlus,
+  backdropRef,
+} from './js/refs/refs';
 import './js/functions/developersModal';
 import { openMovieInfo } from './js/functions/openMovieInfo';
 import { btnUp } from './js/components/to-top-button';
@@ -15,7 +21,10 @@ import './js/components/tic-tac-toe';
 
 document.addEventListener('DOMContentLoaded', () => {
   addHiddenPagination();
-  listRef.addEventListener('click', openMovieInfo);
+  listRef.addEventListener('click', evt => {
+    backdropRef.style.display = 'block';
+    openMovieInfo(evt);
+  });
   zeroPlus.addEventListener(
     'click',
     renderKidsMoviesByAge(getPopularForKidsZero)
