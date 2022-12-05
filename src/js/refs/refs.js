@@ -46,7 +46,7 @@ export const librarydivRef = document.querySelector('.empty-lib');
 export const searchFormRef = document.querySelector('.search');
 export const searchInputRef = document.querySelector('.search__input');
 export const errorRef = document.querySelector('.error');
-
+export const cleanButtonRef = document.querySelector('.clean__button');
 export const searchListRef = document.querySelector('.search-list');
 
 export const githubRef = document.querySelector('.icon-github');
