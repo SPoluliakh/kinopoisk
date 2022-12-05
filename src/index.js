@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setGenreOptions();
   moviesListMarkupFirstRender();
   listRef.addEventListener('click', evt => {
-    openMovieInfo(evt);
     backdropRef.style.display = 'block';
+    openMovieInfo(evt);
   });
   btnUp.addEventListener();
   darkmode();
