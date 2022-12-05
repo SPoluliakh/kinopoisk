@@ -52,3 +52,28 @@ export function addHiddenPagination() {
 export function removeHiddenPagination() {
   paginationContainer.classList.remove('visually-hidden');
 }
+
+export function cutPagesForPagination(dataArray, itemsPerPage = 20) {
+  const dataLength = dataArray.length;
+  const countPages = dataLength / itemsPerPage;
+  let newDataArray = [];
+
+  for (let index = 0; index < countPages; index += 1) {
+    const firstMovieOnPage = index * itemsPerPage;
+    const lastMovieOnPage = (index + 1) * itemsPerPage;
+    newDataArray.push(
+      dataArray.slice([firstMovieOnPage], [lastMovieOnPage])
+    );
+  }
+
+  const paginationDataArray = [];
+
+  newDataArray.map((element, index) => {
+    let newObject = {};
+    newObject.page = index + 1;
+    newObject.results = element;
+    paginationDataArray.push(newObject);
+  });
+
+  return paginationDataArray;
+}

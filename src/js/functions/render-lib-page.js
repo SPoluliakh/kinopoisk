@@ -13,9 +13,9 @@ import {
   makePaginationOptions,
   addHiddenPagination,
   removeHiddenPagination,
+  cutPagesForPagination,
 } from './pagination';
 import { paginationContainer } from '../refs/refs';
-import { cutPagesForPagination } from '../functions/pagination-cut-pages';
 
 // default Library Pagination
 
