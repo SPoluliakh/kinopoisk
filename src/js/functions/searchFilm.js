@@ -7,11 +7,8 @@ import {
   errorRef,
   searchListRef,
   searchInputRef,
-
-  cleanButtonRef, 
-
+  cleanButtonRef,
   backdropRef,
-
 } from '../refs/refs';
 import { getBySearchName } from '../api/get-api';
 import { makeMovieList } from '../components/movie-cards';
@@ -57,7 +54,7 @@ async function onFormSubmit(event) {
     stopSpinner();
     return;
   }
-  
+
   const movies = await getBySearchName(searchValue);
   const { results, total_results } = movies.data;
   const paginationOptions = makePaginationOptions(total_results);
@@ -144,6 +141,7 @@ function makeSearchList(list) {
 }
 
 function cleanSearch() {
-  searchInputRef.value = " ";
+  searchInputRef.value = '';
   searchListRef.innerHTML = '';
+  searchInputRef.focus();
 }
