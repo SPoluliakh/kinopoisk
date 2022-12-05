@@ -39,6 +39,7 @@
 
   .backdrop.is-hidden & {
     transform: translate(-50%, -50%) scale(2);
+    display: none;
   }
 
   @media screen and (min-width: 768px) {
