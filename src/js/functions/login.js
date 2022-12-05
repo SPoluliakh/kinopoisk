@@ -211,6 +211,9 @@ const db = getFirestore(app);
 import { getDatabase, ref, set, onValue, remove } from 'firebase/database';
 const dataBase = getDatabase();
 
+export let listOfDataQueue = [];
+export let listOfDataWathed = [];
+
 // додає в БД фільм DataWathed
 export function writeUserDataWathed(
   userId,
@@ -258,9 +261,10 @@ onValue(starCountRefWatched, snapshot => {
   if (userID !== '' && userID !== null) {
     list = Object.values(data[userID]);
   }
-  let listOfDataWathed = list.map(key => key);
+  listOfDataWathed = list.map(key => key);
   console.log('DataWathed : ');
   console.log(listOfDataWathed);
+  return listOfDataWathed
 });
 
 // отримати перелік фільмів з БД DataQueue
@@ -272,9 +276,10 @@ onValue(starCountRefQueue, snapshot => {
   if (userID !== '' && userID !== null) {
     list = Object.values(data[userID]);
   }
-  let listOfDataQueue = list.map(key => key);
+  listOfDataQueue = list.map(key => key);
   console.log('DataQueue : ');
   console.log(listOfDataQueue);
+  return listOfDataQueue
 });
 
 // Видаляє фільм з БД DataWathed
@@ -286,3 +291,5 @@ export function deleteUserDataWathed(userId, idMove) {
 export function deleteUserDataQueue(userId, idMove) {
   remove(ref(dataBase, 'queue/' + userId + '/' + idMove), {});
 }
+
+

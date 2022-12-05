@@ -1,7 +1,7 @@
 import { getGenreMovieList } from '../api/get-api';
 import { watchedBtnRef, queueBtnRef } from '../refs/refs';
 import { filmData } from '../functions/openMovieInfo';
-import  { writeUserDataWathed, deleteUserDataWathed, writeUserDataQueue, deleteUserDataQueue} from '../functions/login';
+import  { writeUserDataWathed, deleteUserDataWathed, writeUserDataQueue, deleteUserDataQueue, listOfDataQueue, listOfDataWathed} from '../functions/login';
 
 const LOCAL_STORAGE_KEY = 'genres';
 
@@ -118,7 +118,7 @@ export function onQueueBtnClick() {
 
 export function getWatchedItems() {
   try {
-    return JSON.parse(localStorage.getItem('watched'));
+return (listOfDataWathed.length > 0) ? listOfDataWathed : JSON.parse(localStorage.getItem('watched'));
   } catch (error) {
     console.log(error);
   }
@@ -126,7 +126,7 @@ export function getWatchedItems() {
 
 export function getQueueItems() {
   try {
-    return JSON.parse(localStorage.getItem('queue'));
+    return (listOfDataQueue.length > 0) ? listOfDataQueue : JSON.parse(localStorage.getItem('queue'));
   } catch (error) {
     console.log(error);
   }
