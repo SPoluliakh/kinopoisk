@@ -1,7 +1,14 @@
 import { getGenreMovieList } from '../api/get-api';
 import { watchedBtnRef, queueBtnRef } from '../refs/refs';
 import { filmData } from '../functions/openMovieInfo';
-import  { writeUserDataWathed, deleteUserDataWathed, writeUserDataQueue, deleteUserDataQueue, listOfDataQueue, listOfDataWathed} from '../functions/login';
+import {
+  writeUserDataWathed,
+  deleteUserDataWathed,
+  writeUserDataQueue,
+  deleteUserDataQueue,
+  listOfDataQueue,
+  listOfDataWathed,
+} from '../functions/login';
 
 const LOCAL_STORAGE_KEY = 'genres';
 
@@ -73,12 +80,15 @@ export function onWatchedBtnClick() {
 
   if (isAddedToWatched === -1) {
     watchedFilms = [...watched, filmData.data];
-    writeUserDataWathed(localStorage.getItem('userID'), filmData.data.id,  
-    filmData.data.poster_path,
-    filmData.data.title,
-    filmData.data.genres,
-    filmData.data.release_date,
-    filmData.data.id,);
+    writeUserDataWathed(
+      localStorage.getItem('userID'),
+      filmData.data.id,
+      filmData.data.poster_path,
+      filmData.data.title,
+      filmData.data.genres,
+      filmData.data.release_date,
+      filmData.data.id
+    );
     localStorage.setItem('watched', JSON.stringify(watchedFilms));
     watchedBtnRef.textContent = 'REMOVE FROM WATCHED';
     watchedBtnRef.classList.add('modal__button--active');
@@ -98,12 +108,15 @@ export function onQueueBtnClick() {
 
   if (isAddedToQueue === -1) {
     queueFilms = [...queue, filmData.data];
-    writeUserDataQueue(localStorage.getItem('userID'), filmData.data.id,  
-    filmData.data.poster_path,
-    filmData.data.title,
-    filmData.data.genres,
-    filmData.data.release_date,
-    filmData.data.id,);
+    writeUserDataQueue(
+      localStorage.getItem('userID'),
+      filmData.data.id,
+      filmData.data.poster_path,
+      filmData.data.title,
+      filmData.data.genres,
+      filmData.data.release_date,
+      filmData.data.id
+    );
     localStorage.setItem('queue', JSON.stringify(queueFilms));
     queueBtnRef.textContent = 'REMOVE FROM QUEUE';
     queueBtnRef.classList.add('modal__button--active');
@@ -118,7 +131,9 @@ export function onQueueBtnClick() {
 
 export function getWatchedItems() {
   try {
-return (listOfDataWathed.length > 0) ? listOfDataWathed : JSON.parse(localStorage.getItem('watched'));
+    return listOfDataWathed?.length > 0
+      ? listOfDataWathed
+      : JSON.parse(localStorage.getItem('watched'));
   } catch (error) {
     console.log(error);
   }
@@ -126,7 +141,9 @@ return (listOfDataWathed.length > 0) ? listOfDataWathed : JSON.parse(localStorag
 
 export function getQueueItems() {
   try {
-    return (listOfDataQueue.length > 0) ? listOfDataQueue : JSON.parse(localStorage.getItem('queue'));
+    return listOfDataQueue?.length > 0
+      ? listOfDataQueue
+      : JSON.parse(localStorage.getItem('queue'));
   } catch (error) {
     console.log(error);
   }
