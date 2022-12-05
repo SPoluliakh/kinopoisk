@@ -7,6 +7,11 @@ import {
   errorRef,
   searchListRef,
   searchInputRef,
+
+  cleanButtonRef, 
+
+  backdropRef,
+
 } from '../refs/refs';
 import { getBySearchName } from '../api/get-api';
 import { makeMovieList } from '../components/movie-cards';
@@ -19,7 +24,7 @@ import {
 import { startSpinner, stopSpinner } from '../components/spinner';
 import { debounce } from 'debounce';
 import { openMovieInfo } from './openMovieInfo';
-import { moviesListMarkupFirstRender } from './render-home-page';
+// import { moviesListMarkupFirstRender } from './render-home-page';
 
 // const options = makePaginationOptions();
 
@@ -36,21 +41,23 @@ import { moviesListMarkupFirstRender } from './render-home-page';
 let searchValue;
 
 searchFormRef.addEventListener('submit', onFormSubmit);
-searchInputRef.addEventListener('input', debounce(inputSearch, 700));
+searchInputRef.addEventListener('input', debounce(inputSearch, 500));
 searchListRef.addEventListener('click', openMovieInfo);
+cleanButtonRef.addEventListener('click', cleanSearch);
 
 async function onFormSubmit(event) {
   event.preventDefault();
   searchValue = event.currentTarget.searchQuery.value.trim();
   startSpinner();
   if (!searchValue) {
-    errorRef.classList.add('show-error');
-    setTimeout(() => {
-      errorRef.classList.remove('show-error');
-    }, 3000);
+    // errorRef.classList.add('show-error');
+    // setTimeout(() => {
+    //   errorRef.classList.remove('show-error');
+    // }, 3000);
     stopSpinner();
     return;
   }
+  
   const movies = await getBySearchName(searchValue);
   const { results, total_results } = movies.data;
   const paginationOptions = makePaginationOptions(total_results);
@@ -102,6 +109,7 @@ async function updateMoviesListByName(event) {
 async function inputSearch(event) {
   searchListRef.classList.remove('visually-hidden');
   searchListRef.innerHTML = '';
+  backdropRef.style.display = 'block';
   searchValue = event.target.value.trim();
 
   if (!searchValue) {
@@ -133,4 +141,9 @@ function makeSearchList(list) {
       })</span></li>`)
   );
   return markup;
+}
+
+function cleanSearch() {
+  searchInputRef.value = " ";
+  searchListRef.innerHTML = '';
 }

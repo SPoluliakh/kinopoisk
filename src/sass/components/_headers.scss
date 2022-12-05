@@ -269,7 +269,7 @@
 .search__button {
   cursor: pointer;
   position: absolute;
-  right: 0;
+  right: 20px;
   width: 20px;
   height: 20px;
   border: none;
@@ -283,7 +283,31 @@
   }
 }
 
+.clean__button {
+  cursor: pointer;
+  position: absolute;
+  right: 0px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  transform: scale(1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.2);
+  }
+}
+
 .search__button-icon {
+  width: 12px;
+  height: 12px;
+  fill: var(--main-white);
+}
+
+.clean__button-icon {
   width: 12px;
   height: 12px;
   fill: var(--main-white);
@@ -315,7 +339,7 @@
   justify-content: center;
 }
 
-.library-button {
+.library-button:not(:last-child) {
   margin-right: 16px;
 
   @media screen and (min-width: 768px) {
@@ -349,6 +373,7 @@
   color: #ffffff;
   background-color: transparent;
   cursor: pointer;
+  transition: transform .25s cubic-bezier(.4, 0, .2, 1);
 
   @media screen and (min-width: 768px) {
     width: 144px;
