@@ -204,10 +204,6 @@ if (localStorage.getItem('movieList')) {
 }
 // Fire Database
 
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-// const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
 import { getDatabase, ref, set, onValue, remove } from 'firebase/database';
 const dataBase = getDatabase();
 
@@ -222,7 +218,11 @@ export function writeUserDataWathed(
   title,
   genres,
   release_date,
-  id
+  id,
+  vote_count,
+  vote_average,
+  popularity,
+  overview
 ) {
   set(ref(dataBase, 'wathed/' + userId + '/' + idMove), {
     poster_path: poster_path,
@@ -230,6 +230,10 @@ export function writeUserDataWathed(
     genres: genres,
     release_date: release_date,
     id: id,
+    vote_count: vote_count,
+    vote_average: vote_average,
+    popularity: popularity,
+    overview: overview
   });
 }
 
@@ -241,7 +245,11 @@ export function writeUserDataQueue(
   title,
   genres,
   release_date,
-  id
+  id,
+  vote_count,
+  vote_average,
+  popularity,
+  overview
 ) {
   set(ref(dataBase, 'queue/' + userId + '/' + idMove), {
     poster_path: poster_path,
@@ -249,6 +257,10 @@ export function writeUserDataQueue(
     genres: genres,
     release_date: release_date,
     id: id,
+    vote_count: vote_count,
+    vote_average: vote_average,
+    popularity: popularity,
+    overview: overview
   });
 }
 

@@ -73,12 +73,18 @@ export function onWatchedBtnClick() {
 
   if (isAddedToWatched === -1) {
     watchedFilms = [...watched, filmData.data];
+    console.log(filmData.data);
     writeUserDataWathed(localStorage.getItem('userID'), filmData.data.id,  
     filmData.data.poster_path,
     filmData.data.title,
     filmData.data.genres,
     filmData.data.release_date,
-    filmData.data.id,);
+    filmData.data.id,
+    filmData.data.vote_count,
+    filmData.data.vote_average,
+    filmData.data.popularity,
+    filmData.data.overview
+    );
     localStorage.setItem('watched', JSON.stringify(watchedFilms));
     watchedBtnRef.textContent = 'REMOVE FROM WATCHED';
     watchedBtnRef.classList.add('modal__button--active');
@@ -103,7 +109,12 @@ export function onQueueBtnClick() {
     filmData.data.title,
     filmData.data.genres,
     filmData.data.release_date,
-    filmData.data.id,);
+    filmData.data.id,
+    filmData.data.vote_count,
+    filmData.data.vote_average,
+    filmData.data.popularity,
+    filmData.data.overview
+    );
     localStorage.setItem('queue', JSON.stringify(queueFilms));
     queueBtnRef.textContent = 'REMOVE FROM QUEUE';
     queueBtnRef.classList.add('modal__button--active');
@@ -118,7 +129,7 @@ export function onQueueBtnClick() {
 
 export function getWatchedItems() {
   try {
-return (listOfDataWathed.length > 0) ? listOfDataWathed : JSON.parse(localStorage.getItem('watched'));
+return (localStorage.getItem('userID') !== '' && localStorage.getItem('userID') !== null) ? listOfDataWathed : JSON.parse(localStorage.getItem('watched'));
   } catch (error) {
     console.log(error);
   }
@@ -126,7 +137,7 @@ return (listOfDataWathed.length > 0) ? listOfDataWathed : JSON.parse(localStorag
 
 export function getQueueItems() {
   try {
-    return (listOfDataQueue.length > 0) ? listOfDataQueue : JSON.parse(localStorage.getItem('queue'));
+    return (localStorage.getItem('userID') !== '' && localStorage.getItem('userID') !== null) ? listOfDataQueue : JSON.parse(localStorage.getItem('queue'));
   } catch (error) {
     console.log(error);
   }
