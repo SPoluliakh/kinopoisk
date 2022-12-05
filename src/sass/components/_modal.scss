@@ -24,7 +24,6 @@
   top: 50%;
   left: 50%;
 
-  overflow-y: auto;
   border: 2px solid var(--active-btn-color);
   border-radius: 7px;
   box-shadow: 0px 0px 30px 4px rgba(0, 0, 0, 0.42);
@@ -33,7 +32,8 @@
 
   padding: 48px 20px 40px 20px;
   width: 280px;
-  height: 90vh;
+  max-height: 90vh;
+  overflow-y: auto;
 
   transition: transform 250ms linear 50ms;
 
@@ -43,11 +43,11 @@
 
   @media screen and (min-width: 768px) {
     width: 704px;
-    height: 552px;
+    height: 502px;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 48px 72px 40px 36px;
+    padding: 40px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -202,5 +202,12 @@
   transition: background-color 250ms linear;
   &:hover {
     background-color: var(--active-btn-color);
+  }
+}
+
+.modal__film-description-wrap {
+  @media screen and (min-width: 768px) {
+    max-height: 100px;
+    overflow-y: auto;
   }
 }

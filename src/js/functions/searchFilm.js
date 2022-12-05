@@ -7,7 +7,11 @@ import {
   errorRef,
   searchListRef,
   searchInputRef,
+
   cleanButtonRef, 
+
+  backdropRef,
+
 } from '../refs/refs';
 import { getBySearchName } from '../api/get-api';
 import { makeMovieList } from '../components/movie-cards';
@@ -105,6 +109,7 @@ async function updateMoviesListByName(event) {
 async function inputSearch(event) {
   searchListRef.classList.remove('visually-hidden');
   searchListRef.innerHTML = '';
+  backdropRef.style.display = 'block';
   searchValue = event.target.value.trim();
 
   if (!searchValue) {

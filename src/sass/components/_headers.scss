@@ -339,7 +339,7 @@
   justify-content: center;
 }
 
-.library-button {
+.library-button:not(:last-child) {
   margin-right: 16px;
 
   @media screen and (min-width: 768px) {
@@ -373,6 +373,7 @@
   color: #ffffff;
   background-color: transparent;
   cursor: pointer;
+  transition: transform .25s cubic-bezier(.4, 0, .2, 1);
 
   @media screen and (min-width: 768px) {
     width: 144px;
