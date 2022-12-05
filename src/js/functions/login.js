@@ -250,7 +250,7 @@ onValue(starCountRefWatched, (snapshot) => {
   const data = snapshot.val();
   userID = localStorage.getItem('userID');
   let list =[];
-  if(userID !== ''){list = Object.values(data[userID])};
+  if(userID !== '' && userID !== null){list = Object.values(data[userID])};
   let listOfDataWathed =  list.map(key=>key);
   console.log('DataWathed : ');
   console.log(listOfDataWathed);
@@ -262,7 +262,7 @@ onValue(starCountRefQueue, (snapshot) => {
   const data = snapshot.val();
   userID = localStorage.getItem('userID');
   let list =[];
-  if(userID !== ''){list = Object.values(data[userID])};
+  if(userID !== '' && userID !== null){list = Object.values(data[userID])};
   let listOfDataQueue =  list.map(key=>key);
   console.log('DataQueue : ');
   console.log(listOfDataQueue);
