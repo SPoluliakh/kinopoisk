@@ -3,7 +3,6 @@ export const paginationSection = document.querySelector('.pagination.section');
 export const paginationContainer = document.getElementById(
   'tui-pagination-container'
 );
-export const paginationSection = document.querySelector('.section.pagination');
 export const kidsListRef = document.querySelector('.kids-movie-list');
 // Modal
 export const homeSectionRef = document.querySelector('.home-page');
