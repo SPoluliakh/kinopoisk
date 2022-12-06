@@ -47,24 +47,18 @@ body.scroll-hidden {
   left: 50%;
   width: 100px;
   transform: translate(-50%);
-  background-color: black;
+  background-color: rgb(70, 25, 25);
   border-radius: 10px;
   border-color: 2px solid var(--active-btn-color);
   color: var(--active-btn-color);
   cursor: pointer;
+  @media screen and (max-width: 767px) {
+  font-size: 10px;
+  padding: 5px;
+  }
 }
 .btn-block.autorization.active {
   z-index: 100;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 100px;
-  transform: translate(-50%);
-  background-color: black;
-  border-radius: 10px;
-  border-color: 2px solid var(--active-btn-color);
-  color: var(--active-btn-color);
-  cursor: pointer;
 }
 .form-signin.active {
   z-index: 40;
@@ -169,9 +163,6 @@ body.scroll-hidden {
   top: 15px;
   right: 15px;
 
-  &:hover {
-    scale: 1.2;
-  }
 }
 
 @media screen and (max-width: $tablet) {
