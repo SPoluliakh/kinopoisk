@@ -26,10 +26,14 @@ export function darkmode() {
     document
       .querySelector('.checkbox-label')
       .classList.add('library-checkbox-label');
+    document.querySelector('main').classList.add('library-main');
+    document.querySelector('.pagination').classList.add('library-pagination');
   } else {
     document.querySelector('.footer').classList.remove('library-footer');
     document
       .querySelector('.checkbox-label')
       .classList.remove('library-checkbox-label');
+    document.querySelector('main').classList.remove('library-main');
+    document.querySelector('pagination').classList.remove('library-pagination');
   }
 }
