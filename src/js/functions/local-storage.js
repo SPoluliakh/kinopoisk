@@ -148,7 +148,7 @@ export function onQueueBtnClick() {
 export function getWatchedItems() {
   if (!kidsSectionRef && !homeSectionRef) {
     try {
-      return listOfDataWathed?.length > 0
+      return (localStorage.getItem('userID') !== '' && localStorage.getItem('userID') !== null)
         ? listOfDataWathed
         : JSON.parse(localStorage.getItem('watched'));
     } catch (error) {
@@ -160,7 +160,7 @@ export function getWatchedItems() {
 export function getQueueItems() {
   if (!kidsSectionRef && !homeSectionRef) {
     try {
-      return listOfDataQueue?.length > 0
+      return (localStorage.getItem('userID') !== '' && localStorage.getItem('userID') !== null)
         ? listOfDataQueue
         : JSON.parse(localStorage.getItem('queue'));
     } catch (error) {
