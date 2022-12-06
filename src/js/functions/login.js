@@ -53,6 +53,7 @@ const showLoginForm = () => {
   autorization.classList.remove('active');
   backdrop.classList.add('active');
   document.addEventListener('keyup', keyEsc);
+  backdrop.addEventListener('click', closeFormByBackdrop);
   count += 1;
 };
 
@@ -71,6 +72,7 @@ const showApp = () => {
   user.removeEventListener('click', loginUser);
   newUser.removeEventListener('click', registreteNewUser);
   document.removeEventListener('keyup', keyEsc);
+  backdrop.removeEventListener('click', closeFormByBackdrop);
 };
 const showLoginError = error => {
   if (error.code == 'auth/wrong-password') {
@@ -93,6 +95,14 @@ const closeModalForm = closeFormBtn.addEventListener('click', e => {
   e.preventDefault();
   closeForm();
 });
+
+const closeFormByBackdrop = e => {
+  e.preventDefault();
+  console.log(e.currentTarget)
+  if (e.target.classList.contains('backdropForm')) {
+    closeForm();
+    return;
+  }}
 
 const loginEmailPassword = async () => {
   const loginEmail = document.querySelector('.form-control-mail').value;
@@ -224,6 +234,7 @@ export function writeUserDataWathed(
   popularity,
   overview
 ) {
+  if (localStorage.getItem('userID') !== '' && localStorage.getItem('userID') !== null){
   set(ref(dataBase, 'wathed/' + userId + '/' + idMove), {
     poster_path: poster_path,
     title: title,
@@ -235,7 +246,7 @@ export function writeUserDataWathed(
     popularity: popularity,
     overview: overview
   });
-}
+}}
 
 // додає в БД фільм DataQueue
 export function writeUserDataQueue(
@@ -251,6 +262,7 @@ export function writeUserDataQueue(
   popularity,
   overview
 ) {
+  if (localStorage.getItem('userID') !== '' && localStorage.getItem('userID') !== null){
   set(ref(dataBase, 'queue/' + userId + '/' + idMove), {
     poster_path: poster_path,
     title: title,
@@ -262,7 +274,7 @@ export function writeUserDataQueue(
     popularity: popularity,
     overview: overview
   });
-}
+}}
 
 // отримати перелік фільмів з БД DataWathed
 const starCountRefWatched = ref(dataBase, 'wathed/' + userID + '/');
