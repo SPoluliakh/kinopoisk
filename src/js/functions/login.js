@@ -224,6 +224,7 @@ export function writeUserDataWathed(
   popularity,
   overview
 ) {
+  if (localStorage.getItem('userID') !== '' && localStorage.getItem('userID') !== null){
   set(ref(dataBase, 'wathed/' + userId + '/' + idMove), {
     poster_path: poster_path,
     title: title,
@@ -235,7 +236,7 @@ export function writeUserDataWathed(
     popularity: popularity,
     overview: overview
   });
-}
+}}
 
 // додає в БД фільм DataQueue
 export function writeUserDataQueue(
@@ -251,6 +252,7 @@ export function writeUserDataQueue(
   popularity,
   overview
 ) {
+  if (localStorage.getItem('userID') !== '' && localStorage.getItem('userID') !== null){
   set(ref(dataBase, 'queue/' + userId + '/' + idMove), {
     poster_path: poster_path,
     title: title,
@@ -262,7 +264,7 @@ export function writeUserDataQueue(
     popularity: popularity,
     overview: overview
   });
-}
+}}
 
 // отримати перелік фільмів з БД DataWathed
 const starCountRefWatched = ref(dataBase, 'wathed/' + userID + '/');
