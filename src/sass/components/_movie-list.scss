@@ -78,7 +78,6 @@ $imgwidth: 280px;
     flex-direction: column;
   }
   .movie-list .movie-card__img {
-    max-width: $imgwidth;
     height: calc($imgwidth * 1.436);
     margin-bottom: 10px;
   }
