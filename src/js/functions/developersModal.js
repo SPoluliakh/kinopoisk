@@ -14,20 +14,40 @@ refs.modalOpen.addEventListener('click', () => {
   backdrop.style.display = 'block';
   setTimeout(() => onOpenModal(), 70);
 });
-refs.backdrop.addEventListener('click', onCloseModal);
 
 function onOpenModal() {
-  toggleModal();
+  refs.backdrop.classList.remove('is-hidden');
+  document.body.style.overflow = 'hidden';
   const renderedCards = appendDevelopersMarkup();
   refs.list.innerHTML = renderedCards;
+
+  window.addEventListener('keydown', closeByEsc);
+  refs.backdrop.addEventListener('click', closeByClick);
 }
 
-function onCloseModal() {
-  toggleModal();
-  setTimeout(() => (backdrop.style.display = 'none'), 350);
-}
+const closeByEsc = evt => {
+  if (evt.code === 'Escape') {
+    closeModal();
+  }
+};
 
-function toggleModal() {
-  refs.backdrop.classList.toggle('is-hidden');
-  document.body.classList.toggle('no-scroll');
+const closeByClick = evt => {
+  if (evt.target.classList.contains('dev-backdrop')) {
+    closeModal();
+    return;
+  }
+  if (
+    evt.target.classList.contains('dev-modal__close-icone') ||
+    evt.target.classList.contains('dev-modal__close-icone-inner')
+  ) {
+    closeModal();
+  }
+};
+
+function closeModal() {
+  document.body.style.overflow = '';
+  refs.backdrop.classList.add('is-hidden');
+  setTimeout(() => (refs.backdrop.style.display = 'none'), 350);
+  window.removeEventListener('keydown', closeByEsc);
+  refs.backdrop.removeEventListener('click', closeByClick);
 }

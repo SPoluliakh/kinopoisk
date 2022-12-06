@@ -47,7 +47,7 @@ const closeModal = () => {
   queueBtnRef.removeEventListener('click', onQueueBtnClick);
   trailerBtnRef.removeEventListener('click', onTrailerBtnClick);
   makeFilmCardAfterDelitFromLibrary();
-  btnUp.closeModalCheck();
+  btnUp?.closeModalCheck();
 };
 
 const closeTrailers = () => {
