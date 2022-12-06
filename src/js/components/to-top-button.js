@@ -1,3 +1,5 @@
+import scrollSmooth from 'scroll-smooth';
+
 export const btnUp = {
   el: document.querySelector('.btn-up'),
   scrolling: false,
@@ -42,11 +44,12 @@ export const btnUp = {
     this.el.addEventListener('click', () => {
       this.scrolling = true;
       this.hide();
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth',
-      });
+      // window.scrollTo({
+      //   top: 0,
+      //   left: 0,
+      //   behavior: 'smooth',
+      // });
+      scrollSmooth.to(0);
     });
   },
   closeModalCheck() {
