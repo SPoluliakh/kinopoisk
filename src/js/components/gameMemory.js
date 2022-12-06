@@ -1,28 +1,36 @@
 import {
-  memoryGamesBtn,
   kidsSectionRef,
   kidsSectionGames,
   games,
   btnExitGame,
   ticTacToe,
   memoryGame,
+  memoryGamesItem,
+  kidsPage,
+  paginationSection,
 } from '../refs/refs';
 
-memoryGamesBtn.addEventListener('click', startMemoryGame);
+console.log(paginationSection);
+memoryGamesItem.addEventListener('click', startMemoryGame);
 btnExitGame.addEventListener('click', returnDOM);
 
 // ============== Function hidden content =================================
 export function clearDOM() {
   kidsSectionRef.classList.add('visually-hidden');
   kidsSectionGames.classList.add('visually-hidden');
+  kidsSectionGames.classList.add('visually-hidden');
+  kidsPage.classList.add('visually-hidden');
+  paginationSection.classList.add('visually-hidden');
 }
 export function returnDOM() {
   kidsSectionRef.classList.remove('visually-hidden');
   kidsSectionGames.classList.remove('visually-hidden');
+  kidsPage.classList.remove('visually-hidden');
+  paginationSection.classList.remove('visually-hidden');
+
   games.classList.add('hidden-game');
   ticTacToe.classList.remove('hidden-game');
   memoryGame.classList.remove('hidden-game');
-  console.log('Сними класс');
 }
 
 // =========================================================================

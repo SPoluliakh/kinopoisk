@@ -2,6 +2,7 @@ export const listRef = document.querySelector('.movie-list');
 export const paginationContainer = document.getElementById(
   'tui-pagination-container'
 );
+export const paginationSection = document.querySelector('.section.pagination');
 export const kidsListRef = document.querySelector('.kids-movie-list');
 // Modal
 export const homeSectionRef = document.querySelector('.home-page');
@@ -27,8 +28,8 @@ export const kidsPage = document.querySelector('.kids-page');
 export const kidsSectionGames = document.querySelector('.kids-games');
 // Games
 // Кнопки игр
-export const memoryGamesBtn = document.getElementById('memory-games');
-export const ticTacToeGamesBtn = document.getElementById('tic-tac-toe-games');
+export const memoryGamesItem = document.getElementById('memory');
+export const ticTacToeGamesItem = document.getElementById('tic-tac-toe');
 // Выход их игры
 export const btnExitGame = document.querySelector('.exit-game');
 // Секция Игр

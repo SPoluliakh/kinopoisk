@@ -1,13 +1,13 @@
 // btns class, flex posistion, improve switch function
 import {
-  ticTacToeGamesBtn,
+  ticTacToeGamesItem,
   games,
   memoryGame,
   btnExitGame,
 } from '../refs/refs';
 import { clearDOM, returnDOM } from './gameMemory';
 
-ticTacToeGamesBtn.addEventListener('click', startTicTacToeGame);
+ticTacToeGamesItem.addEventListener('click', startTicTacToeGame);
 btnExitGame.addEventListener('click', returnDOM);
 
 function startTicTacToeGame() {
