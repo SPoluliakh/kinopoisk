@@ -4,6 +4,7 @@ import { paginationSection, paginationContainer } from '../refs/refs';
 import { moviesListMarkupFirstRender } from './render-home-page';
 
 import { startSpinner, stopSpinner } from '../components/spinner';
+import scrollSmooth from 'scroll-smooth';
 
 export function makePaginationOptions(totalResults = 10000) {
   return {
@@ -46,7 +47,8 @@ export async function updateMoviesList(event) {
   startSpinner();
   await moviesListMarkupFirstRender(currentPage);
   stopSpinner();
-  document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
+  // document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
+  scrollSmooth.to(0);
 }
 
 export function addHiddenPagination() {
