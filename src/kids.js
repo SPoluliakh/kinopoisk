@@ -3,7 +3,7 @@ import {
   getPopularForKidsSix,
   getPopularForKidsTwelve,
 } from './js/api/get-api';
-import { renderKidsMoviesByAge } from './js/functions/renderPopularKidsMovie';
+import { renderKidsMoviesByAge } from './js/functions/render-popular-kids-movie';
 import {
   listRef,
   zeroPlus,
@@ -11,12 +11,12 @@ import {
   twelvePlus,
   backdropRef,
 } from './js/refs/refs';
-import './js/functions/developersModal';
-import { openMovieInfo } from './js/functions/openMovieInfo';
+import './js/functions/developers-modal';
+import { openMovieInfo } from './js/functions/open-movie-info';
 import { btnUp } from './js/components/to-top-button';
-import './js/components/kidsAnimation';
+import './js/components/kids-animation';
 import { addHiddenPagination } from './js/functions/pagination';
-import './js/components/gameMemory';
+import './js/components/game-memory';
 import './js/components/tic-tac-toe';
 
 document.addEventListener('DOMContentLoaded', () => {

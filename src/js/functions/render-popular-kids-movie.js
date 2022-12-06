@@ -14,10 +14,7 @@ import {
   kidsPage,
 } from '../refs/refs';
 import Pagination from 'tui-pagination';
-import {
-  makePaginationOptions,
-  removeHiddenPagination,
-} from '../functions/pagination';
+import { makePaginationOptions, removeHiddenPagination } from './pagination';
 import { startSpinner, stopSpinner } from '../components/spinner';
 
 export function renderKidsMoviesByAge(kidsAgeAPIFunction) {

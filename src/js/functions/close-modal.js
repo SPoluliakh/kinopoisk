@@ -5,7 +5,7 @@ import {
   trailerWrapRef,
   trailerBtnRef,
 } from '../refs/refs';
-import { onWatchedBtnClick, onQueueBtnClick } from '../functions/local-storage';
+import { onWatchedBtnClick, onQueueBtnClick } from './local-storage';
 import { makeFilmCardAfterDelitFromLibrary } from './render-lib-page';
 import { onTrailerBtnClick, closeTrailer } from './get-trailers';
 import { btnUp } from '../components/to-top-button';

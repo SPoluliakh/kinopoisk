@@ -5,7 +5,7 @@ import {
   memoryGame,
   btnExitGame,
 } from '../refs/refs';
-import { clearDOM, returnDOM } from './gameMemory';
+import { clearDOM, returnDOM } from './game-memory';
 
 ticTacToeGamesItem.addEventListener('click', startTicTacToeGame);
 btnExitGame.addEventListener('click', returnDOM);

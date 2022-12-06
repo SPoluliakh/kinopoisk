@@ -20,7 +20,7 @@ import {
 } from '../functions/pagination';
 import { startSpinner, stopSpinner } from '../components/spinner';
 import { debounce } from 'debounce';
-import { openMovieInfo } from './openMovieInfo';
+import { openMovieInfo } from './open-movie-info';
 
 let searchValue;
 

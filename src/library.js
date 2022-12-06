@@ -1,5 +1,5 @@
-import './js/functions/developersModal';
-import { openMovieInfo } from './js/functions/openMovieInfo';
+import './js/functions/developers-modal';
+import { openMovieInfo } from './js/functions/open-movie-info';
 import {
   listRef,
   libraryWatchedBtnRef,

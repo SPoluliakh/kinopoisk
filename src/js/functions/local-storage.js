@@ -5,7 +5,7 @@ import {
   kidsSectionRef,
   homeSectionRef,
 } from '../refs/refs';
-import { filmData } from '../functions/openMovieInfo';
+import { filmData } from './open-movie-info';
 import {
   writeUserDataWathed,
   deleteUserDataWathed,
@@ -148,7 +148,8 @@ export function onQueueBtnClick() {
 export function getWatchedItems() {
   if (!kidsSectionRef && !homeSectionRef) {
     try {
-      return (localStorage.getItem('userID') !== '' && localStorage.getItem('userID') !== null)
+      return localStorage.getItem('userID') !== '' &&
+        localStorage.getItem('userID') !== null
         ? listOfDataWathed
         : JSON.parse(localStorage.getItem('watched'));
     } catch (error) {
@@ -160,7 +161,8 @@ export function getWatchedItems() {
 export function getQueueItems() {
   if (!kidsSectionRef && !homeSectionRef) {
     try {
-      return (localStorage.getItem('userID') !== '' && localStorage.getItem('userID') !== null)
+      return localStorage.getItem('userID') !== '' &&
+        localStorage.getItem('userID') !== null
         ? listOfDataQueue
         : JSON.parse(localStorage.getItem('queue'));
     } catch (error) {

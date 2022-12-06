@@ -1,8 +1,8 @@
 import { makeModalCard } from '../components/movie-cards';
 import { getMovieById } from '../api/get-api';
-import { modalBtnsHandler } from '../functions/local-storage';
+import { modalBtnsHandler } from './local-storage';
 import noImg from '../../images/noimage.png';
-import * as closeModal from './closeModal';
+import * as closeModal from './close-modal';
 import { getTrailer } from './get-trailers';
 import { startSpinner, stopSpinner } from '../components/spinner';
 
