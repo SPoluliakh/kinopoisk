@@ -11,12 +11,12 @@
   opacity: 1;
 
   transition: opacity 250ms linear 50ms, visibility 250ms linear 50ms;
-}
 
-.backdrop.is-hidden {
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
+  &.is-hidden {
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 .modal {

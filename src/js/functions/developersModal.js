@@ -1,6 +1,6 @@
 import { appendDevelopersMarkup } from '../components/developers-card.js';
-import Data from '../../../developers.json';
-const developers = Data.developers;
+// import Data from '../../../developers.json';
+// const developers = Data.developers;
 
 const refs = {
   modalOpen: document.querySelector('#open-modal'),
@@ -21,7 +21,7 @@ function onOpenModal() {
 
 function onCloseModal() {
   toggleModal();
-  refs.list.innerHTML = '';
+  // refs.list.innerHTML = '';
 }
 
 function toggleModal() {
