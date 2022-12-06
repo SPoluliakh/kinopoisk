@@ -1,12 +1,15 @@
 import { getMovieTrailer } from '../api/get-api';
 import { trailerBtnRef, trailerWrapRef } from '../refs/refs';
+import { startSpinner, stopSpinner } from '../components/spinner';
 
 export const getTrailer = id => {
   trailerBtnRef.addEventListener('click', () => onTrailerBtnClick(id));
 };
 
 export async function onTrailerBtnClick(id) {
+  startSpinner();
   const result = await getMovieTrailer(id);
+  stopSpinner();
 
   if (result.data.results.length > 0) {
     const { key } = result?.data?.results[0];

@@ -3,6 +3,8 @@ import Pagination from 'tui-pagination';
 import { paginationSection, paginationContainer } from '../refs/refs';
 import { moviesListMarkupFirstRender } from './render-home-page';
 
+import { startSpinner, stopSpinner } from '../components/spinner';
+
 export function makePaginationOptions(totalResults = 10000) {
   return {
     totalItems: totalResults, //total_results < 10000 ? total_results : 10000,
@@ -41,7 +43,9 @@ pagination.on('afterMove', updateMoviesList);
 export async function updateMoviesList(event) {
   const currentPage = event.page;
 
+  startSpinner();
   await moviesListMarkupFirstRender(currentPage);
+  stopSpinner();
   document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -61,9 +65,7 @@ export function cutPagesForPagination(dataArray, itemsPerPage = 20) {
   for (let index = 0; index < countPages; index += 1) {
     const firstMovieOnPage = index * itemsPerPage;
     const lastMovieOnPage = (index + 1) * itemsPerPage;
-    newDataArray.push(
-      dataArray.slice([firstMovieOnPage], [lastMovieOnPage])
-    );
+    newDataArray.push(dataArray.slice([firstMovieOnPage], [lastMovieOnPage]));
   }
 
   const paginationDataArray = [];

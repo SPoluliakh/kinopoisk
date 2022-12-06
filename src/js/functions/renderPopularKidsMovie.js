@@ -18,22 +18,32 @@ import {
   makePaginationOptions,
   removeHiddenPagination,
 } from '../functions/pagination';
+import { startSpinner, stopSpinner } from '../components/spinner';
 
 export function renderKidsMoviesByAge(kidsAgeAPIFunction) {
   return async function renderKidsMovies(page = 1) {
     try {
       kidsPage.classList.remove('hidden');
+      startSpinner();
       const movies = await kidsAgeAPIFunction(page);
+      stopSpinner();
       const { results, total_results } = movies.data;
-      const paginationOptionsForKidsMovies = makePaginationOptions(total_results);
+      const paginationOptionsForKidsMovies =
+        makePaginationOptions(total_results);
       removeHiddenPagination();
       const genres = getGenreOptions() ?? [];
       const movieList = makeMovieList(results, genres);
 
       listRef.innerHTML = movieList;
 
-      const paginationForKidsMovies = new Pagination(paginationContainer, paginationOptionsForKidsMovies);
-      paginationForKidsMovies.on('afterMove', paginateKidsMoviesByAge(kidsAgeAPIFunction));
+      const paginationForKidsMovies = new Pagination(
+        paginationContainer,
+        paginationOptionsForKidsMovies
+      );
+      paginationForKidsMovies.on(
+        'afterMove',
+        paginateKidsMoviesByAge(kidsAgeAPIFunction)
+      );
     } catch (error) {
       console.log(error);
     }
@@ -59,7 +69,9 @@ export function renderKidsMoviesByAge(kidsAgeAPIFunction) {
 function paginateKidsMoviesByAge(kidsAgeAPIFunction) {
   return async function paginateKidsMovies(event) {
     const currentPage = event.page;
+    startSpinner();
     const movies = await kidsAgeAPIFunction(currentPage);
+    stopSpinner();
     const { results } = movies.data;
     const genres = getGenreOptions() ?? [];
     const movieList = makeMovieList(results, genres);

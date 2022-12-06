@@ -4,6 +4,7 @@ import { modalBtnsHandler } from '../functions/local-storage';
 import noImg from '../../images/noimage.png';
 import * as closeModal from './closeModal';
 import { getTrailer } from './get-trailers';
+import { startSpinner, stopSpinner } from '../components/spinner';
 
 import {
   backdropRef,
@@ -21,7 +22,9 @@ export async function openMovieInfo(evt) {
   const film = evt.target;
   if (film.classList.contains('movie-list')) return;
 
+  startSpinner();
   filmData = await getMovieById(film.dataset.id);
+  stopSpinner();
   const {
     poster_path,
     title,
@@ -50,7 +53,9 @@ export async function openMovieInfo(evt) {
 
   modalBtnsHandler(id);
   btnUp.hide();
+
   getTrailer(film.dataset.id);
+
   backdropRef.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
   window.addEventListener('keydown', closeModal.closeByEsc);

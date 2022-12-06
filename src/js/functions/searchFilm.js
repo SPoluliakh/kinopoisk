@@ -101,7 +101,9 @@ async function inputSearch(event) {
     return;
   }
 
+  startSpinner();
   const movies = await getBySearchName(searchValue);
+  stopSpinner();
   const { results } = movies.data;
   if (results.length === 0) {
     errorRef.classList.add('show-error');
