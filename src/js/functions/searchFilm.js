@@ -21,19 +21,6 @@ import {
 import { startSpinner, stopSpinner } from '../components/spinner';
 import { debounce } from 'debounce';
 import { openMovieInfo } from './openMovieInfo';
-// import { moviesListMarkupFirstRender } from './render-home-page';
-
-// const options = makePaginationOptions();
-
-// export const pagination = new Pagination(paginationContainer, options);
-
-// pagination.on('afterMove', updateMoviesList);
-
-// export async function updateMoviesList(event) {
-//   const currentPage = event.page;
-//   await moviesListMarkupFirstRender(currentPage);
-//   document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
-// }
 
 let searchValue;
 

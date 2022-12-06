@@ -13,9 +13,9 @@ import {
   makePaginationOptions,
   addHiddenPagination,
   removeHiddenPagination,
+  cutPagesForPagination,
 } from './pagination';
 import { paginationContainer } from '../refs/refs';
-import { cutPagesForPagination } from '../functions/pagination-cut-pages';
 
 // default Library Pagination
 
@@ -128,7 +128,7 @@ export function makeFilmCardAfterDelitFromLibrary() {
   }
 }
 
-// delite from watched
+// delete from watched
 export function deliteFromWatched() {
   try {
     const localStorageWathed = getWatchedItems();
@@ -137,6 +137,7 @@ export function deliteFromWatched() {
       librarydivRef?.classList.add('visually-hidden');
     } else {
       librarydivRef?.classList.remove('visually-hidden');
+      addHiddenPagination();
     }
 
     const movieList = makeLibraryMovieList(localStorageWathed);
@@ -146,7 +147,7 @@ export function deliteFromWatched() {
   }
 }
 
-// delite from queue
+// delete from queue
 export function deliteFromQueue() {
   try {
     const localStorageWathed = getQueueItems();
@@ -155,7 +156,9 @@ export function deliteFromQueue() {
       librarydivRef?.classList.add('visually-hidden');
     } else {
       librarydivRef?.classList.remove('visually-hidden');
+      addHiddenPagination();
     }
+
     const movieList = makeLibraryMovieList(localStorageWathed);
     listRef.innerHTML = movieList;
   } catch (err) {

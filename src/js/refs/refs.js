@@ -1,4 +1,5 @@
 export const listRef = document.querySelector('.movie-list');
+export const paginationSection = document.querySelector('.pagination.section');
 export const paginationContainer = document.getElementById(
   'tui-pagination-container'
 );
