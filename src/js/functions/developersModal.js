@@ -10,7 +10,10 @@ const refs = {
   list: document.querySelector('.dev-modal__list'),
 };
 
-refs.modalOpen.addEventListener('click', onOpenModal);
+refs.modalOpen.addEventListener('click', () => {
+  backdrop.style.display = 'block';
+  setTimeout(() => onOpenModal(), 70);
+});
 refs.backdrop.addEventListener('click', onCloseModal);
 
 function onOpenModal() {
@@ -21,7 +24,7 @@ function onOpenModal() {
 
 function onCloseModal() {
   toggleModal();
-  // refs.list.innerHTML = '';
+  setTimeout(() => (backdrop.style.display = 'none'), 350);
 }
 
 function toggleModal() {

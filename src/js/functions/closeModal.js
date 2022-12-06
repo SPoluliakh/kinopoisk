@@ -38,7 +38,7 @@ export const closeByEsc = evt => {
 
 const closeModal = () => {
   backdropRef.classList.add('is-hidden');
-  setTimeout(() => (backdropRef.style.display = 'none'), 300);
+  setTimeout(() => (backdropRef.style.display = 'none'), 350);
 
   document.body.style.overflow = '';
   window.removeEventListener('keydown', closeByEsc);

@@ -10,7 +10,7 @@
   background-color: rgba(0, 0, 0, 0.42);
   opacity: 1;
 
-  transition: opacity 250ms linear 50ms, visibility 250ms linear 50ms;
+  transition: opacity 300ms linear 50ms, visibility 300ms linear 50ms;
 
   &.is-hidden {
     pointer-events: none;
@@ -36,7 +36,7 @@
 
   overflow-y: auto;
 
-  transition: transform 250ms linear 50ms;
+  transition: transform 300ms linear 50ms;
 
   .backdrop.is-hidden & {
     transform: translate(-50%, -50%) scale(2);
