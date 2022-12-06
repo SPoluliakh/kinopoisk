@@ -53,6 +53,7 @@ const showLoginForm = () => {
   autorization.classList.remove('active');
   backdrop.classList.add('active');
   document.addEventListener('keyup', keyEsc);
+  backdrop.addEventListener('click', closeFormByBackdrop);
   count += 1;
 };
 
@@ -71,6 +72,7 @@ const showApp = () => {
   user.removeEventListener('click', loginUser);
   newUser.removeEventListener('click', registreteNewUser);
   document.removeEventListener('keyup', keyEsc);
+  backdrop.removeEventListener('click', closeFormByBackdrop);
 };
 const showLoginError = error => {
   if (error.code == 'auth/wrong-password') {
@@ -93,6 +95,14 @@ const closeModalForm = closeFormBtn.addEventListener('click', e => {
   e.preventDefault();
   closeForm();
 });
+
+const closeFormByBackdrop = e => {
+  e.preventDefault();
+  console.log(e.currentTarget)
+  if (e.target.classList.contains('backdropForm')) {
+    closeForm();
+    return;
+  }}
 
 const loginEmailPassword = async () => {
   const loginEmail = document.querySelector('.form-control-mail').value;
