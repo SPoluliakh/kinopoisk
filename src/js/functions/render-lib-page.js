@@ -45,7 +45,7 @@ export function onWatchedBtn() {
   const localStorageWathed = getWatchedItems();
 
   // pagination part
-  const totalResults = localStorageWathed.length;
+  const totalResults = localStorageWathed?.length;
   paginationForLibraryMoviesQueue.reset();
   paginationForLibraryMoviesQueue.off('afterMove', paginateQueueMovies);
   const paginationOptionsForWatchedMovies = makePaginationOptions(totalResults);
@@ -73,7 +73,7 @@ export function onQueueBtn() {
   const localStorageQueue = getQueueItems();
 
   // pagination part
-  const totalResults = localStorageQueue.length;
+  const totalResults = localStorageQueue?.length;
   paginationForLibraryMovies.reset();
   paginationForLibraryMovies.off('afterMove', paginateWatchedMovies);
   const paginationOptionsForQueueMovies = makePaginationOptions(totalResults);
@@ -205,13 +205,25 @@ export function makeFilmCardForPagination(page = 1, getItemsFunction) {
     const pageMovies = dataForPagination.find(element => element.page === page);
     const movies = pageMovies.results;
 
-    // if (localStorageWathed?.length > 0) {
-    //   librarydivRef.classList.add('visually-hidden');
-    // }
-    // const movies = data() ?? [];
     const movieList = makeLibraryMovieList(movies);
     listRef.innerHTML = movieList;
   } catch (err) {
     console.log(err);
   }
 }
+
+//check is library empty. First render
+export const checkFirstRender = () => {
+  try {
+    const localStorageWathed = getWatchedItems();
+    if (
+      !localStorageWathed &&
+      libraryWatchedBtnRef.classList.contains('active-button')
+    ) {
+      librarydivRef.classList.remove('visually-hidden');
+      librarydivRef.style.display = 'block';
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
