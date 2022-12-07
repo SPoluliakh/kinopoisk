@@ -174,7 +174,6 @@
   @media screen and (max-width: 279.9px) {
     flex-direction: column;
   }
-
 }
 
 // ============= block button's ===========================
@@ -199,6 +198,7 @@
   user-select: none;
   appearance: none;
   touch-action: manipulation;
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .button-zero:before,
 .button-six:before,

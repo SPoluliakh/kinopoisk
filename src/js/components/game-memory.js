@@ -9,6 +9,7 @@ import {
   kidsPage,
   paginationSection,
   snake,
+  gridSnake,
 } from '../refs/refs';
 
 memoryGamesItem.addEventListener('click', startMemoryGame);
@@ -28,13 +29,13 @@ export function returnDOM() {
   kidsPage.classList.remove('visually-hidden');
   paginationSection.classList.remove('visually-hidden');
 
+  gridSnake.innerHTML = '';
+
   games.classList.add('hidden-game');
   ticTacToe.classList.remove('hidden-game');
   memoryGame.classList.remove('hidden-game');
   snake.classList.remove('hidden-game');
 }
-
-// =========================================================================
 
 // ============= Memory Game ================================================
 function startMemoryGame() {
