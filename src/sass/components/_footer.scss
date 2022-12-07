@@ -1,5 +1,5 @@
 .footer {
-  background-color: #f7f7f7;
+  background-color: var(--footer-background);
 
   &__container {
     padding-top: 29px;
@@ -18,9 +18,9 @@
   }
 
   &__text {
-    color: #545454;
+    color: var(--footer-text);
     font-size: 14px;
-    line-height: 16px;
+    line-height: 1.1;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
@@ -28,13 +28,12 @@
 
     @media screen and (min-width: 767px) {
       font-size: 16px;
-      line-height: 19px;
+      line-height: 1.2;
     }
 
     &--begin {
       margin-top: 0;
       margin-bottom: 10px;
-      // padding-top: 29px;
 
       @media screen and (min-width: 767px) {
         padding-top: 0;
@@ -46,7 +45,6 @@
     &--end {
       margin-top: 0;
       margin-bottom: 0;
-      // padding-bottom: 29px;
 
       @media screen and (min-width: 767px) {
         padding-bottom: 0;
@@ -63,12 +61,12 @@
   &__link {
     cursor: pointer;
     text-decoration: underline;
-    color: #545454;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--footer-text);
+    transition: color 250ms var(--timing-function);
 
     &:hover,
     &:focus {
-      color: #ff6b01;
+      color: var(--active-btn-color);
     }
   }
 
@@ -78,44 +76,27 @@
     flex-direction: column;
     text-align: center;
 
+    @media screen and (min-width: 768px){
+        text-align: start;
+    }
+
     &::before {
       position: absolute;
       content: '';
       display: inline-block;
       height: 1px;
       width: 100%;
-      background-color: rgb(0 0 0 / 46%);
+      background-color: var(--footer-text);
     }
 
     &-container {
       padding: 10px;
     }
-
-    @media screen and (min-width: 768px) {
-      text-align: start;
-      flex-direction: row;
-    }
   }
 
   &__info {
-    font-family: 'Roboto';
-    font-size: 10px;
-    color: rgb(0 0 0 / 46%);
-  }
-}
-
-.footer__svg {
-  animation: myAnim 1s ease 0s infinite normal forwards;
-}
-
-@keyframes myAnim {
-  0% {
-    transform: scale(0.5);
-  }
-  50% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0.5);
+    font-size: 9px;
+    color: var(--footer-api-text);
+    margin-right: 4px;
   }
 }
