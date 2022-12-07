@@ -21,9 +21,16 @@ header {
     isolation: isolate;
     background-color: var(--darkmode-main);
   }
+  & .footer__info {
+    color: #545454;
+  }
   & .modal,
   & .dev-modal {
     background-color: var(--darkmode-modal);
+        box-shadow: 0px 0px 0px 2px var(--subtitle-color);
+  }
+  & .dev-modal__card {
+    box-shadow: 0px 1px 10px var(--subtitle-color);
   }
   & .modal__title,
   & .modal__text-info,
