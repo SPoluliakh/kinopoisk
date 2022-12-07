@@ -168,7 +168,7 @@ export function onQueueBtnClick() {
   const user = localStorage.getItem('statusUser');
 
   if (user === 'anonym') {
-    const queue = JSON.parse(localStorage.getItem('watched'));
+    const queue = JSON.parse(localStorage.getItem('queue'));
     const isAddedToWatched = queue.findIndex(film => Number(film.id) === id);
     let queueFilms;
     if (isAddedToWatched === -1) {
