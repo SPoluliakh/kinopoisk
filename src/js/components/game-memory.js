@@ -10,7 +10,6 @@ import {
   paginationSection,
 } from '../refs/refs';
 
-console.log(paginationSection);
 memoryGamesItem.addEventListener('click', startMemoryGame);
 btnExitGame.addEventListener('click', returnDOM);
 
