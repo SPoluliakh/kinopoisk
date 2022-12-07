@@ -83,7 +83,7 @@ export function onQueueBtn() {
   );
   paginationForLibraryMoviesQueue.on('afterMove', paginateQueueMovies);
 
-  if (localStorageQueue.length > 0) {
+  if (localStorageQueue?.length > 0) {
     librarydivRef.classList.add('visually-hidden');
     librarydivRef.style.display = 'none';
     makeFilmCard(getQueueItems);
@@ -151,6 +151,7 @@ export function deliteFromWatched() {
     if (localStorageWathed?.length > 0) {
       librarydivRef.classList.add('visually-hidden');
       librarydivRef.style.display = 'none';
+      
     } else {
       librarydivRef.classList.remove('visually-hidden');
       librarydivRef.style.display = 'block';
