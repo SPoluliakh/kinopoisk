@@ -37,9 +37,9 @@ let id;
 
 export function modalBtnsHandler(externalId) {
   id = Number(externalId);
-  const user = localStorage.getItem('userID');
+  const user = localStorage.getItem('statusUser');
 
-  if (user.length === 0) {
+  if (user === 'anonym') {
     console.log('не залогинен');
     if (!localStorage.getItem('watched')) {
       watchedBtnRef.textContent = 'ADD TO WATCHED';
@@ -115,8 +115,9 @@ export function modalBtnsHandler(externalId) {
 }
 
 export function onWatchedBtnClick() {
-  const user = localStorage.getItem('userID');
-  if (user.length === 0) {
+  const user = localStorage.getItem('statusUser');
+
+  if (user === 'anonym') {
     const watched = JSON.parse(localStorage.getItem('watched'));
     const isAddedToWatched = watched.findIndex(film => Number(film.id) === id);
     let watchedFilms;
@@ -164,8 +165,9 @@ export function onWatchedBtnClick() {
 }
 
 export function onQueueBtnClick() {
-  const user = localStorage.getItem('userID');
-  if (user.length === 0) {
+  const user = localStorage.getItem('statusUser');
+
+  if (user === 'anonym') {
     const queue = JSON.parse(localStorage.getItem('watched'));
     const isAddedToWatched = queue.findIndex(film => Number(film.id) === id);
     let queueFilms;
