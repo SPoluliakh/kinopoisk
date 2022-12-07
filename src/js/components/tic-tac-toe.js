@@ -1,4 +1,3 @@
-// btns class, flex posistion, improve switch function
 import {
   ticTacToeGamesItem,
   games,
