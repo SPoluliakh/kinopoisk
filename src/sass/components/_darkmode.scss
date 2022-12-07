@@ -37,6 +37,12 @@
   & .tui-pagination .tui-page-btn {
     color: var(--main-white);
   }
+  & .pagination.library-pagination {
+    background-color: var(--darkmode-library);
+  }
+  & .pagination.container {
+    background-color: inherit;
+  }
   & .modal__sub-title-description {
     color: var(--modal-subTitle-color);
   }
@@ -49,10 +55,13 @@
   // }
   & main {
     isolation: isolate;
-    background-color: var(--darkmode-library);
+    background-color: var(--darkmode-main);
   }
   & main {
     border-bottom: 1px solid var(--modal-subTitle-color);
+  }
+  & main.library-main {
+    background-color: var(--darkmode-library);
   }
   & .library-footer {
     background-color: var(--darkmode-library);
