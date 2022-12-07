@@ -30,6 +30,7 @@ export const kidsSectionGames = document.querySelector('.kids-games');
 // Кнопки игр
 export const memoryGamesItem = document.getElementById('memory');
 export const ticTacToeGamesItem = document.getElementById('tic-tac-toe');
+export const snakeGamesItem = document.getElementById('snake');
 // Выход их игры
 export const btnExitGame = document.querySelector('.exit-game');
 // Секция Игр
@@ -37,6 +38,7 @@ export const games = document.querySelector('.game');
 // Блоки игр
 export const ticTacToe = document.querySelector('.tic-tac-toe');
 export const memoryGame = document.querySelector('.memory-game');
+export const snake = document.querySelector('.snake-wrapper');
 
 // Library
 export const libraryWatchedBtnRef = document.querySelector('.watched-button');
