@@ -1,7 +1,9 @@
-header {
+// header {
+//   position: relative;
+// }
+.container {
   position: relative;
 }
-
 .pagehome-header,
 .library-header {
   isolation: isolate;
@@ -38,8 +40,15 @@ header {
   & .modal__text-info-wrap,
   & .movie-card__title,
   & .dev-modal__team-name,
-  & .dev-modal__position {
+  & .dev-modal__position,
+  & .tui-pagination .tui-page-btn {
     color: var(--main-white);
+  }
+  & .pagination.library-pagination {
+    background-color: var(--darkmode-library);
+  }
+  & .pagination.container {
+    background-color: inherit;
   }
   & .modal__sub-title-description {
     color: var(--modal-subTitle-color);
@@ -47,15 +56,36 @@ header {
   & .dev-modal__button {
     background-color: transparent;
   }
-  & .library-page {
+  // & .library-page {
+  //   isolation: isolate;
+  //   background-color: var(--darkmode-library);
+  // }
+  & main {
     isolation: isolate;
-    background-color: var(--darkmode-library);
+    background-color: var(--darkmode-main);
   }
   & main {
     border-bottom: 1px solid var(--modal-subTitle-color);
   }
+  & main.library-main {
+    background-color: var(--darkmode-library);
+  }
   & .library-footer {
     background-color: var(--darkmode-library);
+  }
+  & .tui-pagination .tui-first,
+  & .tui-pagination .tui-prev,
+  & .tui-pagination .tui-next,
+  & .tui-pagination .tui-last,
+  & .tui-pagination .tui-prev-is-ellip,
+  & .tui-pagination .tui-next-is-ellip {
+    background-color: var(--modal-subTitle-color);
+  }
+  & .empty-lib__text {
+    color: var(--main-white);
+  }
+  & .footer__info {
+    color: var(--modal-subTitle-color);
   }
 }
 
@@ -66,7 +96,8 @@ header {
 
 .checkbox-label {
   position: absolute;
-  bottom: 40px;
+  top: 140px;
+  right: 20px;
   width: 50px;
   height: 26px;
   display: flex;
@@ -84,6 +115,7 @@ header {
   }
   @media screen and (max-width: 767px) {
     bottom: 20px;
+    top:160px;
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     bottom: 30px;

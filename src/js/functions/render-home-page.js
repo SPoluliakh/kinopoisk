@@ -10,6 +10,9 @@ export const moviesListMarkupFirstRender = async (page = 1) => {
     const genres = getGenreOptions() ?? [];
     const movieList = makeMovieList(results, genres);
     listRef.innerHTML = movieList;
+    if (page === 1) {
+      localStorage.setItem('movieList', JSON.stringify(movieList));
+    }
   } catch (err) {
     console.log(err);
   }

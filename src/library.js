@@ -1,9 +1,10 @@
-import './js/functions/developersModal';
-import { openMovieInfo } from './js/functions/openMovieInfo';
+import './js/functions/developers-modal';
+import { openMovieInfo } from './js/functions/open-movie-info';
 import {
   listRef,
   libraryWatchedBtnRef,
   libraryQueueBtnRef,
+  backdropRef,
 } from './js/refs/refs';
 import { btnUp } from './js/components/to-top-button';
 import {
@@ -16,7 +17,10 @@ import { darkmode } from './js/functions/darkmode';
 
 document.addEventListener('DOMContentLoaded', () => {
   makeFilmCard();
-  listRef.addEventListener('click', openMovieInfo);
+  listRef.addEventListener('click', evt => {
+    backdropRef.style.display = 'block';
+    openMovieInfo(evt);
+  });
   btnUp.addEventListener();
   libraryQueueBtnRef.addEventListener('click', onQueueBtn);
   libraryWatchedBtnRef.addEventListener('click', onWatchedBtn);

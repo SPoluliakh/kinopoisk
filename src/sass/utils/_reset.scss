@@ -13,9 +13,7 @@ body {
   font-style: normal;
   font-weight: 500;
 }
-main {
-  min-height: calc(100vh - 293px);
-}
+
 /* Стили для обнуления верхних отступов у элементов */
 h1,
 h2,
@@ -60,6 +58,11 @@ address {
     width: 100%;
   }
 
+  @media screen and (max-width: 767.9px) {
+    max-width: 320px;
+    padding: 0 20px;
+  }
+
   @media screen and (min-width: 768px) {
     width: 768px;
     padding: 0 32px;
@@ -69,4 +72,18 @@ address {
     padding: 0 32px;
     width: 1280px;
   }
+}
+
+// прижимает футер к низу страницы
+html,
+body {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1 1 auto;
 }

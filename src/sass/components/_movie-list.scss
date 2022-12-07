@@ -4,10 +4,8 @@ $tablet: 768px;
 $desctop: 1280px;
 // size of img
 $imgwidth: 280px;
-// color
 
 .home-page,
-.kids-page,
 .library-page {
   display: flex;
   justify-content: center;
@@ -17,12 +15,28 @@ $imgwidth: 280px;
   display: grid;
   grid-template-rows: auto;
 }
+
+.movie-card {
+  transition: box-shadow 250ms linear;
+
+  &:hover {
+    box-shadow: 0 1px 4px var(--subtitle-color),
+      -23px 0 20px -23px var(--subtitle-color),
+      23px 0 20px -23px var(--subtitle-color),
+      0 0 40px var(--subtitle-color) inset;
+  }
+}
+
 .movie-card,
 .movie-card__info {
   display: flex;
   flex-direction: column;
   justify-content: left;
   cursor: pointer;
+}
+
+.movie-card__info {
+  padding: 5px;
 }
 
 .movie-list .movie-card__img {
@@ -64,7 +78,6 @@ $imgwidth: 280px;
     flex-direction: column;
   }
   .movie-list .movie-card__img {
-    max-width: $imgwidth;
     height: calc($imgwidth * 1.436);
     margin-bottom: 10px;
   }
@@ -109,10 +122,9 @@ $imgwidth: 280px;
     line-height: 1.2;
   }
 }
-
 .empty-lib {
- margin: 0 auto;
- padding: 20px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .empty-lib__text {

@@ -1,0 +1,371 @@
+// ======================== Games =================
+.kids-games {
+  background-color: #ff4d0040;
+  margin-top: 30px;
+}
+.kids-animation__games {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.kids-animation__btn-games {
+  padding-top: 15px;
+}
+.games-list {
+  max-width: 1280px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 10px;
+  padding: 30px 0;
+  display: flex;
+  @media screen and (min-width: 768px) {
+    gap: 20px 30px;
+    // flex-wrap: wrap;
+    // justify-content: center;
+  }
+}
+.game-list__item {
+  cursor: pointer;
+  width: 270px;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+}
+.game-list__btn {
+  display: block;
+  height: 60px;
+  width: 100%;
+}
+
+//  ============================ Styles Memory Games =====================================
+
+.game {
+  $this: &;
+
+  min-width: 320px;
+  margin-top: 30px;
+  // height: 100vh;
+  // background: #2f4274;
+  // display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__cards {
+    width: 320px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 100px;
+    grid-gap: 5px;
+    padding: 0 20px;
+    @media screen and (min-width: 768px) {
+      width: 720px;
+      grid-gap: 20px;
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    &.no-event {
+      pointer-events: none;
+    }
+  }
+
+  &__card {
+    position: relative;
+    cursor: pointer;
+    perspective: 700px;
+
+    &.flipped,
+    &.has-match {
+      pointer-events: none;
+
+      #{$this}__back-card {
+        transform: rotateY(180deg);
+      }
+
+      #{$this}__front-card {
+        transform: rotateY(360deg);
+      }
+    }
+  }
+
+  &__back-card,
+  &__front-card {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: #f27922;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    transition: transform 400ms;
+  }
+
+  &__back-card {
+    z-index: 1;
+  }
+
+  &__front-card {
+    transform: rotateY(180deg);
+  }
+}
+// ============================ Button Exit Game ========================================
+.exit-wrapper {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.exit-game {
+  align-items: center;
+}
+
+// =================================== tic tac toe =======================================
+.tic-tac-toe-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+// .tic-tac-toe {
+// }
+.rotated {
+  transform: rotate(-3deg);
+}
+
+.paper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+  height: 500px;
+  background-image: -webkit-repeating-linear-gradient(
+      left,
+      lightblue,
+      1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    -webkit-repeating-linear-gradient(bottom, lightblue, 1px, white 1px, white
+          20px);
+  background-image: repeating-linear-gradient(
+      90deg,
+      lightblue,
+      1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(0deg, lightblue, 1px, white 1px, white 20px);
+  background-size: 20px 20px;
+  background-origin: content-box;
+  padding: 1em auto;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 50px rgba(0, 0, 0, 0.1) inset;
+
+  @media screen and (max-width: 767px) {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+.paper:after,
+.paper:before {
+  z-index: -1;
+  position: absolute;
+  content: '';
+  left: auto;
+  max-width: 300px;
+  background: white;
+  transform: rotate(-3deg);
+}
+
+.paper:after {
+  bottom: 10px;
+  right: 7px;
+  width: 70%;
+  top: 80%;
+  box-shadow: 3px 15px 12px #777;
+  transform: rotate(3deg);
+}
+
+.paper:before {
+  bottom: 10px;
+  left: 7px;
+  width: 70%;
+  top: 80%;
+  box-shadow: -3px 15px 12px #777;
+  transform: rotate(-3deg);
+}
+
+#board {
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 275px;
+  margin: 50px auto;
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
+}
+
+#logo {
+  width: 35%;
+  height: auto;
+  margin: 30px;
+}
+#logo svg {
+  fill: #000033;
+}
+
+#gameboard {
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  width: 100%;
+  height: auto;
+  stroke-dasharray: 250;
+  stroke-dashoffset: 250;
+  stroke: #000033;
+  stroke-width: 1.25px;
+  stroke-miterlimit: 10;
+  fill: none;
+}
+#gameboard .st4 {
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+}
+
+draw {
+  animation: dash 0.5s ease-in-out forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.tile {
+  margin: 5%;
+  width: 22%;
+  height: 22%;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+#winner {
+  width: 300px;
+  height: 40px;
+  margin: auto;
+
+  position: absolute;
+  align-self: flex-start;
+  text-align: center;
+  transform: rotate(5deg);
+  @media screen and (min-width: 768px) {
+    margin-top: 30px;
+  }
+}
+
+#reset {
+  margin-top: 20px;
+  padding: 0;
+  width: 50%;
+  height: 30px;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+  float: left;
+  @media screen and (min-width: 768px) {
+    margin: 0.5vh;
+  }
+}
+
+// p {
+//   font-family: 'Waiting for the Sunrise', cursive;
+//   margin: 0;
+//   font-size: 40px;
+//   color: #000033;
+// }
+
+#settings,
+.container-ttt,
+.options {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#settings {
+  height: 70%;
+  align-items: center;
+  align-content: center;
+}
+#settings .container-ttt {
+  height: 30%;
+  align-items: center;
+}
+#settings .container-ttt .options {
+  flex-direction: row;
+  width: 60%;
+}
+
+.btn,
+.vs {
+  font-family: 'Waiting for the Sunrise', cursive;
+  margin: 0;
+  font-size: 20px;
+  color: #000033;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  @media screen and (min-width: 768px) {
+    font-size: 40px;
+  }
+}
+#human {
+  @media screen and (max-width: 1279px) {
+    display: none;
+  }
+}
+.btn:hover {
+  transform: rotate(3deg) scale(1.3);
+}
+
+.disable {
+  display: none !important;
+}
+
+.fadeBounceIn {
+  animation: fadeBounceIn 1s ease-in-out forwards;
+}
+
+.fadeIn {
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+@keyframes fadeBounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  80% {
+    transform: scale(1.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
