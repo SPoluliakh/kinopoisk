@@ -135,7 +135,7 @@ export function onWatchedBtnClick() {
   } else {
     const watched = listOfDataWathed;
     const isAddedToWatched = watched.findIndex(film => Number(film.id) === id);
-    // let watchedFilms;
+    let watchedFilms;
     if (isAddedToWatched === -1) {
       watchedFilms = [...watched, filmData.data];
       console.log(filmData.data);
