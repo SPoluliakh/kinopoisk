@@ -34,6 +34,8 @@ export function darkmode() {
       .querySelector('.checkbox-label')
       .classList.remove('library-checkbox-label');
     document.querySelector('main').classList.remove('library-main');
-    document.querySelector('pagination').classList.remove('library-pagination');
+    document
+      .querySelector('.pagination')
+      .classList.remove('library-pagination');
   }
 }
