@@ -17,7 +17,6 @@ import {
 } from './pagination';
 import { paginationContainer } from '../refs/refs';
 
-
 // default Library Pagination
 
 const localStorageQueue = getQueueItems();
@@ -58,10 +57,13 @@ export function onWatchedBtn() {
 
   if (localStorageWathed?.length > 0) {
     librarydivRef.classList.add('visually-hidden');
+    librarydivRef.style.display = 'none';
+
     makeFilmCard(getWatchedItems);
   } else {
     listRef.innerHTML = '';
     librarydivRef.classList.remove('visually-hidden');
+    librarydivRef.style.display = 'block';
   }
 }
 
@@ -83,10 +85,12 @@ export function onQueueBtn() {
 
   if (localStorageQueue.length > 0) {
     librarydivRef.classList.add('visually-hidden');
+    librarydivRef.style.display = 'none';
     makeFilmCard(getQueueItems);
   } else {
     listRef.innerHTML = '';
     librarydivRef.classList.remove('visually-hidden');
+    librarydivRef.style.display = 'block';
   }
 }
 
@@ -98,9 +102,19 @@ export function makeFilmCard(data = getWatchedItems) {
     addHiddenPagination();
     paginationForLibraryMovies.on('afterMove', paginateWatchedMovies);
 
-    if (localStorageWathed?.length > 0) {
+    if (
+      localStorageWathed?.length > 0 &&
+      libraryWatchedBtnRef.classList.contains('active-button')
+    ) {
       librarydivRef.classList.add('visually-hidden');
+      librarydivRef.style.display = 'none';
       removeHiddenPagination();
+    } else if (
+      localStorageWathed?.length <= 0 &&
+      libraryWatchedBtnRef.classList.contains('active-button')
+    ) {
+      librarydivRef.classList.remove('visually-hidden');
+      librarydivRef.style.display = 'block';
     }
 
     const movies = data() ?? [];
@@ -135,9 +149,11 @@ export function deliteFromWatched() {
     const localStorageWathed = getWatchedItems();
 
     if (localStorageWathed?.length > 0) {
-      librarydivRef?.classList.add('visually-hidden');
+      librarydivRef.classList.add('visually-hidden');
+      librarydivRef.style.display = 'none';
     } else {
-      librarydivRef?.classList.remove('visually-hidden');
+      librarydivRef.classList.remove('visually-hidden');
+      librarydivRef.style.display = 'block';
       addHiddenPagination();
     }
 
@@ -154,9 +170,11 @@ export function deliteFromQueue() {
     const localStorageWathed = getQueueItems();
 
     if (localStorageWathed?.length > 0) {
-      librarydivRef?.classList.add('visually-hidden');
+      librarydivRef.classList.add('visually-hidden');
+      librarydivRef.style.display = 'none';
     } else {
-      librarydivRef?.classList.remove('visually-hidden');
+      librarydivRef.classList.remove('visually-hidden');
+      librarydivRef.style.display = 'block';
       addHiddenPagination();
     }
 

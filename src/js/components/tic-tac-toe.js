@@ -4,6 +4,7 @@ import {
   games,
   memoryGame,
   btnExitGame,
+  snake,
 } from '../refs/refs';
 import { clearDOM, returnDOM } from './game-memory';
 
@@ -14,6 +15,7 @@ function startTicTacToeGame() {
   clearDOM();
   games.classList.remove('hidden-game');
   memoryGame.classList.add('hidden-game');
+  snake.classList.add('hidden-game');
 
   var drawboard = document.getElementById('tictactoe'),
     winnerset = document.getElementById('winnerset').children,
