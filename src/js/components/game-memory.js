@@ -8,6 +8,7 @@ import {
   memoryGamesItem,
   kidsPage,
   paginationSection,
+  snake,
 } from '../refs/refs';
 
 memoryGamesItem.addEventListener('click', startMemoryGame);
@@ -30,6 +31,7 @@ export function returnDOM() {
   games.classList.add('hidden-game');
   ticTacToe.classList.remove('hidden-game');
   memoryGame.classList.remove('hidden-game');
+  snake.classList.remove('hidden-game');
 }
 
 // =========================================================================
@@ -40,6 +42,7 @@ function startMemoryGame() {
   clearDOM();
   games.classList.remove('hidden-game');
   ticTacToe.classList.add('hidden-game');
+  snake.classList.add('hidden-game');
   // =============================
   class MemoryGame {
     constructor() {

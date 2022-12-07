@@ -18,6 +18,7 @@ import './js/components/kids-animation';
 import { addHiddenPagination } from './js/functions/pagination';
 import './js/components/game-memory';
 import './js/components/tic-tac-toe';
+import './js/components/game-snake';
 
 document.addEventListener('DOMContentLoaded', () => {
   addHiddenPagination();
