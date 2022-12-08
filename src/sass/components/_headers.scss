@@ -194,9 +194,9 @@
 
 .navigation__list {
   display: flex;
-  @media screen and (max-width: 767.9px) {
-    flex-direction: column;
-  }
+  // @media screen and (max-width: 767.9px) {
+  //   flex-direction: column;
+  // }
 }
 
 .navigation__item {
@@ -207,14 +207,8 @@
   &:focus {
     transform: scale(1.2);
   }
-  @media screen and (min-width: 768px) {
   &:not(:last-child) {
     margin-right: 40px;
-  }
-}
-  @media screen and (max-width: 767.9px) {
-    text-align: right;
-    margin-right: 0;
   }
 }
 
