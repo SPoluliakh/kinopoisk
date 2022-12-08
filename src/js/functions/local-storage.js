@@ -47,7 +47,6 @@ export function modalBtnsHandler(externalId) {
         return (filmInListWathed = id);
       }
     });
-    console.log('id', filmInListWathed);
     if (filmInListWathed === 0) {
       watchedBtnRef.textContent = 'ADD TO WATCHED';
       watchedBtnRef.classList.remove('modal__button--active');
@@ -62,7 +61,7 @@ export function modalBtnsHandler(externalId) {
         return (filmInListQueue = id);
       }
     });
-    console.log('id', filmInListQueue);
+
     if (filmInListQueue === 0) {
       queueBtnRef.textContent = 'ADD TO QUEUE';
       queueBtnRef.classList.remove('modal__button--active');
@@ -170,7 +169,9 @@ export function onWatchedBtnClick() {
 export function onQueueBtnClick() {
   let queue = [];
   localStorage.getItem('userID') !== '' &&
-  localStorage.getItem('userID') !== null
+  localStorage.getItem('userID') !== null &&
+  JSON.parse(localStorage.getItem('queue'))!== undefined && 
+  JSON.parse(localStorage.getItem('queue')) !== null
     ? (queue = listOfDataQueue)
     : (queue = JSON.parse(localStorage.getItem('queue')));
   const isAddedToQueue = queue.findIndex(film => Number(film.id) === id);
@@ -223,7 +224,9 @@ export function getWatchedItems() {
   if (!kidsSectionRef && !homeSectionRef) {
     try {
       return localStorage.getItem('userID') !== '' &&
-        localStorage.getItem('userID') !== null
+        localStorage.getItem('userID') !== null &&
+        JSON.parse(localStorage.getItem('queue'))!== undefined && 
+        JSON.parse(localStorage.getItem('queue')) !== null
         ? JSON.parse(localStorage.getItem('listOfDataWathed'))
         : JSON.parse(localStorage.getItem('watched'));
     } catch (error) {
@@ -236,7 +239,9 @@ export function getQueueItems() {
   if (!kidsSectionRef && !homeSectionRef) {
     try {
       return localStorage.getItem('userID') !== '' &&
-        localStorage.getItem('userID') !== null
+        localStorage.getItem('userID') !== null &&
+        JSON.parse(localStorage.getItem('queue'))!== undefined && 
+        JSON.parse(localStorage.getItem('queue')) !== null
         ? JSON.parse(localStorage.getItem('listOfDataQueue'))
         : JSON.parse(localStorage.getItem('queue'));
     } catch (error) {
