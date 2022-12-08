@@ -69,7 +69,8 @@ const showApp = () => {
   onValue(starCountRefQueue, snapshot => {
     const data = snapshot.val();
     let list = [];
-    if (data !== undefined) {
+    console.log(data);
+    if (data !== undefined && data !==null) {
       list = Object.values(data);
     }
     listOfDataQueue = list.map(key => key);
@@ -80,7 +81,7 @@ const showApp = () => {
   onValue(starCountRefWatched, snapshot => {
     const data = snapshot.val();
     let list = [];
-    if (data !== undefined) {
+    if (data !== undefined && data !==null) {
       list = Object.values(data);
     }
     listOfDataWathed = list.map(key => key);
@@ -299,7 +300,7 @@ onValue(starCountRefWatched, snapshot => {
   const data = snapshot.val();
   userID = localStorage.getItem('userID');
   let list = [];
-  if (userID !== '' && userID !== null && data !== undefined) {
+  if (data !== undefined && data !==null) {
     list = Object.values(data);
   }
   listOfDataWathed = list.map(key => key);
@@ -313,7 +314,7 @@ onValue(starCountRefQueue, snapshot => {
   const data = snapshot.val();
   userID = localStorage.getItem('userID');
   let list = [];
-  if (data !== undefined) {
+  if (data !== undefined && data !==null) {
     list = Object.values(data);
   }
   listOfDataQueue = list.map(key => key);
