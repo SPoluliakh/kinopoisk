@@ -138,7 +138,8 @@ export function makeFilmCardAfterDelitFromLibrary() {
   if (libraryWatchedBtnRef?.classList.contains('active-button')) {
     deliteFromWatched();
     return;
-  } if (libraryQueueBtnRef?.classList.contains('active-button')) {
+  }
+  if (libraryQueueBtnRef?.classList.contains('active-button')) {
     deliteFromQueue();
     return;
   }
@@ -152,7 +153,6 @@ export function deliteFromWatched() {
     if (localStorageWathed?.length > 0) {
       librarydivRef.classList.add('visually-hidden');
       librarydivRef.style.display = 'none';
-      
     } else {
       librarydivRef.classList.remove('visually-hidden');
       librarydivRef.style.display = 'block';
@@ -202,7 +202,6 @@ function paginateQueueMovies(event) {
 
 export function makeFilmCardForPagination(page = 1, getItemsFunction) {
   try {
-
     const localStorageWathed = getItemsFunction();
     const dataForPagination = cutPagesForPagination(localStorageWathed);
     const pageMovies = dataForPagination.find(element => element.page === page);
@@ -232,11 +231,16 @@ export const checkFirstRender = () => {
 };
 
 function checkLibraryPagination(localStorageMovies, btnLibrary) {
-  if (btnLibrary.classList.contains('active-button') &&
-    localStorageMovies.length === 0) {
+  if (
+    btnLibrary.classList.contains('active-button') &&
+    localStorageMovies?.length === 0
+  ) {
     addHiddenPagination();
-  } if (btnLibrary.classList.contains('active-button') &&
-    localStorageMovies.length > 0) {
+  }
+  if (
+    btnLibrary.classList.contains('active-button') &&
+    localStorageMovies?.length > 0
+  ) {
     removeHiddenPagination();
   }
 }

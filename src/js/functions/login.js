@@ -14,7 +14,7 @@ const firebaseConfig = {
   apiKey: 'AIzaSyCGogj3fGE6tA7X8GsT_L5_K13QQ4ppLp4',
   authDomain: 'team-project-filmoteka-fd028.firebaseapp.com',
   databaseURL:
-  'https://team-project-filmoteka-fd028-default-rtdb.europe-west1.firebasedatabase.app',
+    'https://team-project-filmoteka-fd028-default-rtdb.europe-west1.firebasedatabase.app',
   projectId: 'team-project-filmoteka-fd028',
   storageBucket: 'team-project-filmoteka-fd028.appspot.com',
   messagingSenderId: '647650787195',
@@ -69,23 +69,33 @@ const showApp = () => {
   onValue(starCountRefQueue, snapshot => {
     const data = snapshot.val();
     let list = [];
-    if (data !== undefined && data !==null && localStorage.getItem('userID') !== '' &&  localStorage.getItem('userID') !== null) {
+    if (
+      data !== undefined &&
+      data !== null &&
+      localStorage.getItem('userID') !== '' &&
+      localStorage.getItem('userID') !== null
+    ) {
       list = Object.values(data);
     }
     listOfDataQueue = list.map(key => key);
-    localStorage.setItem('listOfDataQueue',JSON.stringify(listOfDataQueue))
-    return listOfDataQueue
+    localStorage.setItem('listOfDataQueue', JSON.stringify(listOfDataQueue));
+    return listOfDataQueue;
   });
   const starCountRefWatched = ref(dataBase, 'wathed/' + userID + '/');
   onValue(starCountRefWatched, snapshot => {
     const data = snapshot.val();
     let list = [];
-    if (data !== undefined && data !==null && localStorage.getItem('userID') !== '' &&  localStorage.getItem('userID')) {
+    if (
+      data !== undefined &&
+      data !== null &&
+      localStorage.getItem('userID') !== '' &&
+      localStorage.getItem('userID')
+    ) {
       list = Object.values(data);
     }
     listOfDataWathed = list.map(key => key);
-    localStorage.setItem('listOfDataWathed',JSON.stringify(listOfDataWathed))
-    return listOfDataWathed
+    localStorage.setItem('listOfDataWathed', JSON.stringify(listOfDataWathed));
+    return listOfDataWathed;
   });
   if (localStorage.getItem('statusUser') === 'anonym') {
     autorization.classList.add('active'), loginout.classList.remove('active');
@@ -124,11 +134,11 @@ const closeModalForm = closeFormBtn.addEventListener('click', e => {
 
 const closeFormByBackdrop = e => {
   e.preventDefault();
-  console.log(e.currentTarget)
   if (e.target.classList.contains('backdropForm')) {
     closeForm();
     return;
-  }}
+  }
+};
 
 const loginEmailPassword = async () => {
   const loginEmail = document.querySelector('.form-control-mail').value;
@@ -214,7 +224,7 @@ const logout = async () => {
     autorization.classList.add('active'), loginout.classList.remove('active');
   } else {
     loginout.classList.add('active'), autorization.classList.remove('active');
-  };
+  }
   await signOut(auth);
 };
 
@@ -251,19 +261,23 @@ export function writeUserDataWathed(
   popularity,
   overview
 ) {
-  if (localStorage.getItem('userID') !== '' && localStorage.getItem('userID') !== null){
-  set(ref(dataBase, 'wathed/' + userId + '/' + idMove), {
-    poster_path: poster_path,
-    title: title,
-    genres: genres,
-    release_date: release_date,
-    id: id,
-    vote_count: vote_count,
-    vote_average: vote_average,
-    popularity: popularity,
-    overview: overview
-  });
-}}
+  if (
+    localStorage.getItem('userID') !== '' &&
+    localStorage.getItem('userID') !== null
+  ) {
+    set(ref(dataBase, 'wathed/' + userId + '/' + idMove), {
+      poster_path: poster_path,
+      title: title,
+      genres: genres,
+      release_date: release_date,
+      id: id,
+      vote_count: vote_count,
+      vote_average: vote_average,
+      popularity: popularity,
+      overview: overview,
+    });
+  }
+}
 
 // додає в БД фільм DataQueue
 export function writeUserDataQueue(
@@ -279,46 +293,66 @@ export function writeUserDataQueue(
   popularity,
   overview
 ) {
-  if (localStorage.getItem('userID') !== '' && localStorage.getItem('userID') !== null){
-  set(ref(dataBase, 'queue/' + userId + '/' + idMove), {
-    poster_path: poster_path,
-    title: title,
-    genres: genres,
-    release_date: release_date,
-    id: id,
-    vote_count: vote_count,
-    vote_average: vote_average,
-    popularity: popularity,
-    overview: overview
-  });
-}}
+  if (
+    localStorage.getItem('userID') !== '' &&
+    localStorage.getItem('userID') !== null
+  ) {
+    set(ref(dataBase, 'queue/' + userId + '/' + idMove), {
+      poster_path: poster_path,
+      title: title,
+      genres: genres,
+      release_date: release_date,
+      id: id,
+      vote_count: vote_count,
+      vote_average: vote_average,
+      popularity: popularity,
+      overview: overview,
+    });
+  }
+}
 
 // отримати перелік фільмів з БД DataWathed
-const starCountRefWatched = ref(dataBase, 'wathed/' + localStorage.getItem('userID') + '/');
+const starCountRefWatched = ref(
+  dataBase,
+  'wathed/' + localStorage.getItem('userID') + '/'
+);
 onValue(starCountRefWatched, snapshot => {
   const data = snapshot.val();
   userID = localStorage.getItem('userID');
   let list = [];
-  if (data !== undefined && data !==null && localStorage.getItem('userID') !== '' &&  localStorage.getItem('userID')) {
+  if (
+    data !== undefined &&
+    data !== null &&
+    localStorage.getItem('userID') !== '' &&
+    localStorage.getItem('userID')
+  ) {
     list = Object.values(data);
   }
   listOfDataWathed = list.map(key => key);
-  localStorage.setItem('listOfDataWathed',JSON.stringify(listOfDataWathed))
-  return listOfDataWathed
+  localStorage.setItem('listOfDataWathed', JSON.stringify(listOfDataWathed));
+  return listOfDataWathed;
 });
 
 // отримати перелік фільмів з БД DataQueue
-const starCountRefQueue = ref(dataBase, 'queue/' + localStorage.getItem('userID') + '/');
+const starCountRefQueue = ref(
+  dataBase,
+  'queue/' + localStorage.getItem('userID') + '/'
+);
 onValue(starCountRefQueue, snapshot => {
   const data = snapshot.val();
   userID = localStorage.getItem('userID');
   let list = [];
-  if (data !== undefined && data !==null && localStorage.getItem('userID') !== '' &&  localStorage.getItem('userID')) {
+  if (
+    data !== undefined &&
+    data !== null &&
+    localStorage.getItem('userID') !== '' &&
+    localStorage.getItem('userID')
+  ) {
     list = Object.values(data);
   }
   listOfDataQueue = list.map(key => key);
-  localStorage.setItem('listOfDataQueue',JSON.stringify(listOfDataQueue))
-  return listOfDataQueue
+  localStorage.setItem('listOfDataQueue', JSON.stringify(listOfDataQueue));
+  return listOfDataQueue;
 });
 
 // Видаляє фільм з БД DataWathed
@@ -330,5 +364,3 @@ export function deleteUserDataWathed(userId, idMove) {
 export function deleteUserDataQueue(userId, idMove) {
   remove(ref(dataBase, 'queue/' + userId + '/' + idMove), {});
 }
-
-

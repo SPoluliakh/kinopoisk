@@ -144,7 +144,6 @@ export function onWatchedBtnClick() {
       watchedBtnRef.classList.add('modal__button--active');
     } else {
       watchedFilms = [...watched, filmData.data];
-      console.log(filmData.data);
       localStorage.setItem('watched', JSON.stringify(watchedFilms));
       watchedBtnRef.textContent = 'REMOVE FROM WATCHED';
       watchedBtnRef.classList.add('modal__button--active');
@@ -169,11 +168,11 @@ export function onWatchedBtnClick() {
 export function onQueueBtnClick() {
   let queue = [];
   localStorage.getItem('userID') !== '' &&
-  localStorage.getItem('userID') !== null 
-  // &&
-  // JSON.parse(localStorage.getItem('queue'))!== undefined && 
-  // JSON.parse(localStorage.getItem('queue')) !== null
-    ? (queue = listOfDataQueue)
+  localStorage.getItem('userID') !== null
+    ? // &&
+      // JSON.parse(localStorage.getItem('queue'))!== undefined &&
+      // JSON.parse(localStorage.getItem('queue')) !== null
+      (queue = listOfDataQueue)
     : (queue = JSON.parse(localStorage.getItem('queue')));
   const isAddedToQueue = queue.findIndex(film => Number(film.id) === id);
   let queueFilms;
@@ -225,11 +224,11 @@ export function getWatchedItems() {
   if (!kidsSectionRef && !homeSectionRef) {
     try {
       return localStorage.getItem('userID') !== '' &&
-        localStorage.getItem('userID') !== null 
-        // &&
-        // JSON.parse(localStorage.getItem('queue'))!== undefined && 
-        // JSON.parse(localStorage.getItem('queue')) !== null
-        ? JSON.parse(localStorage.getItem('listOfDataWathed'))
+        localStorage.getItem('userID') !== null
+        ? // &&
+          // JSON.parse(localStorage.getItem('queue'))!== undefined &&
+          // JSON.parse(localStorage.getItem('queue')) !== null
+          JSON.parse(localStorage.getItem('listOfDataWathed'))
         : JSON.parse(localStorage.getItem('watched'));
     } catch (error) {
       console.log(error);
@@ -241,11 +240,11 @@ export function getQueueItems() {
   if (!kidsSectionRef && !homeSectionRef) {
     try {
       return localStorage.getItem('userID') !== '' &&
-        localStorage.getItem('userID') !== null 
-        // &&
-        // JSON.parse(localStorage.getItem('queue'))!== undefined && 
-        // JSON.parse(localStorage.getItem('queue')) !== null
-        ? JSON.parse(localStorage.getItem('listOfDataQueue'))
+        localStorage.getItem('userID') !== null
+        ? // &&
+          // JSON.parse(localStorage.getItem('queue'))!== undefined &&
+          // JSON.parse(localStorage.getItem('queue')) !== null
+          JSON.parse(localStorage.getItem('listOfDataQueue'))
         : JSON.parse(localStorage.getItem('queue'));
     } catch (error) {
       console.log(error);
