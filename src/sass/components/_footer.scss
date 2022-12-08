@@ -1,8 +1,10 @@
 .footer {
   background-color: var(--footer-background);
-
-  @media screen and (min-width: 767px) {
+  
+  &__box{
+    @media screen and (min-width: 767px) {
     position: relative;
+  }
   }
 
   &__container {
@@ -104,7 +106,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 170px;
+      width: 140px;
       text-align: start;
       align-items: flex-start;
       padding-right: 0;
@@ -118,7 +120,7 @@
   }
 
   &__info {
-    font-size: 9px;
+    font-size: 7px;
     color: var(--footer-api-text);
     margin-right: 4px;
   }
