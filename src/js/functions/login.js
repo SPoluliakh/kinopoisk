@@ -7,14 +7,14 @@ import {
 } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { startSpinner, stopSpinner } from '../components/spinner';
-
+import { getDatabase, ref, set, onValue, remove } from 'firebase/database';
 import { listRef } from '../refs/refs';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCGogj3fGE6tA7X8GsT_L5_K13QQ4ppLp4',
   authDomain: 'team-project-filmoteka-fd028.firebaseapp.com',
   databaseURL:
-    'https://team-project-filmoteka-fd028-default-rtdb.europe-west1.firebasedatabase.app',
+  'https://team-project-filmoteka-fd028-default-rtdb.europe-west1.firebasedatabase.app',
   projectId: 'team-project-filmoteka-fd028',
   storageBucket: 'team-project-filmoteka-fd028.appspot.com',
   messagingSenderId: '647650787195',
@@ -26,6 +26,11 @@ Object.freeze(firebaseConfig);
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+// Fire Database
+const dataBase = getDatabase();
+
+export let listOfDataQueue = [];
+export let listOfDataWathed = [];
 
 const form = document.querySelector('.form-signin');
 const newUser = document.querySelector('.sign');
@@ -59,6 +64,29 @@ const showLoginForm = () => {
 
 const showApp = () => {
   formSignin.classList.remove('active');
+  userID = localStorage.getItem('userID');
+  const starCountRefQueue = ref(dataBase, 'queue/' + userID + '/');
+  onValue(starCountRefQueue, snapshot => {
+    const data = snapshot.val();
+    let list = [];
+    if (data !== undefined) {
+      list = Object.values(data);
+    }
+    listOfDataQueue = list.map(key => key);
+    localStorage.setItem('listOfDataQueue',JSON.stringify(listOfDataQueue))
+    return listOfDataQueue
+  });
+  const starCountRefWatched = ref(dataBase, 'wathed/' + userID + '/');
+  onValue(starCountRefWatched, snapshot => {
+    const data = snapshot.val();
+    let list = [];
+    if (data !== undefined) {
+      list = Object.values(data);
+    }
+    listOfDataWathed = list.map(key => key);
+    localStorage.setItem('listOfDataWathed',JSON.stringify(listOfDataWathed))
+    return listOfDataWathed
+  });
   if (localStorage.getItem('statusUser') === 'anonym') {
     autorization.classList.add('active'), loginout.classList.remove('active');
   } else {
@@ -74,6 +102,7 @@ const showApp = () => {
   document.removeEventListener('keyup', keyEsc);
   backdrop.removeEventListener('click', closeFormByBackdrop);
 };
+
 const showLoginError = error => {
   if (error.code == 'auth/wrong-password') {
     errorMessage.innerHTML = 'Wrong password. Try again.';
@@ -85,9 +114,6 @@ const showLoginError = error => {
 };
 const closeForm = () => {
   localStorage.setItem('statusUser', 'anonym');
-  if (count < 1) {
-    startPage();
-  }
   showApp();
 };
 
@@ -117,9 +143,6 @@ const loginEmailPassword = async () => {
     userID = userCredential.user.uid;
     localStorage.setItem('userID', userID);
     localStorage.setItem('statusUser', 'identificationUser');
-    if (count < 1) {
-      startPage();
-    }
     showApp();
   } catch (error) {
     showLoginError(error);
@@ -147,9 +170,6 @@ const createNewUser = async () => {
     userID = userCredential.user.uid;
     localStorage.setItem('userID', userID);
     localStorage.setItem('statusUser', 'identificationUser');
-    if (count < 1) {
-      startPage();
-    }
     showApp();
   } catch (error) {
     showLoginError(error);
@@ -188,17 +208,21 @@ const logout = async () => {
   await signOut(auth);
   userID = '';
   localStorage.setItem('userID', '');
+  localStorage.setItem('listOfDataWathed', '');
+  localStorage.setItem('listOfDataQueue', '');
   localStorage.setItem('statusUser', 'anonym');
   if (localStorage.getItem('statusUser') === 'anonym') {
     autorization.classList.add('active'), loginout.classList.remove('active');
   } else {
     loginout.classList.add('active'), autorization.classList.remove('active');
-  }
+  };
 };
+
 if (loginout) {
   loginout.addEventListener('click', e => {
     e.preventDefault();
     logout();
+    document.location.reload();
   });
 }
 if (autorization) {
@@ -212,13 +236,6 @@ if (autorization) {
 if (localStorage.getItem('movieList')) {
   listRef.innerHTML = JSON.parse(localStorage.getItem('movieList'));
 }
-// Fire Database
-
-import { getDatabase, ref, set, onValue, remove } from 'firebase/database';
-const dataBase = getDatabase();
-
-export let listOfDataQueue = [];
-export let listOfDataWathed = [];
 
 // додає в БД фільм DataWathed
 export function writeUserDataWathed(
@@ -277,32 +294,30 @@ export function writeUserDataQueue(
 }}
 
 // отримати перелік фільмів з БД DataWathed
-const starCountRefWatched = ref(dataBase, 'wathed/' + userID + '/');
+const starCountRefWatched = ref(dataBase, 'wathed/' + localStorage.getItem('userID') + '/');
 onValue(starCountRefWatched, snapshot => {
   const data = snapshot.val();
   userID = localStorage.getItem('userID');
   let list = [];
-  if (userID !== '' && userID !== null && data[userID] !== undefined) {
-    list = Object.values(data[userID]);
+  if (userID !== '' && userID !== null && data !== undefined) {
+    list = Object.values(data);
   }
   listOfDataWathed = list.map(key => key);
-  console.log('DataWathed : ');
-  console.log(listOfDataWathed);
+  localStorage.setItem('listOfDataWathed',JSON.stringify(listOfDataWathed))
   return listOfDataWathed
 });
 
 // отримати перелік фільмів з БД DataQueue
-const starCountRefQueue = ref(dataBase, 'queue/' + userID + '/');
+const starCountRefQueue = ref(dataBase, 'queue/' + localStorage.getItem('userID') + '/');
 onValue(starCountRefQueue, snapshot => {
   const data = snapshot.val();
   userID = localStorage.getItem('userID');
   let list = [];
-  if (userID !== '' && userID !== null && data[userID] !== undefined) {
-    list = Object.values(data[userID]);
+  if (data !== undefined) {
+    list = Object.values(data);
   }
   listOfDataQueue = list.map(key => key);
-  console.log('DataQueue : ');
-  console.log(listOfDataQueue);
+  localStorage.setItem('listOfDataQueue',JSON.stringify(listOfDataQueue))
   return listOfDataQueue
 });
 

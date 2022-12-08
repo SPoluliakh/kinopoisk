@@ -202,6 +202,7 @@ function paginateQueueMovies(event) {
 
 export function makeFilmCardForPagination(page = 1, getItemsFunction) {
   try {
+
     const localStorageWathed = getItemsFunction();
     const dataForPagination = cutPagesForPagination(localStorageWathed);
     const pageMovies = dataForPagination.find(element => element.page === page);
