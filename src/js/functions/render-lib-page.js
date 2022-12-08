@@ -180,7 +180,6 @@ export function deliteFromQueue() {
     }
 
     checkLibraryPagination(localStorageQueue, libraryQueueBtnRef);
-    console.log('Hello Queue!');
     const movieList = makeLibraryMovieList(localStorageQueue);
     listRef.innerHTML = movieList;
   } catch (err) {
