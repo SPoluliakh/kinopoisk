@@ -43,6 +43,7 @@ export function onWatchedBtn() {
   libraryWatchedBtnRef.classList.add('active-button');
   libraryQueueBtnRef.classList.remove('active-button');
   const localStorageWathed = getWatchedItems();
+  checkLibraryPagination(localStorageWathed, libraryWatchedBtnRef);
 
   // pagination part
   const totalResults = localStorageWathed?.length;
@@ -71,6 +72,7 @@ export function onQueueBtn() {
   libraryQueueBtnRef.classList.add('active-button');
   libraryWatchedBtnRef.classList.remove('active-button');
   const localStorageQueue = getQueueItems();
+  checkLibraryPagination(localStorageQueue, libraryQueueBtnRef);
 
   // pagination part
   const totalResults = localStorageQueue?.length;
@@ -99,7 +101,7 @@ export function onQueueBtn() {
 export function makeFilmCard(data = getWatchedItems) {
   try {
     const localStorageWathed = getWatchedItems();
-    addHiddenPagination();
+    checkLibraryPagination(localStorageWathed, libraryWatchedBtnRef);
     paginationForLibraryMovies.on('afterMove', paginateWatchedMovies);
 
     if (
@@ -108,7 +110,6 @@ export function makeFilmCard(data = getWatchedItems) {
     ) {
       librarydivRef.classList.add('visually-hidden');
       librarydivRef.style.display = 'none';
-      removeHiddenPagination();
     } else if (
       localStorageWathed?.length <= 0 &&
       libraryWatchedBtnRef.classList.contains('active-button')
@@ -137,7 +138,7 @@ export function makeFilmCardAfterDelitFromLibrary() {
   if (libraryWatchedBtnRef?.classList.contains('active-button')) {
     deliteFromWatched();
     return;
-  } else {
+  } if (libraryQueueBtnRef?.classList.contains('active-button')) {
     deliteFromQueue();
     return;
   }
@@ -155,9 +156,9 @@ export function deliteFromWatched() {
     } else {
       librarydivRef.classList.remove('visually-hidden');
       librarydivRef.style.display = 'block';
-      addHiddenPagination();
     }
 
+    checkLibraryPagination(localStorageWathed, libraryWatchedBtnRef);
     const movieList = makeLibraryMovieList(localStorageWathed);
     listRef.innerHTML = movieList;
   } catch (err) {
@@ -168,18 +169,19 @@ export function deliteFromWatched() {
 // delete from queue
 export function deliteFromQueue() {
   try {
-    const localStorageWathed = getQueueItems();
+    const localStorageQueue = getQueueItems();
 
-    if (localStorageWathed?.length > 0) {
+    if (localStorageQueue?.length > 0) {
       librarydivRef.classList.add('visually-hidden');
       librarydivRef.style.display = 'none';
     } else {
       librarydivRef.classList.remove('visually-hidden');
       librarydivRef.style.display = 'block';
-      addHiddenPagination();
     }
 
-    const movieList = makeLibraryMovieList(localStorageWathed);
+    checkLibraryPagination(localStorageQueue, libraryQueueBtnRef);
+    console.log('Hello Queue!');
+    const movieList = makeLibraryMovieList(localStorageQueue);
     listRef.innerHTML = movieList;
   } catch (err) {
     console.log(err);
@@ -227,3 +229,13 @@ export const checkFirstRender = () => {
     console.log(err);
   }
 };
+
+function checkLibraryPagination(localStorageMovies, btnLibrary) {
+  if (btnLibrary.classList.contains('active-button') &&
+    localStorageMovies.length === 0) {
+    addHiddenPagination();
+  } if (btnLibrary.classList.contains('active-button') &&
+    localStorageMovies.length > 0) {
+    removeHiddenPagination();
+  }
+}
