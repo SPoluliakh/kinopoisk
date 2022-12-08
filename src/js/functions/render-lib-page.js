@@ -45,7 +45,7 @@ export function onWatchedBtn() {
   const localStorageWathed = getWatchedItems();
 
   // pagination part
-  const totalResults = localStorageWathed.length;
+  const totalResults = localStorageWathed?.length;
   paginationForLibraryMoviesQueue.reset();
   paginationForLibraryMoviesQueue.off('afterMove', paginateQueueMovies);
   const paginationOptionsForWatchedMovies = makePaginationOptions(totalResults);
@@ -199,6 +199,7 @@ function paginateQueueMovies(event) {
 
 export function makeFilmCardForPagination(page = 1, getItemsFunction) {
   try {
+
     const localStorageWathed = getItemsFunction();
     const dataForPagination = cutPagesForPagination(localStorageWathed);
     const pageMovies = dataForPagination.find(element => element.page === page);

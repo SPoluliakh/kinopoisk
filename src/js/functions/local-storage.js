@@ -224,7 +224,7 @@ export function getWatchedItems() {
     try {
       return localStorage.getItem('userID') !== '' &&
         localStorage.getItem('userID') !== null
-        ? listOfDataWathed
+        ? JSON.parse(localStorage.getItem('listOfDataWathed'))
         : JSON.parse(localStorage.getItem('watched'));
     } catch (error) {
       console.log(error);
@@ -237,7 +237,7 @@ export function getQueueItems() {
     try {
       return localStorage.getItem('userID') !== '' &&
         localStorage.getItem('userID') !== null
-        ? listOfDataQueue
+        ? JSON.parse(localStorage.getItem('listOfDataQueue'))
         : JSON.parse(localStorage.getItem('queue'));
     } catch (error) {
       console.log(error);
