@@ -26,7 +26,7 @@ let searchValue;
 
 searchFormRef.addEventListener('submit', onFormSubmit);
 searchInputRef.addEventListener('input', debounce(inputSearch, 500));
-searchListRef.addEventListener('click', openMovieInfo);
+searchListRef.addEventListener('click', event => {backdropRef.style.display = "block"; openMovieInfo(event)});
 cleanButtonRef.addEventListener('click', cleanSearch);
 
 async function onFormSubmit(event) {
