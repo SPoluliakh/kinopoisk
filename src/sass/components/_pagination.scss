@@ -10,7 +10,7 @@ $desctop: 1280px;
  * @author NHN FE Development Team <dl_javascript@nhn.com>
  * @license MIT
  */
-@charset 'utf-8';
+// @charset 'utf-8';
 
 .tui-pagination * {
   -moz-user-select: none;
@@ -62,7 +62,7 @@ $desctop: 1280px;
 .tui-pagination strong {
   color: #fff;
   background: #ff6b08;
-  cursor: default;
+  cursor: pointer;
 }
 
 .tui-pagination .tui-is-selected:hover {
@@ -139,7 +139,7 @@ $desctop: 1280px;
 
 .tui-pagination .tui-is-disabled:hover {
   background: #fff;
-  cursor: default;
+  cursor: pointer;
 }
 
 .tui-pagination .tui-is-disabled .tui-ico-prev {
