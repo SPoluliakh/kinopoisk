@@ -4,7 +4,6 @@ import {
   queueBtnRef,
   kidsSectionRef,
   homeSectionRef,
-  librarydivRef,
 } from '../refs/refs';
 import { filmData } from './open-movie-info';
 import {
@@ -169,10 +168,7 @@ export function onQueueBtnClick() {
   let queue = [];
   localStorage.getItem('userID') !== '' &&
   localStorage.getItem('userID') !== null
-    ? // &&
-      // JSON.parse(localStorage.getItem('queue'))!== undefined &&
-      // JSON.parse(localStorage.getItem('queue')) !== null
-      (queue = listOfDataQueue)
+    ? (queue = listOfDataQueue)
     : (queue = JSON.parse(localStorage.getItem('queue')));
   const isAddedToQueue = queue.findIndex(film => Number(film.id) === id);
   let queueFilms;
@@ -225,10 +221,7 @@ export function getWatchedItems() {
     try {
       return localStorage.getItem('userID') !== '' &&
         localStorage.getItem('userID') !== null
-        ? // &&
-          // JSON.parse(localStorage.getItem('queue'))!== undefined &&
-          // JSON.parse(localStorage.getItem('queue')) !== null
-          JSON.parse(localStorage.getItem('listOfDataWathed'))
+        ? JSON.parse(localStorage.getItem('listOfDataWathed'))
         : JSON.parse(localStorage.getItem('watched'));
     } catch (error) {
       console.log(error);
@@ -241,10 +234,7 @@ export function getQueueItems() {
     try {
       return localStorage.getItem('userID') !== '' &&
         localStorage.getItem('userID') !== null
-        ? // &&
-          // JSON.parse(localStorage.getItem('queue'))!== undefined &&
-          // JSON.parse(localStorage.getItem('queue')) !== null
-          JSON.parse(localStorage.getItem('listOfDataQueue'))
+        ? JSON.parse(localStorage.getItem('listOfDataQueue'))
         : JSON.parse(localStorage.getItem('queue'));
     } catch (error) {
       console.log(error);

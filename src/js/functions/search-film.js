@@ -1,5 +1,5 @@
 import Pagination from 'tui-pagination';
-// import 'tui-pagination/dist/tui-pagination.css';
+
 import {
   searchFormRef,
   listRef,
@@ -34,10 +34,6 @@ async function onFormSubmit(event) {
   searchValue = event.currentTarget.searchQuery.value.trim();
   startSpinner();
   if (!searchValue) {
-    // errorRef.classList.add('show-error');
-    // setTimeout(() => {
-    //   errorRef.classList.remove('show-error');
-    // }, 3000);
     stopSpinner();
     return;
   }

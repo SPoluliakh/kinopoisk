@@ -224,6 +224,12 @@ export const checkFirstRender = () => {
       librarydivRef.classList.remove('visually-hidden');
       librarydivRef.style.display = 'block';
     }
+    if (
+      libraryWatchedBtnRef.classList.contains('active-button') &&
+      !localStorageWathed
+    ) {
+      addHiddenPagination();
+    }
   } catch (err) {
     console.log(err);
   }
