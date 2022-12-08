@@ -7,42 +7,38 @@ import {
   ticTacToe,
 } from '../refs/refs';
 import { clearDOM, returnDOM } from './game-memory';
-snakeGamesItem.addEventListener('click', startTicTacToeGame);
+
+snakeGamesItem.addEventListener('click', startSnakeGame);
 btnExitGame.addEventListener('click', returnDOM);
 
-function startTicTacToeGame() {
+function startSnakeGame() {
+  // Очишаем DOM
   clearDOM();
   games.classList.remove('hidden-game');
   memoryGame.classList.add('hidden-game');
   ticTacToe.classList.add('hidden-game');
 
   function snakeGame() {
-    // window.focus(); // Capture keys right away (by default focus is on editor)
-
     // Game data
     let snakePositions; // An array of snake positions, starting head first
     let applePosition; // The position of the apple
-
     let startTimestamp; // The starting timestamp of the animation
     let lastTimestamp; // The previous timestamp of the animation
     let stepsTaken; // How many steps did the snake take
     let score;
-    // let contrast;
-
     let inputs; // A list of directions the snake still has to take in order
-
     let gameStarted = false;
     let hardMode = false;
 
     // Configuration
     const width = 15; // Grid width
     const height = 15; // Grid height
-
     const speed = 200; // Milliseconds it takes for the snake to take a step in the grid
-    let fadeSpeed = 5000; // milliseconds it takes the grid to disappear (initially)
-    let fadeExponential = 1.024; // after each score it will gradually take more time for the grid to fade
-    // const contrastIncrease = 0.5; // contrast you gain after each score
     const color = 'black'; // Primary color
+
+    // let fadeSpeed = 5000; // milliseconds it takes the grid to disappear (initially)
+    // let fadeExponential = 1.024; // after each score it will gradually take more time for the grid to fade
+    // const contrastIncrease = 0.5; // contrast you gain after each score
 
     // Setup: Build up the grid
     // The grid consists of (width x height) tiles
@@ -50,6 +46,7 @@ function startTicTacToeGame() {
     // The tile can represent a part of the snake or an apple
     // Each tile has a content div that takes an absolute position
     // The content can fill the tile or slide in or out from any direction to take the shape of a transitioning snake head or tail
+
     const grid = document.querySelector('.grid');
     for (let i = 0; i < width * height; i++) {
       const content = document.createElement('div');
@@ -62,9 +59,7 @@ function startTicTacToeGame() {
 
       grid.appendChild(tile);
     }
-
     const tiles = document.querySelectorAll('.grid .tile-snake .content');
-
     const containerElement = document.querySelector('.container');
     // const noteElement = document.querySelector('footer');
     // const contrastElement = document.querySelector('.contrast');
@@ -91,7 +86,7 @@ function startTicTacToeGame() {
 
       // Reset header
       //   contrastElement.innerText = `${Math.floor(contrast * 100)}%`;
-      // scoreElement.innerText = hardMode ? `H ${score}` : score;
+      scoreElement.innerText = hardMode ? `H ${score}` : score;
 
       // Reset tiles
       for (const tile of tiles) setTile(tile);

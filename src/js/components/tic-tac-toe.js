@@ -234,9 +234,10 @@ function startTicTacToeGame() {
     var value;
     if (computer) {
       value = player == human ? humVal : comVal;
-    } else if (human) {
-      value = player == player1 ? player1val : player2val;
     }
+    // else if (human) {
+    //   value = player == player1 ? player1val : player2val;
+    // }
     // loop through winningboard to find win sequence
     for (var x = 0; x < 8; x++) {
       var win = true;
@@ -267,7 +268,6 @@ function startTicTacToeGame() {
   // click button on tic tac toe board
   for (var i = 0; i < tiles.length; i++) {
     tiles[i].addEventListener('click', claim);
-    console.log(tiles[i]);
   }
   function claim() {
     round += 1;

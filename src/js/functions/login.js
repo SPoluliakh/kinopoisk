@@ -7,8 +7,8 @@ import {
 } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { startSpinner, stopSpinner } from '../components/spinner';
-
-import { listRef } from '../refs/refs';
+import { getDatabase, ref, set, onValue, remove } from 'firebase/database';
+import { listRef, homeSectionRef } from '../refs/refs';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCGogj3fGE6tA7X8GsT_L5_K13QQ4ppLp4',
@@ -26,6 +26,11 @@ Object.freeze(firebaseConfig);
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+// Fire Database
+const dataBase = getDatabase();
+
+export let listOfDataQueue = [];
+export let listOfDataWathed = [];
 
 const form = document.querySelector('.form-signin');
 const newUser = document.querySelector('.sign');
@@ -59,6 +64,39 @@ const showLoginForm = () => {
 
 const showApp = () => {
   formSignin.classList.remove('active');
+  userID = localStorage.getItem('userID');
+  const starCountRefQueue = ref(dataBase, 'queue/' + userID + '/');
+  onValue(starCountRefQueue, snapshot => {
+    const data = snapshot.val();
+    let list = [];
+    if (
+      data !== undefined &&
+      data !== null &&
+      localStorage.getItem('userID') !== '' &&
+      localStorage.getItem('userID') !== null
+    ) {
+      list = Object.values(data);
+    }
+    listOfDataQueue = list.map(key => key);
+    localStorage.setItem('listOfDataQueue', JSON.stringify(listOfDataQueue));
+    return listOfDataQueue;
+  });
+  const starCountRefWatched = ref(dataBase, 'wathed/' + userID + '/');
+  onValue(starCountRefWatched, snapshot => {
+    const data = snapshot.val();
+    let list = [];
+    if (
+      data !== undefined &&
+      data !== null &&
+      localStorage.getItem('userID') !== '' &&
+      localStorage.getItem('userID')
+    ) {
+      list = Object.values(data);
+    }
+    listOfDataWathed = list.map(key => key);
+    localStorage.setItem('listOfDataWathed', JSON.stringify(listOfDataWathed));
+    return listOfDataWathed;
+  });
   if (localStorage.getItem('statusUser') === 'anonym') {
     autorization.classList.add('active'), loginout.classList.remove('active');
   } else {
@@ -74,6 +112,7 @@ const showApp = () => {
   document.removeEventListener('keyup', keyEsc);
   backdrop.removeEventListener('click', closeFormByBackdrop);
 };
+
 const showLoginError = error => {
   if (error.code == 'auth/wrong-password') {
     errorMessage.innerHTML = 'Wrong password. Try again.';
@@ -85,9 +124,6 @@ const showLoginError = error => {
 };
 const closeForm = () => {
   localStorage.setItem('statusUser', 'anonym');
-  if (count < 1) {
-    startPage();
-  }
   showApp();
 };
 
@@ -98,11 +134,11 @@ const closeModalForm = closeFormBtn.addEventListener('click', e => {
 
 const closeFormByBackdrop = e => {
   e.preventDefault();
-  console.log(e.currentTarget)
   if (e.target.classList.contains('backdropForm')) {
     closeForm();
     return;
-  }}
+  }
+};
 
 const loginEmailPassword = async () => {
   const loginEmail = document.querySelector('.form-control-mail').value;
@@ -117,9 +153,6 @@ const loginEmailPassword = async () => {
     userID = userCredential.user.uid;
     localStorage.setItem('userID', userID);
     localStorage.setItem('statusUser', 'identificationUser');
-    if (count < 1) {
-      startPage();
-    }
     showApp();
   } catch (error) {
     showLoginError(error);
@@ -147,9 +180,6 @@ const createNewUser = async () => {
     userID = userCredential.user.uid;
     localStorage.setItem('userID', userID);
     localStorage.setItem('statusUser', 'identificationUser');
-    if (count < 1) {
-      startPage();
-    }
     showApp();
   } catch (error) {
     showLoginError(error);
@@ -185,20 +215,24 @@ if (localStorage.getItem('statusUser') !== 'anonym') {
 }
 
 const logout = async () => {
-  await signOut(auth);
   userID = '';
   localStorage.setItem('userID', '');
+  localStorage.setItem('listOfDataWathed', '');
+  localStorage.setItem('listOfDataQueue', '');
   localStorage.setItem('statusUser', 'anonym');
   if (localStorage.getItem('statusUser') === 'anonym') {
     autorization.classList.add('active'), loginout.classList.remove('active');
   } else {
     loginout.classList.add('active'), autorization.classList.remove('active');
   }
+  await signOut(auth);
 };
+
 if (loginout) {
   loginout.addEventListener('click', e => {
     e.preventDefault();
     logout();
+    document.location.reload();
   });
 }
 if (autorization) {
@@ -209,16 +243,9 @@ if (autorization) {
   });
 }
 
-if (localStorage.getItem('movieList')) {
+if (localStorage.getItem('movieList') && homeSectionRef) {
   listRef.innerHTML = JSON.parse(localStorage.getItem('movieList'));
 }
-// Fire Database
-
-import { getDatabase, ref, set, onValue, remove } from 'firebase/database';
-const dataBase = getDatabase();
-
-export let listOfDataQueue = [];
-export let listOfDataWathed = [];
 
 // додає в БД фільм DataWathed
 export function writeUserDataWathed(
@@ -234,19 +261,23 @@ export function writeUserDataWathed(
   popularity,
   overview
 ) {
-  if (localStorage.getItem('userID') !== '' && localStorage.getItem('userID') !== null){
-  set(ref(dataBase, 'wathed/' + userId + '/' + idMove), {
-    poster_path: poster_path,
-    title: title,
-    genres: genres,
-    release_date: release_date,
-    id: id,
-    vote_count: vote_count,
-    vote_average: vote_average,
-    popularity: popularity,
-    overview: overview
-  });
-}}
+  if (
+    localStorage.getItem('userID') !== '' &&
+    localStorage.getItem('userID') !== null
+  ) {
+    set(ref(dataBase, 'wathed/' + userId + '/' + idMove), {
+      poster_path: poster_path,
+      title: title,
+      genres: genres,
+      release_date: release_date,
+      id: id,
+      vote_count: vote_count,
+      vote_average: vote_average,
+      popularity: popularity,
+      overview: overview,
+    });
+  }
+}
 
 // додає в БД фільм DataQueue
 export function writeUserDataQueue(
@@ -262,48 +293,66 @@ export function writeUserDataQueue(
   popularity,
   overview
 ) {
-  if (localStorage.getItem('userID') !== '' && localStorage.getItem('userID') !== null){
-  set(ref(dataBase, 'queue/' + userId + '/' + idMove), {
-    poster_path: poster_path,
-    title: title,
-    genres: genres,
-    release_date: release_date,
-    id: id,
-    vote_count: vote_count,
-    vote_average: vote_average,
-    popularity: popularity,
-    overview: overview
-  });
-}}
+  if (
+    localStorage.getItem('userID') !== '' &&
+    localStorage.getItem('userID') !== null
+  ) {
+    set(ref(dataBase, 'queue/' + userId + '/' + idMove), {
+      poster_path: poster_path,
+      title: title,
+      genres: genres,
+      release_date: release_date,
+      id: id,
+      vote_count: vote_count,
+      vote_average: vote_average,
+      popularity: popularity,
+      overview: overview,
+    });
+  }
+}
 
 // отримати перелік фільмів з БД DataWathed
-const starCountRefWatched = ref(dataBase, 'wathed/' + userID + '/');
+const starCountRefWatched = ref(
+  dataBase,
+  'wathed/' + localStorage.getItem('userID') + '/'
+);
 onValue(starCountRefWatched, snapshot => {
   const data = snapshot.val();
   userID = localStorage.getItem('userID');
   let list = [];
-  if (userID !== '' && userID !== null && data[userID] !== undefined) {
-    list = Object.values(data[userID]);
+  if (
+    data !== undefined &&
+    data !== null &&
+    localStorage.getItem('userID') !== '' &&
+    localStorage.getItem('userID')
+  ) {
+    list = Object.values(data);
   }
   listOfDataWathed = list.map(key => key);
-  console.log('DataWathed : ');
-  console.log(listOfDataWathed);
-  return listOfDataWathed
+  localStorage.setItem('listOfDataWathed', JSON.stringify(listOfDataWathed));
+  return listOfDataWathed;
 });
 
 // отримати перелік фільмів з БД DataQueue
-const starCountRefQueue = ref(dataBase, 'queue/' + userID + '/');
+const starCountRefQueue = ref(
+  dataBase,
+  'queue/' + localStorage.getItem('userID') + '/'
+);
 onValue(starCountRefQueue, snapshot => {
   const data = snapshot.val();
   userID = localStorage.getItem('userID');
   let list = [];
-  if (userID !== '' && userID !== null && data[userID] !== undefined) {
-    list = Object.values(data[userID]);
+  if (
+    data !== undefined &&
+    data !== null &&
+    localStorage.getItem('userID') !== '' &&
+    localStorage.getItem('userID')
+  ) {
+    list = Object.values(data);
   }
   listOfDataQueue = list.map(key => key);
-  console.log('DataQueue : ');
-  console.log(listOfDataQueue);
-  return listOfDataQueue
+  localStorage.setItem('listOfDataQueue', JSON.stringify(listOfDataQueue));
+  return listOfDataQueue;
 });
 
 // Видаляє фільм з БД DataWathed
@@ -315,5 +364,3 @@ export function deleteUserDataWathed(userId, idMove) {
 export function deleteUserDataQueue(userId, idMove) {
   remove(ref(dataBase, 'queue/' + userId + '/' + idMove), {});
 }
-
-

@@ -4,7 +4,6 @@ import {
   queueBtnRef,
   kidsSectionRef,
   homeSectionRef,
-  librarydivRef,
 } from '../refs/refs';
 import { filmData } from './open-movie-info';
 import {
@@ -47,7 +46,6 @@ export function modalBtnsHandler(externalId) {
         return (filmInListWathed = id);
       }
     });
-    console.log('id', filmInListWathed);
     if (filmInListWathed === 0) {
       watchedBtnRef.textContent = 'ADD TO WATCHED';
       watchedBtnRef.classList.remove('modal__button--active');
@@ -62,7 +60,7 @@ export function modalBtnsHandler(externalId) {
         return (filmInListQueue = id);
       }
     });
-    console.log('id', filmInListQueue);
+
     if (filmInListQueue === 0) {
       queueBtnRef.textContent = 'ADD TO QUEUE';
       queueBtnRef.classList.remove('modal__button--active');
@@ -145,7 +143,6 @@ export function onWatchedBtnClick() {
       watchedBtnRef.classList.add('modal__button--active');
     } else {
       watchedFilms = [...watched, filmData.data];
-      console.log(filmData.data);
       localStorage.setItem('watched', JSON.stringify(watchedFilms));
       watchedBtnRef.textContent = 'REMOVE FROM WATCHED';
       watchedBtnRef.classList.add('modal__button--active');
@@ -224,7 +221,7 @@ export function getWatchedItems() {
     try {
       return localStorage.getItem('userID') !== '' &&
         localStorage.getItem('userID') !== null
-        ? listOfDataWathed
+        ? JSON.parse(localStorage.getItem('listOfDataWathed'))
         : JSON.parse(localStorage.getItem('watched'));
     } catch (error) {
       console.log(error);
@@ -237,7 +234,7 @@ export function getQueueItems() {
     try {
       return localStorage.getItem('userID') !== '' &&
         localStorage.getItem('userID') !== null
-        ? listOfDataQueue
+        ? JSON.parse(localStorage.getItem('listOfDataQueue'))
         : JSON.parse(localStorage.getItem('queue'));
     } catch (error) {
       console.log(error);

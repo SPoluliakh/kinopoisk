@@ -39,6 +39,7 @@ export const games = document.querySelector('.game');
 export const ticTacToe = document.querySelector('.tic-tac-toe');
 export const memoryGame = document.querySelector('.memory-game');
 export const snake = document.querySelector('.snake-wrapper');
+export const gridSnake = document.querySelector('.grid');
 
 // Library
 export const libraryWatchedBtnRef = document.querySelector('.watched-button');
