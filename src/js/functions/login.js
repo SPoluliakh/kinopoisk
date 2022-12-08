@@ -8,7 +8,7 @@ import {
 import { initializeApp } from 'firebase/app';
 import { startSpinner, stopSpinner } from '../components/spinner';
 import { getDatabase, ref, set, onValue, remove } from 'firebase/database';
-import { listRef } from '../refs/refs';
+import { listRef, homeSectionRef } from '../refs/refs';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCGogj3fGE6tA7X8GsT_L5_K13QQ4ppLp4',
@@ -69,8 +69,7 @@ const showApp = () => {
   onValue(starCountRefQueue, snapshot => {
     const data = snapshot.val();
     let list = [];
-    console.log(data);
-    if (data !== undefined && data !==null) {
+    if (data !== undefined && data !==null && localStorage.getItem('userID') !== '' &&  localStorage.getItem('userID') !== null) {
       list = Object.values(data);
     }
     listOfDataQueue = list.map(key => key);
@@ -81,7 +80,7 @@ const showApp = () => {
   onValue(starCountRefWatched, snapshot => {
     const data = snapshot.val();
     let list = [];
-    if (data !== undefined && data !==null) {
+    if (data !== undefined && data !==null && localStorage.getItem('userID') !== '' &&  localStorage.getItem('userID')) {
       list = Object.values(data);
     }
     listOfDataWathed = list.map(key => key);
@@ -206,7 +205,6 @@ if (localStorage.getItem('statusUser') !== 'anonym') {
 }
 
 const logout = async () => {
-  await signOut(auth);
   userID = '';
   localStorage.setItem('userID', '');
   localStorage.setItem('listOfDataWathed', '');
@@ -217,6 +215,7 @@ const logout = async () => {
   } else {
     loginout.classList.add('active'), autorization.classList.remove('active');
   };
+  await signOut(auth);
 };
 
 if (loginout) {
@@ -234,7 +233,7 @@ if (autorization) {
   });
 }
 
-if (localStorage.getItem('movieList')) {
+if (localStorage.getItem('movieList') && homeSectionRef) {
   listRef.innerHTML = JSON.parse(localStorage.getItem('movieList'));
 }
 
@@ -300,7 +299,7 @@ onValue(starCountRefWatched, snapshot => {
   const data = snapshot.val();
   userID = localStorage.getItem('userID');
   let list = [];
-  if (data !== undefined && data !==null) {
+  if (data !== undefined && data !==null && localStorage.getItem('userID') !== '' &&  localStorage.getItem('userID')) {
     list = Object.values(data);
   }
   listOfDataWathed = list.map(key => key);
@@ -314,7 +313,7 @@ onValue(starCountRefQueue, snapshot => {
   const data = snapshot.val();
   userID = localStorage.getItem('userID');
   let list = [];
-  if (data !== undefined && data !==null) {
+  if (data !== undefined && data !==null && localStorage.getItem('userID') !== '' &&  localStorage.getItem('userID')) {
     list = Object.values(data);
   }
   listOfDataQueue = list.map(key => key);
