@@ -31,7 +31,7 @@ export async function onTrailerBtnClick(id) {
 }
 
 export function closeTrailer() {
-  const trailer = `<iframe class="player is-hidden" type="text/html" allowfullscreen="allowfullscreen"
+  const trailer = `<iframe id="trailer" class="player is-hidden" type="text/html" allowfullscreen="allowfullscreen"
   src=""
   frameborder="0"></iframe>`;
   return (trailerWrapRef.innerHTML = trailer);
