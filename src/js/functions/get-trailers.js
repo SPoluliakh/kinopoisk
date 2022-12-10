@@ -2,13 +2,7 @@ import { getMovieTrailer } from '../api/get-api';
 import { trailerBtnRef, trailerWrapRef } from '../refs/refs';
 import { startSpinner, stopSpinner } from '../components/spinner';
 
-export const getTrailer = id => {
-  trailerBtnRef.addEventListener('click', () => onTrailerBtnClick(id));
-};
-
-export const removeListenerFromTrailerButton = () => {
-  trailerBtnRef.removeEventListener('click', onTrailerBtnClick);
-};
+export const trailerShow = trailerBtnRef.addEventListener('click', () => onTrailerBtnClick(document.querySelector('.modal__button--trailer').dataset.id));
 
 export async function onTrailerBtnClick(id) {
   startSpinner();
@@ -24,9 +18,9 @@ export async function onTrailerBtnClick(id) {
 
     trailerWrapRef.classList.remove('is-hidden');
     // console.log(trailer);
-    return (trailerWrapRef.innerHTML = trailer);
+     (trailerWrapRef.innerHTML = trailer);
   } else {
-    return;
+    alert("Sorry, we dont't have traler for this move")
   }
 }
 

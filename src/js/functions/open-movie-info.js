@@ -3,7 +3,6 @@ import { getMovieById } from '../api/get-api';
 import { modalBtnsHandler } from './local-storage';
 import noImg from '../../images/noimage.png';
 import * as closeModal from './close-modal';
-import { getTrailer } from './get-trailers';
 import { startSpinner, stopSpinner } from '../components/spinner';
 
 import {
@@ -53,8 +52,8 @@ export async function openMovieInfo(evt) {
 
   modalBtnsHandler(id);
   btnUp.hide();
-
-  getTrailer(film.dataset.id);
+  document.querySelector('.modal__button--trailer').setAttribute('data-id', film.dataset.id)
+  // getTrailer(film.dataset.id);
 
   backdropRef.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
