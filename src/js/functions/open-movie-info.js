@@ -3,7 +3,6 @@ import { getMovieById } from '../api/get-api';
 import { modalBtnsHandler } from './local-storage';
 import noImg from '../../images/noimage.png';
 import * as closeModal from './close-modal';
-import { getTrailer } from './get-trailers';
 import { startSpinner, stopSpinner } from '../components/spinner';
 
 import {
