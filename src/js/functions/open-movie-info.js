@@ -53,8 +53,8 @@ export async function openMovieInfo(evt) {
 
   modalBtnsHandler(id);
   btnUp.hide();
-
-  getTrailer(film.dataset.id);
+  document.querySelector('.modal__button--trailer').setAttribute('data-id', film.dataset.id)
+  // getTrailer(film.dataset.id);
 
   backdropRef.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';

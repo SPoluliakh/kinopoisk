@@ -9,7 +9,7 @@ import { onWatchedBtnClick, onQueueBtnClick } from './local-storage';
 import { makeFilmCardAfterDelitFromLibrary } from './render-lib-page';
 import { onTrailerBtnClick, closeTrailer } from './get-trailers';
 import { btnUp } from '../components/to-top-button';
-import { removeListenerFromTrailerButton } from './get-trailers';
+import { trailerShow } from './get-trailers';
 
 export const closeByClick = evt => {
   if (!trailerWrapRef.classList.contains('is-hidden')) {
@@ -47,7 +47,7 @@ const closeModal = () => {
   watchedBtnRef.removeEventListener('click', onWatchedBtnClick);
   queueBtnRef.removeEventListener('click', onQueueBtnClick);
   trailerBtnRef.removeEventListener('click', onTrailerBtnClick);
-  removeListenerFromTrailerButton();
+  trailerBtnRef.addEventListener('click',trailerShow);
   makeFilmCardAfterDelitFromLibrary();
   btnUp?.closeModalCheck();
 };
