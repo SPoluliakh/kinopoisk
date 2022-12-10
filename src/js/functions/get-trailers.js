@@ -23,7 +23,7 @@ export async function onTrailerBtnClick(id) {
   frameborder="0"></iframe>`;
 
     trailerWrapRef.classList.remove('is-hidden');
-    console.log(trailer);
+    // console.log(trailer);
     return (trailerWrapRef.innerHTML = trailer);
   } else {
     return;
