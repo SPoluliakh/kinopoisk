@@ -15,7 +15,7 @@ import {
   removeHiddenPagination,
   cutPagesForPagination,
 } from './pagination';
-import { paginationContainer } from '../refs/refs';
+import { listRef, paginationContainer } from '../refs/refs';
 
 // default Library Pagination
 
@@ -100,18 +100,18 @@ export function onQueueBtn() {
 
 export function makeFilmCard(data = getWatchedItems) {
   try {
-    const localStorageWathed = getWatchedItems();
-    checkLibraryPagination(localStorageWathed, libraryWatchedBtnRef);
+    const localStorageWatched = getWatchedItems();
+    checkLibraryPagination(localStorageWatched, libraryWatchedBtnRef);
     paginationForLibraryMovies.on('afterMove', paginateWatchedMovies);
 
     if (
-      localStorageWathed?.length > 0 &&
+      localStorageWatched?.length > 0 &&
       libraryWatchedBtnRef.classList.contains('active-button')
     ) {
       librarydivRef.classList.add('visually-hidden');
       librarydivRef.style.display = 'none';
     } else if (
-      localStorageWathed?.length <= 0 &&
+      localStorageWatched?.length <= 0 &&
       libraryWatchedBtnRef.classList.contains('active-button')
     ) {
       librarydivRef.classList.remove('visually-hidden');
@@ -145,12 +145,21 @@ export function makeFilmCardAfterDelitFromLibrary() {
   }
 }
 
+// ================================================================================================
+
+// let currentLibraryPaginationPage = null;
+
+// listRef.addEventListener('click', onShowIdDeleteMovie);
+// function onShowIdDeleteMovie(event) {
+//   console.log(event.target.dataset.id);
+// }
+
 // delete from watched
 export function deliteFromWatched() {
   try {
-    const localStorageWathed = getWatchedItems();
-
-    if (localStorageWathed?.length > 0) {
+    const localStorageWatched = getWatchedItems();
+    
+    if (localStorageWatched?.length > 0) {
       librarydivRef.classList.add('visually-hidden');
       librarydivRef.style.display = 'none';
     } else {
@@ -158,8 +167,26 @@ export function deliteFromWatched() {
       librarydivRef.style.display = 'block';
     }
 
-    checkLibraryPagination(localStorageWathed, libraryWatchedBtnRef);
-    const movieList = makeLibraryMovieList(localStorageWathed);
+    checkLibraryPagination(localStorageWatched, libraryWatchedBtnRef);
+
+    const currentLibraryPaginationPage = document.querySelector('strong');
+    const currentPage = Number(currentLibraryPaginationPage.textContent);
+
+    // listRef.addEventListener('click', onShowIdDeleteMovie);
+    
+    const dataForPagination = cutPagesForPagination(localStorageWatched);
+    console.log(dataForPagination);
+    let pageMovies = dataForPagination.find(element => element.page === currentPage);
+    console.log(pageMovies);
+    if (pageMovies === undefined) {
+      console.log('Hello from function - - - deliteFromWatched!');
+      // const lastPaginateBtn = document.querySelector('.tui-page-btn.tui-last-child');
+      // lastPaginateBtn.style.display = 'none';
+      // const dataForPaginationOnLastBtn = cutPagesForPagination(localStorageWatched);
+      // pageMovies = dataForPaginationOnLastBtn.find(element => element.page === currentPage - 1);
+    }
+    const movies = pageMovies.results;
+    const movieList = makeLibraryMovieList(movies);
     listRef.innerHTML = movieList;
   } catch (err) {
     console.log(err);
@@ -204,6 +231,10 @@ export function makeFilmCardForPagination(page = 1, getItemsFunction) {
     const localStorageWathed = getItemsFunction();
     const dataForPagination = cutPagesForPagination(localStorageWathed);
     const pageMovies = dataForPagination.find(element => element.page === page);
+    if (pageMovies === undefined) {
+      console.log('Hello from function - - - makeFilmCardForPagination!');
+    }
+
     const movies = pageMovies.results;
 
     const movieList = makeLibraryMovieList(movies);
