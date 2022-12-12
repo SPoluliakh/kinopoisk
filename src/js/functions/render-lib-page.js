@@ -136,83 +136,107 @@ export function makeFilmCardAfterDelitFromLibrary() {
     return;
   }
   if (libraryWatchedBtnRef?.classList.contains('active-button')) {
-    deliteFromWatched();
+    // deliteFromWatched();
+    deleteFromLibraryLists(getWatchedItems, libraryWatchedBtnRef);
     return;
   }
   if (libraryQueueBtnRef?.classList.contains('active-button')) {
-    deliteFromQueue();
+    // deliteFromQueue();
+    deleteFromLibraryLists(getQueueItems, libraryQueueBtnRef);
     return;
   }
 }
 
 // ================================================================================================
 
-// let currentLibraryPaginationPage = null;
-
 // listRef.addEventListener('click', onShowIdDeleteMovie);
 // function onShowIdDeleteMovie(event) {
 //   console.log(event.target.dataset.id);
 // }
 
-// delete from watched
-export function deliteFromWatched() {
-  try {
-    const localStorageWatched = getWatchedItems();
+// delete from Library Page from Watched or Queue Lists:
+export function deleteFromLibraryLists(getItemsFunction, libraryListBtnRef) {
+    try {
+      const localStorageList = getItemsFunction();
     
-    if (localStorageWatched?.length > 0) {
-      librarydivRef.classList.add('visually-hidden');
-      librarydivRef.style.display = 'none';
-    } else {
-      librarydivRef.classList.remove('visually-hidden');
-      librarydivRef.style.display = 'block';
-    }
+      if (localStorageList?.length > 0) {
+        librarydivRef.classList.add('visually-hidden');
+        librarydivRef.style.display = 'none';
+      } else {
+        librarydivRef.classList.remove('visually-hidden');
+        librarydivRef.style.display = 'block';
+      }
 
-    checkLibraryPagination(localStorageWatched, libraryWatchedBtnRef);
+      checkLibraryPagination(localStorageList, libraryListBtnRef);
 
-    const currentLibraryPaginationPage = document.querySelector('strong');
-    const currentPage = Number(currentLibraryPaginationPage.textContent);
+      currentLibraryPaginationPage = document.querySelector('strong');
+      const currentPage = Number(currentLibraryPaginationPage.textContent);
+      console.log(currentPage);
 
-    // listRef.addEventListener('click', onShowIdDeleteMovie);
+      // listRef.addEventListener('click', onShowIdDeleteMovie);
     
-    const dataForPagination = cutPagesForPagination(localStorageWatched);
-    console.log(dataForPagination);
-    let pageMovies = dataForPagination.find(element => element.page === currentPage);
-    console.log(pageMovies);
-    if (pageMovies === undefined) {
-      console.log('Hello from function - - - deliteFromWatched!');
-      // const lastPaginateBtn = document.querySelector('.tui-page-btn.tui-last-child');
-      // lastPaginateBtn.style.display = 'none';
-      // const dataForPaginationOnLastBtn = cutPagesForPagination(localStorageWatched);
-      // pageMovies = dataForPaginationOnLastBtn.find(element => element.page === currentPage - 1);
+      const dataForPagination = cutPagesForPagination(localStorageList);
+      console.log(dataForPagination);
+      let pageMovies = dataForPagination.find(element => element.page === currentPage);
+      console.log(pageMovies);
+      if (pageMovies === undefined) {
+        console.log('Hello from function - - - deleteFromLibraryLists!');
+        // const lastPaginateBtn = document.querySelector('.tui-page-btn.tui-last-child');
+        // lastPaginateBtn.style.display = 'none';
+        // const dataForPaginationOnLastBtn = cutPagesForPagination(localStorageList);
+        // pageMovies = dataForPaginationOnLastBtn.find(element => element.page === currentPage - 1);
+      }
+      const movies = pageMovies.results;
+      const movieList = makeLibraryMovieList(movies);
+      listRef.innerHTML = movieList;
+    } catch (err) {
+      console.log(err);
     }
-    const movies = pageMovies.results;
-    const movieList = makeLibraryMovieList(movies);
-    listRef.innerHTML = movieList;
-  } catch (err) {
-    console.log(err);
-  }
 }
 
-// delete from queue
-export function deliteFromQueue() {
-  try {
-    const localStorageQueue = getQueueItems();
+// ================================================================================================
 
-    if (localStorageQueue?.length > 0) {
-      librarydivRef.classList.add('visually-hidden');
-      librarydivRef.style.display = 'none';
-    } else {
-      librarydivRef.classList.remove('visually-hidden');
-      librarydivRef.style.display = 'block';
-    }
+// // delete from watched
+// export function deliteFromWatched() {
+//   try {
+//     const localStorageWatched = getWatchedItems();
+    
+//     if (localStorageWatched?.length > 0) {
+//       librarydivRef.classList.add('visually-hidden');
+//       librarydivRef.style.display = 'none';
+//     } else {
+//       librarydivRef.classList.remove('visually-hidden');
+//       librarydivRef.style.display = 'block';
+//     }
 
-    checkLibraryPagination(localStorageQueue, libraryQueueBtnRef);
-    const movieList = makeLibraryMovieList(localStorageQueue);
-    listRef.innerHTML = movieList;
-  } catch (err) {
-    console.log(err);
-  }
-}
+//     checkLibraryPagination(localStorageWatched, libraryWatchedBtnRef);
+//     const movieList = makeLibraryMovieList(localStorageWatched);
+//     listRef.innerHTML = movieList;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+
+// // delete from queue
+// export function deliteFromQueue() {
+//   try {
+//     const localStorageQueue = getQueueItems();
+
+//     if (localStorageQueue?.length > 0) {
+//       librarydivRef.classList.add('visually-hidden');
+//       librarydivRef.style.display = 'none';
+//     } else {
+//       librarydivRef.classList.remove('visually-hidden');
+//       librarydivRef.style.display = 'block';
+//     }
+
+//     checkLibraryPagination(localStorageQueue, libraryQueueBtnRef);
+//     const movieList = makeLibraryMovieList(localStorageQueue);
+//     listRef.innerHTML = movieList;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 
 function paginateWatchedMovies(event) {
   const currentPage = event.page;
