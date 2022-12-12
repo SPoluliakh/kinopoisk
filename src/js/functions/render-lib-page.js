@@ -208,8 +208,8 @@ export function makeFilmCardForPagination(page = 1, getItemsFunction) {
 
     const movieList = makeLibraryMovieList(movies);
     listRef.innerHTML = movieList;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 }
 
