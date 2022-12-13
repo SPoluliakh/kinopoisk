@@ -144,13 +144,13 @@ export function makeFilmCardAfterDelitFromLibrary() {
     return;
   }
 }
-
+// ================================================================================================
 // delete from watched
 export function deliteFromWatched() {
   try {
-    const localStorageWathed = getWatchedItems();
+    const localStorageWatched = getWatchedItems();
 
-    if (localStorageWathed?.length > 0) {
+    if (localStorageWatched?.length > 0) {
       librarydivRef.classList.add('visually-hidden');
       librarydivRef.style.display = 'none';
     } else {
@@ -158,8 +158,46 @@ export function deliteFromWatched() {
       librarydivRef.style.display = 'block';
     }
 
-    checkLibraryPagination(localStorageWathed, libraryWatchedBtnRef);
-    const movieList = makeLibraryMovieList(localStorageWathed);
+    checkLibraryPagination(localStorageWatched, libraryWatchedBtnRef);
+
+    const dataForPagination = cutPagesForPagination(localStorageWatched);
+    const paginationCurrentBtnPage = document.querySelector('strong.tui-page-btn');
+    const currentPage = Number(paginationCurrentBtnPage.innerText);
+    const previousPage = currentPage - 1;
+    const pageMovies = dataForPagination.find(element => element.page === currentPage);
+
+    //when you delete last movie (for example 21, 41, 61...) from any pages except from last page
+    if (Number.isInteger(localStorageWatched.length / 20)) {
+      const newTotalResults = localStorageWatched?.length;
+      paginationForLibraryMovies.off('afterMove', paginateWatchedMovies);
+      const paginationOptionsAfterDeleteWatchedMovies = makePaginationOptions(newTotalResults, currentPage);
+      const paginationAfterDeleteWatchedMovies = new Pagination(
+        paginationContainer,
+        paginationOptionsAfterDeleteWatchedMovies
+      );
+      paginationAfterDeleteWatchedMovies.on('afterMove', paginateWatchedMovies);
+    }
+    
+    //when you delete last movie (for example 21, 41, 61...) only from last page
+    if (pageMovies === undefined) {
+      const newTotalResults = localStorageWatched?.length;
+      paginationForLibraryMovies.off('afterMove', paginateWatchedMovies);
+      const paginationOptionsAfterDeleteWatchedMovies = makePaginationOptions(newTotalResults, previousPage);
+      const paginationAfterDeleteWatchedMovies = new Pagination(
+        paginationContainer,
+        paginationOptionsAfterDeleteWatchedMovies
+      );
+      paginationAfterDeleteWatchedMovies.on('afterMove', paginateWatchedMovies);
+      
+      const pageMovies = dataForPagination.find(element => element.page === previousPage);
+      const movies = pageMovies.results;
+      const movieList = makeLibraryMovieList(movies);
+      listRef.innerHTML = movieList;
+      return;
+    }
+
+    const movies = pageMovies.results;
+    const movieList = makeLibraryMovieList(movies);
     listRef.innerHTML = movieList;
   } catch (err) {
     console.log(err);
@@ -180,7 +218,45 @@ export function deliteFromQueue() {
     }
 
     checkLibraryPagination(localStorageQueue, libraryQueueBtnRef);
-    const movieList = makeLibraryMovieList(localStorageQueue);
+
+    const dataForPagination = cutPagesForPagination(localStorageQueue);
+    const paginationCurrentBtnPage = document.querySelector('strong.tui-page-btn');
+    const currentPage = Number(paginationCurrentBtnPage.innerText);
+    const previousPage = currentPage - 1;
+    const pageMovies = dataForPagination.find(element => element.page === currentPage);
+
+    //when you delete last movie (for example 21, 41, 61...) from any pages except from last page
+    if (Number.isInteger(localStorageQueue.length / 20)) {
+      const newTotalResults = localStorageQueue?.length;
+      paginationForLibraryMoviesQueue.off('afterMove', paginateQueueMovies);
+      const paginationOptionsAfterDeleteQueueMovies = makePaginationOptions(newTotalResults, currentPage);
+      const paginationAfterDeleteQueueMovies = new Pagination(
+        paginationContainer,
+        paginationOptionsAfterDeleteQueueMovies
+      );
+      paginationAfterDeleteQueueMovies.on('afterMove', paginateQueueMovies);
+    }
+    
+    //when you delete last movie (for example 21, 41, 61...) only from last page
+    if (pageMovies === undefined) {
+      const newTotalResults = localStorageQueue?.length;
+      paginationForLibraryMoviesQueue.off('afterMove', paginateQueueMovies);
+      const paginationOptionsAfterDeleteQueueMovies = makePaginationOptions(newTotalResults, previousPage);
+      const paginationAfterDeleteQueueMovies = new Pagination(
+        paginationContainer,
+        paginationOptionsAfterDeleteQueueMovies
+      );
+      paginationAfterDeleteQueueMovies.on('afterMove', paginateQueueMovies);
+      
+      const pageMovies = dataForPagination.find(element => element.page === previousPage);
+      const movies = pageMovies.results;
+      const movieList = makeLibraryMovieList(movies);
+      listRef.innerHTML = movieList;
+      return;
+    }
+
+    const movies = pageMovies.results;
+    const movieList = makeLibraryMovieList(movies);
     listRef.innerHTML = movieList;
   } catch (err) {
     console.log(err);

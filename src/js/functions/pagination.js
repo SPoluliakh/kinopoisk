@@ -6,12 +6,12 @@ import { moviesListMarkupFirstRender } from './render-home-page';
 import { startSpinner, stopSpinner } from '../components/spinner';
 import scrollSmooth from 'scroll-smooth';
 
-export function makePaginationOptions(totalResults = 10000) {
+export function makePaginationOptions(totalResults = 10000, startPage = 1) {
   return {
     totalItems: totalResults, //total_results < 10000 ? total_results : 10000,
     itemsPerPage: 20,
     visiblePages: 5,
-    page: 1,
+    page: startPage,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
